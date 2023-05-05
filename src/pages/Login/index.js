@@ -2,6 +2,9 @@ import React, { useState, useRef, useCallback } from "react";
 import { Keyboard, ImageBackground, TouchableOpacity } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
+//loader component
+import Loader from '../../components/Loader'
+
 //validações
 import * as Yup from "yup";
 
@@ -11,6 +14,7 @@ import * as S from "./styles";
 const LoginScreen = ({ navigation }) => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
 
   const passwordInputRef = useRef();
@@ -32,6 +36,9 @@ const LoginScreen = ({ navigation }) => {
       await schema.validate({ email: userEmail, password: userPassword });
       console.log("Dados válidos!");
 
+      navigation.navigate('SplashScreen');
+      // setLoading(true);
+
       // segue aqui codigo para avançar para pagina de HOME e bater no backend para conferir o login
 
     } catch (error) {
@@ -50,6 +57,7 @@ const LoginScreen = ({ navigation }) => {
       contentContainerStyle={{ flex: 1 }}
       opacity={backgroundLoaded ? 1 : 0}>
         <S.Container>
+          <Loader loading={loading}/>
           <S.Title>Login</S.Title>
           <S.Input
             onChangeText={setUserEmail}
