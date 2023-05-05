@@ -21,7 +21,7 @@ const AppRoutes = () => {
 
 const Auth = () => {
     return(
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName='Login'>
         <Stack.Screen name="Login" options={{headerShown:false}} component={LoginScreen}/>
         <Stack.Screen name="Register" options={{headerShown:false}} component={RegisterScreen}/>
     </Stack.Navigator>

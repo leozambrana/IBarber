@@ -28,3 +28,29 @@ export const Input = styled.TextInput`
   padding: 10px;
   margin-bottom: 20px;
 `;
+
+export const Button = styled.TouchableOpacity`
+  height: 50px;
+  width: 200px;
+  border-radius: 5px;
+  background-color: #3f2e26db;
+  justify-content: center;
+  align-self: center;
+  margin: 20px 0 0 0;
+`;
+
+export const ButtonText = styled.Text`
+  font-size: 18px;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+`;
+
+export const RegisterTextStyle = styled.Text`
+  color: #111;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  align-self: center;
+  padding: 10px;
+`;
