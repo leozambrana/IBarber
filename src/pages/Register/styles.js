@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import theme from "../../global/styles/theme";
 
 export const Container = styled.View`
     flex: 1;
@@ -13,7 +14,7 @@ export const Title = styled.Text`
     font-weight: 600;
     margin-bottom: 40px;
     color: black;
-    background-color: #dec3b8ab;
+    background-color: ${theme.colors.bgInput};
 `
 
 export const Input = styled.TextInput`
@@ -21,7 +22,7 @@ export const Input = styled.TextInput`
   font-size: 16px;
   height: 50px;
   width: 100%;
-  background-color: #dec3b8ab;
+  background-color: ${theme.colors.bgInput};
   border-radius: 10px;
   border-bottom-width: 1px;
   border-color: #3f2e26;
@@ -33,7 +34,7 @@ export const Button = styled.TouchableOpacity`
   height: 50px;
   width: 200px;
   border-radius: 5px;
-  background-color: #3f2e26db;
+  background-color: ${theme.colors.bgButton};
   justify-content: center;
   align-self: center;
   margin: 20px 0 0 0;
@@ -41,13 +42,13 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
   font-size: 18px;
-  color: #fff;
+  color: ${theme.colors.white};
   font-weight: bold;
   text-align: center;
 `;
 
 export const LoginTextStyle = styled.Text`
-  color: #111;
+  color: ${theme.colors.black};
   text-align: center;
   font-weight: bold;
   font-size: 14px;
