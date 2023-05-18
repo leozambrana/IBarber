@@ -4,51 +4,90 @@ import theme from "../../global/styles/theme";
 export const Container = styled.View`
     flex: 1;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     padding: 20px;
-    margin: 0 20px 40px 20px;
+    margin: 0 10px 40px 10px;
+`
+
+export const Top = styled.View`
+    align-items: center;
+`
+
+export const Bottom = styled.View`
+    width: 100%;
+    margin-bottom: 30px;
+`
+
+export const TitleContainer = styled.View`
+    flex-direction: row;
+    color: black;
 `
 
 export const Title = styled.Text`
-    font-size: 23px;
-    font-weight: 600;
-    margin-bottom: 40px;
-    color: black;
-    background-color: ${theme.colors.bgInput};
+    font-size: 35px;
+    font-weight: 600;   
+    color: white;   
 `
 
+export const TitleBarber = styled.Text`
+    font-size: 35px;
+    text-decoration-line: underline;
+    font-weight: 600;
+    color: green;
+`
+
+export const SubTitle = styled.Text`
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 100px;
+    color: #DDDDDDBF;
+`
+
+export const InputContainer = styled.View`
+  position: relative;
+  margin-bottom: 10px;
+`;
+
+export const Placeholder = styled.Text`
+  font-size: 14px;
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  color: ${theme.colors.white};
+  background-color: ${theme.colors.black};
+  padding: 0 10px;
+`;
+
+
 export const Input = styled.TextInput`
-  color: #3f2d26;
-  font-size: 16px;
   height: 50px;
   width: 100%;
-  background-color: ${theme.colors.bgInput};
   border-radius: 10px;
-  border-bottom-width: 1px;
-  border-color: #3f2e26;
+  border-width: 1px;
+  border-color: ${theme.colors.white};
   padding: 10px;
   margin-bottom: 20px;
 `;
 
 export const Button = styled.TouchableOpacity`
   height: 50px;
-  width: 200px;
+  width: 100%;
   border-radius: 5px;
   background-color: ${theme.colors.bgButton};
   justify-content: center;
   align-self: center;
-  margin: 20px 0 0 0;
+  margin-top: 10px;
 `;
 
 export const ButtonText = styled.Text`
-  font-size: 18px;
+  font-size: 25px;
   color: ${theme.colors.white};
   font-weight: bold;
   text-align: center;
 `;
 
 export const LoginTextStyle = styled.Text`
-  color: ${theme.colors.black};
+  color: #D5D5D5;
   text-align: center;
   font-weight: bold;
   font-size: 14px;

@@ -3,7 +3,7 @@ import { Keyboard, ImageBackground, TouchableOpacity } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 //loader component
-import Loader from '../../components/Loader'
+import Loader from "../../components/Loader";
 
 //validações
 import * as Yup from "yup";
@@ -21,7 +21,7 @@ const LoginScreen = ({ navigation }) => {
 
   const handleSubmitPress = useCallback(async () => {
     if (!userEmail.trim()) {
-      alert('Por favor, preencha o e-mail');
+      alert("Por favor, preencha o e-mail");
       return;
     }
 
@@ -36,11 +36,10 @@ const LoginScreen = ({ navigation }) => {
       await schema.validate({ email: userEmail, password: userPassword });
       console.log("Dados válidos!");
 
-      navigation.navigate('SplashScreen');
+      navigation.navigate("SplashScreen");
       // setLoading(true);
 
       // segue aqui codigo para avançar para pagina de HOME e bater no backend para conferir o login
-
     } catch (error) {
       alert(error.message);
     }
@@ -48,52 +47,72 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <ImageBackground
-      source={require("../../assets/img/pexels-caleb-oquendo-3162022.jpg")}
+      source={require("../../assets/img/Background.jpg")}
       style={{ flex: 1 }}
       onLoad={() => setBackgroundLoaded(true)}
     >
-      <KeyboardAwareScrollView 
-      scrollEnabled={false}
-      contentContainerStyle={{ flex: 1 }}
-      opacity={backgroundLoaded ? 1 : 0}>
+      <KeyboardAwareScrollView
+        scrollEnabled={false}
+        contentContainerStyle={{ flex: 1 }}
+        opacity={backgroundLoaded ? 1 : 0}
+      >
         <S.Container>
-          <Loader loading={loading}/>
-          <S.Title>Login</S.Title>
-          <S.Input
-            onChangeText={setUserEmail}
-            placeholder="Digite o e-mail"
-            placeholderTextColor="#321f1b"
-            autoCapitalize="none"
-            keyboardType="email-address"
-            returnKeyType="next"
-            onSubmitEditing={() => passwordInputRef.current.focus()}
-            underlineColorAndroid="#f000"
-            blurOnSubmit={false}
-          />
-          <S.Input
-            onChangeText={setUserPassword}
-            placeholder="Digite a senha"
-            placeholderTextColor="#321f1b"
-            keyboardType="default"
-            ref={passwordInputRef}
-            onSubmitEditing={Keyboard.dismiss}
-            blurOnSubmit={false}
-            secureTextEntry={true}
-            underlineColorAndroid="#f000"
-            returnKeyType="next"
-          />
-          <S.Button>
-            <TouchableOpacity
-              style={S.Button}
-              activeOpacity={0.5}
-              onPress={handleSubmitPress}
-            >
-              <S.ButtonText>Entrar</S.ButtonText>
-            </TouchableOpacity>
-          </S.Button>
-          <S.RegisterTextStyle onPress={() => navigation.navigate("Register")}>
-            Novo aqui? Cadastrar
-          </S.RegisterTextStyle>
+          <Loader loading={loading} />
+          <S.Top>
+            <S.TitleContainer>
+              <S.Title>Agenda</S.Title>
+              <S.TitleBarber>Barba</S.TitleBarber>
+            </S.TitleContainer>
+            <S.SubTitle>A melhor experiência de barbearia</S.SubTitle>
+          </S.Top>
+          <S.Bottom>
+            <S.InputContainer>
+              <S.Input
+                onChangeText={setUserEmail}
+                autoCapitalize="none"
+                keyboardType="email-address"
+                returnKeyType="next"
+                onSubmitEditing={() => passwordInputRef.current.focus()}
+                underlineColorAndroid="#f000"
+                blurOnSubmit={false}
+              />
+              <S.Placeholder>E-mail</S.Placeholder>
+            </S.InputContainer>
+            <S.InputContainer>
+              <S.Input
+                onChangeText={setUserPassword}
+                keyboardType="default"
+                ref={passwordInputRef}
+                onSubmitEditing={Keyboard.dismiss}
+                blurOnSubmit={false}
+                secureTextEntry={true}
+                underlineColorAndroid="#f000"
+                returnKeyType="next"
+              />
+              <S.Placeholder>Senha</S.Placeholder>
+            </S.InputContainer>
+            <S.Button>
+              <TouchableOpacity
+                style={S.Button}
+                activeOpacity={0.5}
+                onPress={handleSubmitPress}
+              >
+                <S.ButtonText>Entrar</S.ButtonText>
+              </TouchableOpacity>
+            </S.Button>
+            <S.View>
+              <S.RegisterTextStyle
+                onPress={() => navigation.navigate("Register")}
+              >
+                Esqueceu a senha?
+              </S.RegisterTextStyle>
+              <S.RegisterTextStyle
+                onPress={() => navigation.navigate("Register")}
+              >
+                Novo aqui? Cadastrar
+              </S.RegisterTextStyle>
+            </S.View>
+          </S.Bottom>
         </S.Container>
       </KeyboardAwareScrollView>
     </ImageBackground>
