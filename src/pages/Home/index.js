@@ -1,10 +1,13 @@
-import React from 'react'
-import { Text } from 'react-native';
+import React from "react";
+import { Text } from "react-native";
+import Main from "../../global/Main";
 
 const HomeScreen = () => {
   return (
-    <Text>index</Text>
-  )
-}
+    <Main>
+      <Text style={{ color: "white" }}>Home</Text>
+    </Main>
+  );
+};
 
 export default HomeScreen;
