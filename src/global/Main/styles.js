@@ -1,0 +1,19 @@
+import styled from "styled-components/native";
+import theme from "../../global/styles/theme";
+
+export const Header = styled.View`
+  width: 100%;
+  align-items: center;
+  margin-bottom: 15px;
+`;
+
+export const LogoImage = styled.Image`
+  height: 30px;
+  width: 140px;
+`;
+
+export const Container = styled.View`
+  flex: 1;
+  align-items: center;
+  padding: 0 20px;
+`;

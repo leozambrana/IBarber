@@ -58,12 +58,12 @@ export const Placeholder = styled.Text`
   padding: 0 10px;
 `;
 
-
 export const Input = styled.TextInput`
   height: 50px;
   width: 100%;
   border-radius: 10px;
   border-width: 1px;
+  color: ${theme.colors.white};
   border-color: ${theme.colors.white};
   padding: 10px;
   margin-bottom: 20px;
