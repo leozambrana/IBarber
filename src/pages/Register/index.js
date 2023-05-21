@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
-import { Keyboard, ImageBackground, TouchableOpacity } from "react-native";
+import { Keyboard, ImageBackground, TouchableOpacity, Button } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 //loader component
@@ -11,7 +11,7 @@ import * as Yup from "yup";
 //styled-componets
 import * as S from "./styles";
 
-const RegisterScreen = ({ navigation }) => {
+const RegisterScreen = ({ navigation, route }) => {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
@@ -149,9 +149,12 @@ const RegisterScreen = ({ navigation }) => {
                 <S.ButtonText>Registrar</S.ButtonText>
               </TouchableOpacity>
             </S.Button>
-            <S.LoginTextStyle onPress={() => navigation.navigate("Login")}>
-              Já tem Cadastro? Voltar
-            </S.LoginTextStyle>
+            {route.params.origem === 'PreLogin' && (
+              <S.LoginTextStyle onPress={() => navigation.navigate("PreLogin")}>Voltar para Pré-Login</S.LoginTextStyle>
+            )}
+           {route.params.origem === 'Login' &&(
+             <S.LoginTextStyle onPress={() => navigation.navigate("Login")}>Já tem Cadastro? Voltar</S.LoginTextStyle>              
+           )}
           </S.Bottom>
         </S.Container>
       </KeyboardAwareScrollView>
