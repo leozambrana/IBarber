@@ -107,7 +107,7 @@ const LoginScreen = ({ navigation }) => {
                 Esqueceu a senha?
               </S.RegisterTextStyle>
               <S.RegisterTextStyle
-                onPress={() => navigation.navigate("Register")}
+                onPress={() => navigation.navigate("Register", {origem : "Login"})}
               >
                 Novo aqui? Cadastrar
               </S.RegisterTextStyle>
