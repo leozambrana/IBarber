@@ -15,9 +15,15 @@ export const HeaderTitle = styled.Text`
   font-weight: bold;
 `;
 
-export const Container = styled.View`
-  width: 100%;
+export const BottomContainer = styled.View`
+  flex: 1;
   height: 100%;
+  width: 100%;
+`;
+
+export const Container = styled.View`
+  flex: 1;
+  width: 100%;
   margin-top: 10px;
   gap: 20px;
 `;
@@ -46,14 +52,15 @@ export const Description = styled.Text`
 
 export const LocationContainer = styled.View`
   width: 100%;
-  height: 50%;
+  height: 60%;
   align-items: center;
   border-radius: 20px;
+  gap: 15px;
 `;
 
 export const MapContainer = styled.View`
   width: 100%;
-  height: 89%;
+  height: 70%;
   border-radius: 20px;
   overflow: hidden;
 `;
@@ -61,4 +68,25 @@ export const MapContainer = styled.View`
 export const Map = styled(MapView)`
   width: 100%;
   height: 100%;
+`;
+
+export const LinkingContainer = styled.View`
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const LinkingButton = styled.TouchableOpacity`
+  width: 40%;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  background-color: ${theme.colors.white};
+  border-radius: 10px;
+`;
+
+export const LinkingText = styled.Text`
+  font-size: 18px;
+  color: ${theme.colors.black};
+  font-weight: bold;
 `;
