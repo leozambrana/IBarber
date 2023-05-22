@@ -8,6 +8,7 @@ export const Header = styled.View`
 `;
 
 export const LogoImage = styled.Image`
+  margin-top: 10px;
   height: 30px;
   width: 140px;
 `;

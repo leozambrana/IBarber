@@ -52,7 +52,7 @@ export const Button = styled.TouchableOpacity`
   border-radius: 10px;
   align-self: center;
   justify-content: center;
-  margin-top: 20px;
+  margin: 20px 0;
   position: absolute;
   bottom: 0;
 `;

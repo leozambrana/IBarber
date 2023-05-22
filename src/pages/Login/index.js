@@ -1,5 +1,11 @@
 import React, { useState, useRef, useCallback } from "react";
-import { Keyboard, ImageBackground, TouchableOpacity } from "react-native";
+import {
+  Keyboard,
+  ImageBackground,
+  TouchableOpacity,
+  StatusBar,
+  View,
+} from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 //loader component
@@ -51,6 +57,7 @@ const LoginScreen = ({ navigation }) => {
       style={{ flex: 1 }}
       onLoad={() => setBackgroundLoaded(true)}
     >
+      <StatusBar barStyle={"light-content"} />
       <KeyboardAwareScrollView
         scrollEnabled={false}
         contentContainerStyle={{ flex: 1 }}
