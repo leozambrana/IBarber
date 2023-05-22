@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
 //routes
+import PreLogin from "../pages/PreLogin";
 import LoginScreen from "../pages/Login";
 import RegisterScreen from "../pages/Register";
 import SplashScreen from "../components/Splash";
@@ -48,7 +49,12 @@ const AppRoutes = () => {
 
 const Auth = () => {
   return (
-    <Stack.Navigator initialRouteName="Login">
+    <Stack.Navigator initialRouteName="PreLogin">
+      <Stack.Screen
+        name="PreLogin"
+        options={{ headerShown: false }}
+        component={PreLogin}
+      />
       <Stack.Screen
         name="Login"
         options={{ headerShown: false }}
