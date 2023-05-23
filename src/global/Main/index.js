@@ -1,6 +1,7 @@
 import React from "react";
 import { SafeAreaView, ScrollView, StatusBar } from "react-native";
 import theme from "../../global/styles/theme";
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import * as S from "./styles";
 
@@ -14,6 +15,7 @@ const Main = ({ children }) => {
       <StatusBar barStyle={"light-content"} />
       <S.Header>
         <S.LogoImage source={require("../../assets/img/AgendaBarba.png")} />
+        <Ionicons style={{color: "white", position: "absolute", right: 22}} size={25} name='notifications-outline'/>
       </S.Header>
 
       <S.Container>{children}</S.Container>
