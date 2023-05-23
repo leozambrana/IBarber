@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { ScrollView, StatusBar } from "react-native";
-
+import { ScrollView } from "react-native";
 import theme from "../../global/styles/theme";
 import * as S from "./styles";
 import Main from "../../global/Main";
@@ -14,35 +12,22 @@ const ProfileScreen = () => {
   const [showSaveButton, setShowSaveButton] = useState(false);
 
   const handleInfoChanges = () => {
-    {
-      name.trim() &&
-        (setDisplayName(name.trim()),
-        console.log("Dado do usuário atualizado:", {
-          name,
-        }));
+    if (name.trim()) {
+      setDisplayName(name.trim());
+      console.log("Dado do usuário atualizado:", { name });
     }
-    {
-      email.trim() &&
-        (setEmail(email.trim()),
-        console.log("Dado do usuário atualizado:", {
-          email,
-        }));
+    if (email.trim()) {
+      setEmail(email.trim());
+      console.log("Dado do usuário atualizado:", { email });
     }
-    {
-      phoneNumber.trim() &&
-        (setPhoneNumber(phoneNumber.trim()),
-        console.log("Dado do usuário atualizado:", {
-          phoneNumber,
-        }));
+    if (phoneNumber.trim()) {
+      setPhoneNumber(phoneNumber.trim());
+      console.log("Dado do usuário atualizado:", { phoneNumber });
     }
   };
 
   const handleInputChange = (inputName, value) => {
-    if (!showSaveButton && value !== "") {
-      setShowSaveButton(true);
-    } else if (showSaveButton && value === "") {
-      setShowSaveButton(false);
-    }
+    setShowSaveButton(value !== "");
 
     switch (inputName) {
       case "name":
@@ -52,7 +37,33 @@ const ProfileScreen = () => {
         setEmail(value);
         break;
       case "phoneNumber":
-        setPhoneNumber(value);
+        // Remover caracteres não numéricos do valor
+        const numericValue = value.replace(/[^\d]/g, "");
+
+        // Formatando o número de telefone em tempo real
+        let formattedPhoneNumber = "";
+
+        if (numericValue.length > 0) {
+          formattedPhoneNumber += `(${numericValue.slice(0, 2)}`;
+        }
+        if (numericValue.length > 2) {
+          formattedPhoneNumber += `) ${numericValue.slice(2, 7)}`;
+        }
+        if (numericValue.length > 7) {
+          formattedPhoneNumber += `-${numericValue.slice(7, 11)}`;
+        }
+
+        // Verificar se o número de telefone está no formato correto
+        const phoneRegex = /^\(\d{2}\) \d{5}-\d{4}$/;
+        const isValidPhone = phoneRegex.test(formattedPhoneNumber);
+
+        setPhoneNumber(formattedPhoneNumber);
+
+        // Atualizar o estado de showSaveButton somente se o número de telefone for inválido
+        if (!isValidPhone) {
+          setShowSaveButton(false);
+        }
+
         break;
       default:
         break;
@@ -81,6 +92,7 @@ const ProfileScreen = () => {
                 value={name}
                 onChangeText={(text) => handleInputChange("name", text)}
                 returnKeyType="next"
+                autoCapitalize="words"
               />
               <S.Placeholder>Nome</S.Placeholder>
             </S.InputContainer>
@@ -100,6 +112,7 @@ const ProfileScreen = () => {
             <S.InputContainer>
               <S.Input
                 placeholder="(11) 99999-9999"
+                keyboardType="phone-pad"
                 placeholderTextColor={`${theme.colors.white}8`}
                 onChangeText={(text) => handleInputChange("phoneNumber", text)}
                 value={phoneNumber}

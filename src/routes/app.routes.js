@@ -18,6 +18,7 @@ import BarberShopScreen from "../pages/BarberShop";
 import ScheduleScreen from "../pages/Schedule";
 import ProfileScreen from "../pages/Profile";
 import theme from "../global/styles/theme";
+import CalendarScreen from "../pages/Calendar";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -82,6 +83,8 @@ const TabsNavigator = () => {
             iconName = focused ? "ios-calendar" : "ios-calendar-outline";
           } else if (route.name === "Perfil") {
             iconName = focused ? "ios-person" : "ios-person-outline";
+          } else if (route.name === "Agenda") {
+            iconName = focused ? "ios-today" : "ios-today-outline";
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
@@ -97,6 +100,7 @@ const TabsNavigator = () => {
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Barbearia" component={BarberShopScreen} />
       <Tab.Screen name="Agendar" component={ScheduleScreen} />
+      <Tab.Screen name="Agenda" component={CalendarScreen} />
       <Tab.Screen name="Perfil" component={ProfileScreen} />
     </Tab.Navigator>
   );
