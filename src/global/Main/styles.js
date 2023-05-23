@@ -3,7 +3,9 @@ import theme from "../../global/styles/theme";
 
 export const Header = styled.View`
   width: 100%;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
   margin-bottom: 15px;
 `;
 
@@ -19,3 +21,4 @@ export const Container = styled.View`
   padding: 0 20px;
   overflow: scroll;
 `;
+
