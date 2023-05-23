@@ -84,7 +84,7 @@ const TabsNavigator = () => {
           } else if (route.name === "Perfil") {
             iconName = focused ? "ios-person" : "ios-person-outline";
           } else if (route.name === "Agenda") {
-            iconName = focused ? "ios-calendar" : "ios-calendar-outline";
+            iconName = focused ? "ios-today" : "ios-today-outline";
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },

@@ -16,16 +16,10 @@ export const HeaderTitle = styled.Text`
 `;
 
 export const BottomContainer = styled.View`
-  flex: 1;
+  width: 100%;
   height: 100%;
-  width: 100%;
-`;
-
-export const Container = styled.View`
-  flex: 1;
-  width: 100%;
-  margin-top: 10px;
-  gap: 20px;
+  overflow: scroll;
+  gap: 10px;
 `;
 
 export const BarberInfo = styled.View`
@@ -81,12 +75,12 @@ export const LinkingButton = styled.TouchableOpacity`
   height: 40px;
   justify-content: center;
   align-items: center;
-  background-color: ${theme.colors.white};
+  background-color: ${theme.colors.bgButton};
   border-radius: 10px;
 `;
 
 export const LinkingText = styled.Text`
   font-size: 18px;
-  color: ${theme.colors.black};
+  color: ${theme.colors.white};
   font-weight: bold;
 `;
