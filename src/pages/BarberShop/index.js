@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./styles";
-import { Platform, Linking, TouchableOpacity, Button } from "react-native";
+import { Platform, Linking } from "react-native";
 import Main from "../../global/Main";
 import { Marker } from "react-native-maps";
 
