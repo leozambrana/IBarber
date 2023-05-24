@@ -10,7 +10,7 @@ const CalendarScreen = () => {
         <S.HeaderTitle>Sua agenda</S.HeaderTitle>
       </S.Header>
 
-      <S.Container>
+      {/* <S.Container>
         <S.CalendarContainer>
           <S.CalendarComponent
             theme={{
@@ -24,7 +24,7 @@ const CalendarScreen = () => {
             }}
           />
         </S.CalendarContainer>
-      </S.Container>
+      </S.Container> */}
     </Main>
   );
 };

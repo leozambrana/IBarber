@@ -1,11 +1,13 @@
 import React from "react";
-import { Text } from "react-native";
+import * as S from "./styles";
 import Main from "../../global/Main";
 
 const ScheduleScreen = () => {
   return (
     <Main>
-      <Text style={{ color: "white" }}>Agendar</Text>
+      <S.Header>
+        <S.HeaderTitle>Agendar</S.HeaderTitle>
+      </S.Header>
     </Main>
   );
 };
