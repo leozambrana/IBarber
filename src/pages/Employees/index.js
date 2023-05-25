@@ -1,24 +1,40 @@
 import React from "react";
 import * as S from "./styles";
 import Main from "../../global/Main";
+import SelectMenu from "../../components/SelectMenu";
 
 const EmployeesScreen = () => {
-  // Pegar os funcionários do banco de dados
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [selectedUser, setSelectedUser] = React.useState("");
 
+  // Pegar os funcionários do banco de dados
   const employees = [
     { label: "Álisson", value: "1" },
     { label: "Giovanni", value: "2" },
     { label: "Natanael", value: "3" },
   ];
 
+  // Pegar os usuários do banco de dados
   const users = [
     { label: "Leonardo", value: "1" },
     { label: "Thiago", value: "2" },
   ];
 
-  const handleAddEmployee = () => {
+  const handleOpenModal = () => {
     console.log("Adicionar funcionário");
-    employees.push({ label: "Novo funcionário", value: "4" });
+    setIsOpen(true);
+    // Abrir modal para adicionar funcionário
+    // Selecionar usuário
+    // Modificar o tipo do usuário de cliente para funcionário
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+
+  const handleAddEmployee = () => {
+    console.log(selectedUser);
+    setIsOpen(false);
   };
 
   return (
@@ -44,7 +60,33 @@ const EmployeesScreen = () => {
         </S.ListContainer>
       </S.EmployeesList>
 
-      <S.AddButton onPress={handleAddEmployee}>
+      <S.Modal visible={isOpen} transparent={true}>
+        <S.ModalContainer>
+          <S.ModalContent>
+            <S.ModalTitle>Adicionar funcionário</S.ModalTitle>
+
+            <S.ModalLabel>Selecione um usuário</S.ModalLabel>
+            <S.SelectContainer>
+              <SelectMenu
+                options={users}
+                onValueChange={() => setSelectedUser()}
+              />
+            </S.SelectContainer>
+
+            <S.ModalButtonsContainer>
+              <S.ModalButton onPress={handleCloseModal}>
+                <S.ModalButtonText>Cancelar</S.ModalButtonText>
+              </S.ModalButton>
+
+              <S.ModalButton onPress={handleAddEmployee}>
+                <S.ModalButtonText>Adicionar</S.ModalButtonText>
+              </S.ModalButton>
+            </S.ModalButtonsContainer>
+          </S.ModalContent>
+        </S.ModalContainer>
+      </S.Modal>
+
+      <S.AddButton onPress={handleOpenModal}>
         <S.AddButtonText>+</S.AddButtonText>
       </S.AddButton>
     </Main>
