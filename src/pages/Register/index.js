@@ -1,5 +1,5 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
-import { Keyboard, ImageBackground, TouchableOpacity, Button } from "react-native";
+import React, { useState, useRef, useCallback } from "react";
+import { Keyboard, ImageBackground, TouchableOpacity } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 //loader component

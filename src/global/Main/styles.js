@@ -6,7 +6,7 @@ export const Header = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-bottom: 15px;
+  margin: 27px 0;
 `;
 
 export const LogoImage = styled.Image`

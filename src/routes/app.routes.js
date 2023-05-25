@@ -22,6 +22,7 @@ import CalendarScreen from "../pages/Calendar";
 import SettingsScreen from "../pages/Settings";
 import EmployeesScreen from "../pages/Employees";
 import BarberScreen from "../pages/BarberShop";
+import ServiceAdd from "../pages/ServiceAdd";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -74,7 +75,7 @@ const Auth = () => {
 
 const TabsNavigator = () => {
   // a variável userType deve ser recebida do backend
-  const userType = "customer";
+  const userType = "admin";
 
   return (
     <Tab.Navigator
@@ -99,7 +100,10 @@ const TabsNavigator = () => {
             iconName = focused ? "ios-people" : "ios-people-outline";
           } else if (route.name === "Configurações") {
             iconName = focused ? "ios-settings" : "ios-settings-outline";
+          } else if (route.name === "Cadastro") {
+            iconName = focused ? "ios-add-circle" : "ios-add-circle-outline";
           }
+          
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarStyle: {
@@ -113,6 +117,7 @@ const TabsNavigator = () => {
     >
       {userType === "admin" && (
         <>
+          <Tab.Screen name="Cadastro" component={ServiceAdd} />
           <Tab.Screen name="Funcionários" component={EmployeesScreen} />
           <Tab.Screen name="Configurações" component={SettingsScreen} />
         </>

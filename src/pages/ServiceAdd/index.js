@@ -1,0 +1,137 @@
+import React, { useState, useRef } from "react";
+import {
+  TouchableOpacity,
+  Image,
+  Keyboard,
+} from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import Main from "../../global/Main";
+import * as S from "./styles";
+
+import { Ionicons } from "@expo/vector-icons";
+
+const ServiceAdd = () => {
+  const [nomeServico, setNomeServico] = useState("");
+  const [preco, setPreco] = useState("");
+  const [duracao, setDuracao] = useState("");
+
+  const handleSubmit = () => {
+    if (nomeServico && preco && duracao) {
+      const servicoData = {
+        nome: nomeServico,
+        preco: preco,
+        duracao: duracao,
+      };
+
+      fetch("https://exemplo.com/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(servicoData),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Resposta do servidor:", data);
+          setNomeServico("");
+          setPreco("");
+          setDuracao("");
+        })
+        .catch((error) => {
+          console.error("Erro no envio do formulário:", error);
+        });
+    } else {
+      console.error("Preencha todos os campos do formulário!");
+    }
+  };
+
+  const priceInputRef = useRef();
+  const durationInputRef = useRef();
+
+  return (
+       <KeyboardAwareScrollView
+        scrollEnabled={false}
+        contentContainerStyle={{ flex: 1 }}
+      >
+      <Main>
+        <S.Header>
+          <S.HeaderTitle>Serviços</S.HeaderTitle>
+        </S.Header>
+
+        <S.TitleService>Cadastro de Serviço:</S.TitleService>
+
+        <S.InputContainer>
+          <S.Input
+            onChangeText={setNomeServico}
+            autoCapitalize="none"
+            value={nomeServico}
+            onSubmitEditing={() => priceInputRef.current.focus()}
+            underlineColorAndroid="#f000"
+            blurOnSubmit={false}
+          />
+          <S.Placeholder>Serviço</S.Placeholder>
+        </S.InputContainer>
+
+        <S.InputContainer>
+          <S.Input
+            onChangeText={setPreco}
+            autoCapitalize="none"
+            value={preco}
+            ref={priceInputRef}
+            onSubmitEditing={() => durationInputRef.current.focus()}
+            underlineColorAndroid="#f000"
+            blurOnSubmit={false}
+          />
+          <S.Placeholder>Preço</S.Placeholder>
+        </S.InputContainer>
+
+        <S.InputContainer>
+          <S.Input
+            onChangeText={setDuracao}
+            autoCapitalize="none"
+            onSubmitEditing={Keyboard.dismiss}
+            ref={durationInputRef}
+            value={duracao}
+            underlineColorAndroid="#f000"
+            blurOnSubmit={false}
+          />
+          <S.Placeholder>Duração média</S.Placeholder>
+        </S.InputContainer>
+
+        <S.ExampleService>Exemplos de Serviço:</S.ExampleService>
+
+        <S.ContainerGrid>
+          <S.View>
+            <S.IconView>
+              <Ionicons name="cut-outline" size={36} color={"#00683C"} />
+              <S.Tempo>30min</S.Tempo>
+            </S.IconView>
+            <S.Description>Cabelo {"\n"} R$45 </S.Description>
+          </S.View>
+          <S.View>
+            <S.IconView>
+              <Image
+                source={require("../../assets/img/icons8-straight-razor-50.png")}
+                style={{ width: 36, height: 36 }}
+              />
+              <S.Tempo>30min</S.Tempo>
+            </S.IconView>
+            <S.Description>Barba {"\n"} R$45 </S.Description>
+          </S.View>
+        </S.ContainerGrid>
+
+        <S.Button>
+          <TouchableOpacity
+            style={S.Button}
+            activeOpacity={0.5}
+            onPress={handleSubmit}
+          >
+            <S.ButtonText>+</S.ButtonText>
+          </TouchableOpacity>
+        </S.Button>
+      </Main>
+      </KeyboardAwareScrollView>
+  );
+};
+
+export default ServiceAdd;
