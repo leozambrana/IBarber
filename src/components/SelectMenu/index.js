@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import * as S from "./styles";
 
-const SelectMenu = ({ options }) => {
+const SelectMenu = ({ options, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState(null);
 
   const handleOptionSelect = (option) => {
+    onSelect(option);
     setSelectedOption(option);
     setIsOpen(false);
   };
@@ -14,7 +15,7 @@ const SelectMenu = ({ options }) => {
     <S.Container>
       <S.SelectButton onPress={() => setIsOpen(!isOpen)}>
         <S.SelectText>
-          {selectedOption ? selectedOption : "Selecione uma opção"}
+          {selectedOption ? selectedOption.name : "Selecione uma opção"}
         </S.SelectText>
       </S.SelectButton>
 
@@ -22,10 +23,10 @@ const SelectMenu = ({ options }) => {
         <S.Container>
           {options.map((option) => (
             <S.SelectButton
-              key={option.value}
-              onPress={() => handleOptionSelect(option.label)}
+              key={option.id}
+              onPress={() => handleOptionSelect(option)}
             >
-              <S.SelectText>{option.label}</S.SelectText>
+              <S.SelectText>{option.name}</S.SelectText>
             </S.SelectButton>
           ))}
         </S.Container>

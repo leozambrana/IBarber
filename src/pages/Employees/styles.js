@@ -150,3 +150,10 @@ export const ModalButtonText = styled.Text`
   color: ${theme.colors.white};
   font-weight: bold;
 `;
+
+export const TrashIcon = styled.TouchableOpacity`
+  position: absolute;
+  top: 60%;
+  right: 10px;
+  align-self: center;
+`;

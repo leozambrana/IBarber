@@ -6,7 +6,7 @@ export const Header = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin: 27px 0;
+  margin: 10px 0;
 `;
 
 export const LogoImage = styled.Image`
@@ -21,4 +21,3 @@ export const Container = styled.View`
   padding: 0 20px;
   overflow: scroll;
 `;
-
