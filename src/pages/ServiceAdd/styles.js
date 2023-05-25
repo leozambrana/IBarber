@@ -6,7 +6,7 @@ export const Header = styled.View`
   width: 100%;
   height: 50px;
   justify-content: center;
-  align-items: start;
+  align-items: center;
   margin-top: 11px;
 `;
 
@@ -26,12 +26,46 @@ export const TitleService = styled.Text`
   font-size: 18px;
   color: ${theme.colors.white};
   font-weight: bold;
-  margin-top: 30px;
+  margin: 30px 0;
+`;
+
+export const ExampleService = styled.Text`
+  font-size: 18px;
+  color: ${theme.colors.white};
+  font-weight: bold;
+ 
+`;
+
+export const InputContainer = styled.View`
+  width: 100%;
+  position: relative;
+  margin-bottom: 10px;
+`;
+
+export const Placeholder = styled.Text`
+  font-size: 14px;
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  color: ${theme.colors.white};
+  background-color: ${theme.colors.background};
+  padding: 0 10px;
+`;
+
+export const Input = styled.TextInput`
+  height: 50px;
+  width: 100%;
+  border-radius: 10px;
+  border-width: 1px;
+  color: ${theme.colors.white};
+  border-color: ${theme.colors.white};
+  padding: 10px;
+  margin-bottom: 20px;
 `;
 
 export const ContainerGrid = styled.View`
   width: 100%;
-  height: 40%;
+  height: 13%;
   margin-top: 30px;
   flex-direction: row;
   flex-wrap: wrap;
@@ -41,7 +75,7 @@ export const ContainerGrid = styled.View`
 
 export const View = styled.View`
   width: 170px;
-  height: 40%;
+  height: 100%;
   margin: 8px 8px;
   flex-direction: row;
   justify-content: start;
@@ -79,29 +113,23 @@ export const Description = styled.Text`
   text-align: center;
 `;
 
-export const CalendarTitle = styled.Text`
-  font-size: 18px;
+export const Button = styled.TouchableOpacity`
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: ${theme.colors.bgButton};
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+`;
+
+export const ButtonText = styled.Text`
+  text-align: center;
+  font-size: 30px;
+  line-height: 33px;
   color: ${theme.colors.white};
   font-weight: bold;
-`;
-
-export const Container = styled.View`
-  width: 100%;
-  height: 100%;
-  margin: 30px 0;
-  gap: 20px;
-  align-items: center;
-`;
-
-export const CalendarContainer = styled.View`
-  width: 100%;
-  height: 50%;
-  align-items: center;
-  overflow: hidden;
-  border-radius: 20px;
-`;
-
-export const CalendarComponent = styled(CalendarList)`
-  width: 100%;
-  height: 100%;
 `;

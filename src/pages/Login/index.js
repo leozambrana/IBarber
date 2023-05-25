@@ -4,7 +4,6 @@ import {
   ImageBackground,
   TouchableOpacity,
   StatusBar,
-  View,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
