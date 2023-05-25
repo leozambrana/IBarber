@@ -75,7 +75,7 @@ const ProfileScreen = () => {
       <S.Avatar>
         <S.AvatarImage
           source={{
-            uri: "https://avatars.githubusercontent.com/u/85206010?v=4",
+            uri: "https://avatars.githubusercontent.com/u/60078669?v=4",
           }}
         />
       </S.Avatar>

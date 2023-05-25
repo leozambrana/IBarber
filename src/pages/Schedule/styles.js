@@ -46,7 +46,7 @@ export const View = styled.View`
   flex-direction: row;
   justify-content: start;
   align-items: center;
-  background-color: ${theme.colors.surface};;
+  background-color: ${theme.colors.surface};
   border-radius: 10px;
 `;
 
@@ -67,7 +67,6 @@ export const Tempo = styled.Text`
   padding-top: 6px;
   text-align: center;
 `;
-
 
 export const Description = styled.Text`
   font-size: 12px;
