@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import {
   TouchableOpacity,
   Image,
@@ -9,41 +9,27 @@ import Main from "../../global/Main";
 import * as S from "./styles";
 
 import { Ionicons } from "@expo/vector-icons";
+import { serviceAdd } from "../../sdk/service";
 
 const ServiceAdd = () => {
   const [nomeServico, setNomeServico] = useState("");
   const [preco, setPreco] = useState("");
   const [duracao, setDuracao] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(async () => {
     if (nomeServico && preco && duracao) {
-      const servicoData = {
-        nome: nomeServico,
-        preco: preco,
-        duracao: duracao,
-      };
-
-      fetch("https://exemplo.com/cadastrar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(servicoData),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Resposta do servidor:", data);
-          setNomeServico("");
-          setPreco("");
-          setDuracao("");
-        })
-        .catch((error) => {
-          console.error("Erro no envio do formulário:", error);
-        });
+      const response = await serviceAdd({ name: nomeServico, price: preco, duration: duracao});
+      console.log(response)
+      if(response){
+        setNomeServico("");
+      setPreco("");
+      setDuracao("");
+        alert("Tudo certo, cadastrou")
+      }
     } else {
       console.error("Preencha todos os campos do formulário!");
     }
-  };
+  });
 
   const priceInputRef = useRef();
   const durationInputRef = useRef();

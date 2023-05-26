@@ -41,11 +41,10 @@ const LoginScreen = ({ navigation }) => {
       });
 
       await schema.validate({ email: userEmail, password: userPassword });
-      const response = await login({
-        username: userEmail,
-        password: userPassword,
-      });
-      AsyncStorage.setItem("user", response);
+      // const response = await login({ username: userEmail, password: userPassword });
+      // if (response) {
+      //   AsyncStorage.setItem("user", JSON.stringify(response));
+      // }
 
       navigation.navigate("SplashScreen");
       // setLoading(true);
