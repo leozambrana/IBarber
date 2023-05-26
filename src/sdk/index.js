@@ -1,0 +1,1 @@
+export const REACT_APP_API = 'http://192.168.3.19:8080/api';
