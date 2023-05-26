@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Main from "../../global/Main";
 import * as S from "./styles";
 import { Ionicons } from "@expo/vector-icons";
@@ -30,10 +30,18 @@ const BusinessHoursScreen = () => {
     }
   };
 
-  const handleSave = () => {
-    console.log("weekDays:", weekDays);
-    console.log("excludedDates:", excludedDates);
-  };
+  const handleSave =useCallback (async() => {
+    const hasSelectedWeekDay = weekDays.some((day) => day.selected);
+    const selectedWeekDay = weekDays.find((day) => day.selected);
+    console.log(selectedWeekDay);
+
+    if(hasSelectedWeekDay && excludedDates){
+      const response = await serviceAdd({ weekDays: weekDays, excludedDates: excludedDates });
+    }else{
+      console.log("selecione algo")
+    }
+   
+  });
 
   return (
     <Main>

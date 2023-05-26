@@ -1,15 +1,11 @@
 import React, { useState, useRef, useCallback } from "react";
-import {
-  TouchableOpacity,
-  Image,
-  Keyboard,
-} from "react-native";
+import { TouchableOpacity, Image, Keyboard } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Main from "../../global/Main";
 import * as S from "./styles";
 
 import { Ionicons } from "@expo/vector-icons";
-import { serviceAdd } from "../../sdk/service";
+import { serviceAdd } from "../../sdk/admin";
 
 const ServiceAdd = () => {
   const [nomeServico, setNomeServico] = useState("");
@@ -18,13 +14,16 @@ const ServiceAdd = () => {
 
   const handleSubmit = useCallback(async () => {
     if (nomeServico && preco && duracao) {
-      const response = await serviceAdd({ name: nomeServico, price: preco, duration: duracao});
-      console.log(response)
-      if(response){
+      const response = await serviceAdd({
+        name: nomeServico,
+        price: preco,
+        duration: duracao,
+      });
+      if (response) {
         setNomeServico("");
-      setPreco("");
-      setDuracao("");
-        alert("Tudo certo, cadastrou")
+        setPreco("");
+        setDuracao("");
+        alert("Tudo certo, cadastrou");
       }
     } else {
       console.error("Preencha todos os campos do formulário!");
@@ -35,10 +34,10 @@ const ServiceAdd = () => {
   const durationInputRef = useRef();
 
   return (
-       <KeyboardAwareScrollView
-        scrollEnabled={false}
-        contentContainerStyle={{ flex: 1 }}
-      >
+    <KeyboardAwareScrollView
+      scrollEnabled={false}
+      contentContainerStyle={{ flex: 1 }}
+    >
       <Main>
         <S.Header>
           <S.HeaderTitle>Serviços</S.HeaderTitle>
@@ -116,7 +115,7 @@ const ServiceAdd = () => {
           </TouchableOpacity>
         </S.Button>
       </Main>
-      </KeyboardAwareScrollView>
+    </KeyboardAwareScrollView>
   );
 };
 
