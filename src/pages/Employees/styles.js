@@ -157,3 +157,36 @@ export const TrashIcon = styled.TouchableOpacity`
   right: 10px;
   align-self: center;
 `;
+
+export const EmptyListText = styled.Text`
+  width: 100%;
+  font-size: 16px;
+  color: ${theme.colors.white};
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+`;
+
+export const EmptyListContainer = styled.View`
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const EmployeeEmail = styled.Text`
+  font-size: 14px;
+  color: ${theme.colors.white};
+`;
+
+export const EmployeeAdminStatus = styled.Text`
+  font-size: 14px;
+  color: ${theme.colors.white};
+`;
+
+export const EmployeeDetails = styled.View`
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+`;

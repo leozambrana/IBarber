@@ -1,23 +1,97 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "./styles";
 import Main from "../../global/Main";
 import SelectMenu from "../../components/SelectMenu";
 import { Ionicons } from "@expo/vector-icons";
+import { REACT_APP_API } from "../../sdk";
 
 const EmployeesScreen = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
   const [employees, setEmployees] = useState([]);
+  const [users, setUsers] = useState([
+    {
+      document: "string",
+      email: "alisson@gmail.com",
+      name: "Álisson",
+      password: "123",
+      profileId: 0,
+      userId: 1,
+    },
+    {
+      document: "string",
+      email: "giovanni@gmail.com",
+      name: "Giovanni",
+      password: "123",
+      profileId: 0,
+      userId: 2,
+    },
+    {
+      document: "string",
+      email: "leonardo@gmail.com",
+      name: "Leonardo",
+      password: "123",
+      profileId: 0,
+      userId: 3,
+    },
+    {
+      document: "string",
+      email: "natanael@gmail.com",
+      name: "Natanael",
+      password: "123",
+      profileId: 0,
+      userId: 4,
+    },
+    {
+      document: "string",
+      email: "thiago@gmail.com",
+      name: "Thiago",
+      password: "123",
+      profileId: 0,
+      userId: 5,
+    },
+  ]);
 
-  // Pegar os usuários do banco de dados
-  const users = [
-    { name: "Álisson", id: "1" },
-    { name: "Giovanni", id: "2" },
-    { name: "Leonardo", id: "3" },
-    { name: "Natanael", id: "4" },
-    { name: "Thiago", id: "5" },
-  ];
+  useEffect(() => {
+    // atualiza a lista de usuários
+    fetch(`${REACT_APP_API}/users`, {
+      method: "GET",
+      headers: {
+        "Request-body": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        {
+          data.userId !== undefined && setUsers(data);
+        }
+        console.log("Resposta do servidor:", data);
+      })
+      .catch((error) => {
+        console.error("Erro no envio do objeto:", error);
+      });
+  }, []);
+
+  // atualiza a lista de funcionários
+  useEffect(() => {
+    fetch(`${REACT_APP_API}/employee`, {
+      method: "GET",
+      headers: {
+        "Request-body": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        {
+          response && setEmployees(data);
+        }
+        console.log("Resposta do servidor:", data);
+      })
+      .catch((error) => {
+        // console.error("Erro no envio do objeto:", error);
+      });
+  }, []);
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -34,30 +108,39 @@ const EmployeesScreen = () => {
   const handleAddEmployee = () => {
     if (selectedUser) {
       const newEmployee = {
+        adminStatus: false,
+        barberShopId: 0,
+        document: "string",
+        email: selectedUser.email,
+        idEmployee: 0,
         name: selectedUser.name,
-        id: selectedUser.id,
+        password: selectedUser.password,
+        profileId: selectedUser,
+        userId: selectedUser.userId,
       };
+
+      fetch(`${REACT_APP_API}/employee`, {
+        method: "POST",
+        headers: {
+          "Request-body": "application/json",
+        },
+        body: JSON.stringify(newEmployee),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Resposta do servidor:", data);
+          setSelectedUser("");
+        })
+        .catch((error) => {
+          // console.error("Erro no envio do objeto:", error);
+        });
 
       console.log("Novo funcionário:", selectedUser);
       console.log("Novo funcionário:", newEmployee);
 
       setEmployees([...employees, newEmployee]);
 
-      // fetch("https://exemplo.com/funcionarios", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(selectedUser),
-      // })
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     console.log("Resposta do servidor:", data);
-      //     setSelectedUser("");
-      //   })
-      //   .catch((error) => {
-      //     console.error("Erro no envio do objeto:", error);
-      //   });
+      setSelectedUser(null);
     } else {
       console.error("Selecione um usuário!");
     }
@@ -71,7 +154,25 @@ const EmployeesScreen = () => {
     console.log("Remover funcionário");
     console.log(id);
 
-    const newEmployees = employees.filter((employee) => employee.id !== id);
+    const newEmployees = employees.filter((employee) => employee.userId !== id);
+
+    fetch(`${REACT_APP_API}/employee/${id}`, {
+      method: "UPDATE",
+      headers: {
+        "Request-body": "application/json",
+      },
+      body: JSON.stringify(newEmployees),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        {
+          data.userID !== undefined && setEmployees(data);
+        }
+        console.log("Resposta do servidor:", data);
+      })
+      .catch((error) => {
+        // console.error("Erro no envio do objeto:", error);
+      });
 
     setEmployees(newEmployees);
   };
@@ -84,27 +185,43 @@ const EmployeesScreen = () => {
 
       <S.EmployeesList>
         <S.ListContainer>
-          {employees.map((employee) => (
-            <S.EmployeeItem key={employee.id}>
-              <S.Avatar key={employee.id}>
-                <S.AvatarImage
-                  key={employee.id}
-                  source={{
-                    uri: "https://avatars.githubusercontent.com/u/60078669?v=4",
-                  }}
-                />
-              </S.Avatar>
-              <S.EmployeeName>{employee.name}</S.EmployeeName>
-              <S.TrashIcon>
-                <Ionicons
-                  name="trash-outline"
-                  size={24}
-                  color="red"
-                  onPress={() => handleRemoveEmployee(employee.id)}
-                />
-              </S.TrashIcon>
-            </S.EmployeeItem>
-          ))}
+          {employees.length === 0 && (
+            <S.EmptyListContainer>
+              <S.EmptyListText>Sem funcionários cadastrados.</S.EmptyListText>
+              <S.EmptyListText>
+                Adicione clicando no botão + abaixo.
+              </S.EmptyListText>
+            </S.EmptyListContainer>
+          )}
+
+          {employees &&
+            employees.map((employee) => (
+              <S.EmployeeItem key={employee.userId}>
+                <S.Avatar key={employee.userId}>
+                  <S.AvatarImage
+                    key={employee.userId}
+                    source={{
+                      uri: "https://avatars.githubusercontent.com/u/60078669?v=4",
+                    }}
+                  />
+                </S.Avatar>
+                <S.EmployeeDetails>
+                  <S.EmployeeName>{employee.name}</S.EmployeeName>
+                  <S.EmployeeEmail>{employee.email}</S.EmployeeEmail>
+                  <S.EmployeeAdminStatus>
+                    {employee.adminStatus ? "Administrador" : "Funcionário"}
+                  </S.EmployeeAdminStatus>
+                </S.EmployeeDetails>
+                <S.TrashIcon>
+                  <Ionicons
+                    name="trash-outline"
+                    size={24}
+                    color="red"
+                    onPress={() => handleRemoveEmployee(employee.userId)}
+                  />
+                </S.TrashIcon>
+              </S.EmployeeItem>
+            ))}
         </S.ListContainer>
       </S.EmployeesList>
 
