@@ -7,7 +7,6 @@ export const Header = styled.View`
   height: 50px;
   justify-content: center;
   align-items: center;
-  margin-top: 11px;
 `;
 
 export const HeaderTitle = styled.Text`
@@ -33,7 +32,6 @@ export const ExampleService = styled.Text`
   font-size: 18px;
   color: ${theme.colors.white};
   font-weight: bold;
- 
 `;
 
 export const InputContainer = styled.View`
@@ -78,9 +76,9 @@ export const View = styled.View`
   height: 100%;
   margin: 8px 8px;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
-  background-color: ${theme.colors.surface};;
+  background-color: ${theme.colors.surface};
   border-radius: 10px;
 `;
 
@@ -102,7 +100,6 @@ export const Tempo = styled.Text`
   text-align: center;
 `;
 
-
 export const Description = styled.Text`
   font-size: 12px;
   color: ${theme.colors.white};
@@ -119,7 +116,7 @@ export const Button = styled.TouchableOpacity`
   right: 20px;
   width: 60px;
   height: 60px;
-  border-radius: 50%;
+  border-radius: 50px;
   background-color: ${theme.colors.bgButton};
   justify-content: center;
   align-items: center;

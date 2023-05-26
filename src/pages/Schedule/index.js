@@ -3,10 +3,17 @@ import { Text, Image } from "react-native";
 import Main from "../../global/Main";
 import * as S from "./styles";
 import theme from "../../global/styles/theme";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 import { Ionicons } from "@expo/vector-icons";
 
 const ScheduleScreen = () => {
+  const currentDate = new Date();
+
+  const formattedDate = format(currentDate, "dd 'de' MMMM, EEEE", {
+    locale: ptBR,
+  });
 
   const [services, setServices] = useState([]);
 
@@ -23,10 +30,10 @@ const ScheduleScreen = () => {
 
   return (
     <Main>
-    <S.Header>
-      <S.HeaderTitle>Faça um agendamento</S.HeaderTitle>
-      <S.HeaderSubTitle>6 de janeiro, quinta feira</S.HeaderSubTitle>
-    </S.Header>
+      <S.Header>
+        <S.HeaderTitle>Faça um agendamento</S.HeaderTitle>
+        <S.HeaderSubTitle>{formattedDate}</S.HeaderSubTitle>
+      </S.Header>
 
       <S.TitleService>Selecione um serviço:</S.TitleService>
       {/* {services.map((service) => (
@@ -36,51 +43,60 @@ const ScheduleScreen = () => {
       <S.ContainerGrid>
         <S.View>
           <S.IconView>
-            <Ionicons name="cut-outline" size={36} color={"#00683C"}/>
+            <Ionicons name="cut-outline" size={36} color={"#00683C"} />
             <S.Tempo>30min</S.Tempo>
           </S.IconView>
-          <S.Description>Cabelo {'\n'} R$45 </S.Description>
+          <S.Description>Cabelo {"\n"} R$45 </S.Description>
         </S.View>
         <S.View>
           <S.IconView>
-            <Image source={require('../../assets/img/icons8-straight-razor-50.png')} style={{width: 36, height: 36}}/>
+            <Image
+              source={require("../../assets/img/icons8-straight-razor-50.png")}
+              style={{ width: 36, height: 36 }}
+            />
             <S.Tempo>30min</S.Tempo>
           </S.IconView>
-          <S.Description>Barba {'\n'} R$45 </S.Description>
+          <S.Description>Barba {"\n"} R$45 </S.Description>
         </S.View>
         <S.View>
           <S.IconView>
-          <Image source={require('../../assets/img/icons8-barber-chair-50.png')} style={{width: 36, height: 36}}/>
+            <Image
+              source={require("../../assets/img/icons8-barber-chair-50.png")}
+              style={{ width: 36, height: 36 }}
+            />
             <S.Tempo>60min</S.Tempo>
           </S.IconView>
-          <S.Description>Cabelo + Barba {'\n'} R$45 </S.Description>
+          <S.Description>Cabelo + Barba {"\n"} R$45 </S.Description>
         </S.View>
         <S.View>
           <S.IconView>
-          <Image source={require('../../assets/img/icons8-beard-50.png')} style={{width: 36, height: 36}}/>
+            <Image
+              source={require("../../assets/img/icons8-beard-50.png")}
+              style={{ width: 36, height: 36 }}
+            />
             <S.Tempo>45min</S.Tempo>
           </S.IconView>
-          <S.Description>Design de Barba {'\n'} R$45 </S.Description>
+          <S.Description>Design de Barba {"\n"} R$45 </S.Description>
         </S.View>
       </S.ContainerGrid>
 
-    <S.CalendarTitle>Selecione um dia:</S.CalendarTitle>
-    <S.Container>
-      <S.CalendarContainer>
-        <S.CalendarComponent
-          theme={{
-            backgroundColor: theme.colors.surface,
-            calendarBackground: theme.colors.surface,
-            textSectionTitleColor: theme.colors.white,
-            selectedDayBackgroundColor: "green",
-            selectedDayTextColor: "#ffffff",
-            todayTextColor: "green",
-            dayTextColor: theme.colors.white,
-          }}
-        />
-      </S.CalendarContainer>
-    </S.Container>
-  </Main>
+      <S.CalendarTitle>Selecione um dia:</S.CalendarTitle>
+      <S.Container>
+        <S.CalendarContainer>
+          <S.CalendarComponent
+            theme={{
+              backgroundColor: theme.colors.surface,
+              calendarBackground: theme.colors.surface,
+              textSectionTitleColor: theme.colors.white,
+              selectedDayBackgroundColor: "green",
+              selectedDayTextColor: "#ffffff",
+              todayTextColor: "green",
+              dayTextColor: theme.colors.white,
+            }}
+          />
+        </S.CalendarContainer>
+      </S.Container>
+    </Main>
   );
 };
 

@@ -103,7 +103,7 @@ const TabsNavigator = () => {
           } else if (route.name === "Cadastro") {
             iconName = focused ? "ios-add-circle" : "ios-add-circle-outline";
           }
-          
+
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarStyle: {
