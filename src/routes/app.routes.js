@@ -24,6 +24,7 @@ import EmployeesScreen from "../pages/Employees";
 import BarberScreen from "../pages/BarberShop";
 import ServiceAdd from "../pages/ServiceAdd";
 import BusinessHoursScreen from "../pages/BusinessHours";
+import AutomatedBookingScreen from "../pages/AutomatedBooking";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -46,6 +47,11 @@ const AppRoutes = () => {
           name="SplashScreen"
           options={{ headerShown: false }}
           component={SplashScreen}
+        />
+        <Stack.Screen
+          name="AutomatedBookingScreen"
+          options={{ headerShown: false }}
+          component={AutomatedBookingScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
@@ -76,7 +82,7 @@ const Auth = () => {
 
 const TabsNavigator = () => {
   // a variável userType deve ser recebida do backend
-  const userType = "barber";
+  const userType = "admin";
 
   return (
     <Tab.Navigator

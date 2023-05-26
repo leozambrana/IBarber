@@ -104,3 +104,21 @@ export const CalendarComponent = styled(CalendarList)`
   width: 100%;
   height: 100%;
 `;
+
+export const AutomationIcon = styled.TouchableOpacity`
+  width: 160px;
+  flex-direction: row;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  /* align-self: flex-start; */
+  margin-top: 10px;
+`;
+
+export const AutomationIconText = styled.Text`
+  font-size: 18px;
+  line-height: 35px;
+  color: #00683c;
+  font-weight: bold;
+`;

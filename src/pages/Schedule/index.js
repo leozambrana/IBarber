@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, Image } from "react-native";
+import { Image } from "react-native";
 import Main from "../../global/Main";
 import * as S from "./styles";
 import theme from "../../global/styles/theme";
@@ -8,7 +8,7 @@ import { ptBR } from "date-fns/locale";
 
 import { Ionicons } from "@expo/vector-icons";
 
-const ScheduleScreen = () => {
+const ScheduleScreen = ({ navigation }) => {
   const currentDate = new Date();
 
   const formattedDate = format(currentDate, "dd 'de' MMMM, EEEE", {
@@ -35,6 +35,12 @@ const ScheduleScreen = () => {
 
         <S.HeaderSubTitle>{formattedDate}</S.HeaderSubTitle>
       </S.Header>
+      <S.AutomationIcon
+        onPress={() => navigation.navigate("AutomatedBookingScreen")}
+      >
+        <S.AutomationIconText>Automatizar</S.AutomationIconText>
+        <Ionicons name="ios-play-circle-outline" size={30} color={"#00683C"} />
+      </S.AutomationIcon>
 
       <S.TitleService>Selecione um serviço:</S.TitleService>
       {/* {services.map((service) => (

@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import theme from "../../global/styles/theme";
 
 export const Header = styled.View`
   width: 100%;
@@ -11,4 +12,47 @@ export const HeaderTitle = styled.Text`
   font-size: 25px;
   color: ${theme.colors.white};
   font-weight: bold;
+`;
+
+export const Container = styled.View`
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+`;
+
+export const Title = styled.Text`
+  font-size: 25px;
+  color: ${theme.colors.white};
+  font-weight: bold;
+  text-align: center;
+`;
+
+export const Description = styled.Text`
+  font-size: 18px;
+  color: ${theme.colors.white};
+  text-align: center;
+  margin-top: 20px;
+`;
+
+export const ActivateButton = styled.TouchableOpacity`
+  width: 170px;
+  height: 50px;
+  background-color: ${theme.colors.white};
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin-top: 20px;
+`;
+
+export const ActivateButtonText = styled.Text`
+  font-size: 18px;
+  color: ${theme.colors.black};
+  font-weight: bold;
+`;
+
+export const Image = styled.Image`
+  width: 350px;
+  height: 219px;
+  margin: 25px;
 `;
