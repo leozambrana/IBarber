@@ -23,6 +23,7 @@ import SettingsScreen from "../pages/Settings";
 import EmployeesScreen from "../pages/Employees";
 import BarberScreen from "../pages/BarberShop";
 import ServiceAdd from "../pages/ServiceAdd";
+import BusinessHoursScreen from "../pages/BusinessHours";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -102,6 +103,8 @@ const TabsNavigator = () => {
             iconName = focused ? "ios-settings" : "ios-settings-outline";
           } else if (route.name === "Cadastro") {
             iconName = focused ? "ios-add-circle" : "ios-add-circle-outline";
+          } else if (route.name === "Horários") {
+            iconName = focused ? "ios-time" : "ios-time-outline";
           }
 
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -119,6 +122,7 @@ const TabsNavigator = () => {
         <>
           <Tab.Screen name="Cadastro" component={ServiceAdd} />
           <Tab.Screen name="Funcionários" component={EmployeesScreen} />
+          <Tab.Screen name="Horários" component={BusinessHoursScreen} />
           <Tab.Screen name="Configurações" component={SettingsScreen} />
         </>
       )}
