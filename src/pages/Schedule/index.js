@@ -32,6 +32,7 @@ const ScheduleScreen = () => {
     <Main>
       <S.Header>
         <S.HeaderTitle>Faça um agendamento</S.HeaderTitle>
+
         <S.HeaderSubTitle>{formattedDate}</S.HeaderSubTitle>
       </S.Header>
 

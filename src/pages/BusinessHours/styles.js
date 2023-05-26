@@ -78,7 +78,7 @@ export const DateTitle = styled.Text`
   font-size: 16px;
   color: ${theme.colors.white};
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 40px;
 `;
 
 export const DateWrapper = styled.View`

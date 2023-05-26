@@ -3,11 +3,9 @@ import Main from "../../global/Main";
 import * as S from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 import { Calendar } from "react-native-calendars";
-import { View } from "react-native";
-import { DayContainer, DayText } from "./styles";
+import theme from "../../global/styles/theme";
 
 const BusinessHoursScreen = () => {
-  const [date, setDate] = useState(new Date());
   const [excludedDates, setExcludedDates] = useState([]);
 
   const [weekDays, setWeekDays] = useState([
@@ -70,17 +68,33 @@ const BusinessHoursScreen = () => {
       <S.DateTitle>Selecione os dias não trabalhados:</S.DateTitle>
       <S.DateWrapper>
         <Calendar
-          minDate={date}
+          minDate={Date()}
           markedDates={excludedDates.reduce((acc, date) => {
             acc[date] = { selected: true, marked: true, selectedColor: "red" };
             return acc;
           }, {})}
           onDayPress={handleDayPress}
           style={{
-            width: "100%",
+            width: 350,
             height: 370,
             borderRadius: 10,
             marginBottom: 20,
+          }}
+          theme={{
+            backgroundColor: theme.colors.surface,
+            calendarBackground: theme.colors.surface,
+            textSectionTitleColor: theme.colors.white,
+            textSectionTitleDisabledColor: "#dddddd20",
+            selectedDayBackgroundColor: "red",
+            selectedDayTextColor: theme.colors.white,
+            todayTextColor: theme.colors.white,
+            dayTextColor: "green",
+            textDisabledColor: "#dddddd20",
+            dotColor: "red",
+            selectedDotColor: "#ffffff",
+            arrowColor: theme.colors.white,
+            disabledArrowColor: "#d9e1e8",
+            monthTextColor: theme.colors.white,
           }}
         />
 

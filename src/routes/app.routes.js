@@ -76,7 +76,7 @@ const Auth = () => {
 
 const TabsNavigator = () => {
   // a variável userType deve ser recebida do backend
-  const userType = "admin";
+  const userType = "barber";
 
   return (
     <Tab.Navigator
