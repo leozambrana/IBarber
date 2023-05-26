@@ -60,7 +60,7 @@ const RegisterScreen = ({ navigation, route }) => {
       });
       const response = await signUp({ name: userName, email: userEmail, password: userPassword });
       if (response) {
-        navigation.navigate("LoginScreen");
+        navigation.navigate("Login");
       }
 
       // segue aqui codigo para avançar para pagina de Login e bater no backend para Registrar o Usuario

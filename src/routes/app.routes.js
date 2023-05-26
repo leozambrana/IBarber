@@ -107,7 +107,7 @@ const TabsNavigator = () => {
             iconName = focused ? "ios-people" : "ios-people-outline";
           } else if (route.name === "Configurações") {
             iconName = focused ? "ios-settings" : "ios-settings-outline";
-          } else if (route.name === "Cadastro") {
+          } else if (route.name === "Serviços") {
             iconName = focused ? "ios-add-circle" : "ios-add-circle-outline";
           } else if (route.name === "Horários") {
             iconName = focused ? "ios-time" : "ios-time-outline";
@@ -126,7 +126,7 @@ const TabsNavigator = () => {
     >
       {userType === "admin" && (
         <>
-          <Tab.Screen name="Cadastro" component={ServiceAdd} />
+          <Tab.Screen name="Serviços" component={ServiceAdd} />
           <Tab.Screen name="Funcionários" component={EmployeesScreen} />
           <Tab.Screen name="Horários" component={BusinessHoursScreen} />
           <Tab.Screen name="Configurações" component={SettingsScreen} />
