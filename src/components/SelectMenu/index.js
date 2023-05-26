@@ -23,7 +23,7 @@ const SelectMenu = ({ options, onSelect }) => {
         <S.Container>
           {options.map((option) => (
             <S.SelectButton
-              key={option.id}
+              key={option.userId}
               onPress={() => handleOptionSelect(option)}
             >
               <S.SelectText>{option.name}</S.SelectText>
