@@ -44,7 +44,7 @@ export const View = styled.View`
   height: 40%;
   margin: 8px 8px;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   background-color: ${theme.colors.surface};
   border-radius: 10px;

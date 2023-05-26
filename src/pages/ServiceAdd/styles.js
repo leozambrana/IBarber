@@ -76,7 +76,7 @@ export const View = styled.View`
   height: 100%;
   margin: 8px 8px;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   background-color: ${theme.colors.surface};
   border-radius: 10px;
@@ -116,7 +116,7 @@ export const Button = styled.TouchableOpacity`
   right: 20px;
   width: 60px;
   height: 60px;
-  border-radius: 50%;
+  border-radius: 50px;
   background-color: ${theme.colors.bgButton};
   justify-content: center;
   align-items: center;

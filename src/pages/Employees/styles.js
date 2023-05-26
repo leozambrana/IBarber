@@ -41,7 +41,7 @@ export const EmployeeItem = styled.View`
   background-color: ${theme.colors.surface};
   align-items: center;
   border-radius: 10px;
-  justify-content: start;
+  justify-content: flex-start;
   align-self: center;
   padding: 20px;
   gap: 20px;
@@ -82,7 +82,7 @@ export const AddButton = styled.TouchableOpacity`
   width: 60px;
   height: 60px;
   background-color: ${theme.colors.bgButton};
-  border-radius: 50%;
+  border-radius: 50px;
   align-items: center;
   text-align: center;
   justify-content: center;
