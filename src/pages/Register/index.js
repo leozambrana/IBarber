@@ -10,6 +10,7 @@ import * as Yup from "yup";
 
 //styled-componets
 import * as S from "./styles";
+import { signUp } from "../../sdk/auth";
 
 const RegisterScreen = ({ navigation, route }) => {
   const [userName, setUserName] = useState("");
@@ -57,7 +58,10 @@ const RegisterScreen = ({ navigation, route }) => {
         password: userPassword,
         confirmPassword: userPasswordConfirmation,
       });
-      console.log("Dados válidos!");
+      const response = await signUp({ name: userName, email: userEmail, password: userPassword });
+      if (response) {
+        navigation.navigate("LoginScreen");
+      }
 
       // segue aqui codigo para avançar para pagina de Login e bater no backend para Registrar o Usuario
     } catch (error) {

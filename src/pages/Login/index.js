@@ -15,6 +15,8 @@ import * as Yup from "yup";
 
 //styled-componets
 import * as S from "./styles";
+import { login } from "../../sdk/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginScreen = ({ navigation }) => {
   const [userEmail, setUserEmail] = useState("");
@@ -39,7 +41,8 @@ const LoginScreen = ({ navigation }) => {
       });
 
       await schema.validate({ email: userEmail, password: userPassword });
-      console.log("Dados válidos!");
+      const response = await login({ username: userEmail, password: userPassword });
+      AsyncStorage.setItem("user", response);
 
       navigation.navigate("SplashScreen");
       // setLoading(true);
