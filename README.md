@@ -1,6 +1,6 @@
 ## IBarber
-Install Dependencies: yarn install;
+Install Dependencies: <code>yarn install</code>;
 
-Start Project: expo start;
+Start Project: <code>expo start</code>;
 
-if you want add some dependencies, just: yarn add <code>NameOfDependencie</code>;
+if you want add some dependencies, just: <code>yarn add NameOfDependencie</code>;
