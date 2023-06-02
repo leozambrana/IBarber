@@ -12,26 +12,38 @@ const ServiceAdd = () => {
   const [preco, setPreco] = useState("");
   const [duracao, setDuracao] = useState("");
 
+  const priceInputRef = useRef();
+  const durationInputRef = useRef();
+
+  descricao = "Descrição teste";
+  barberShopId = 2;
+
   const handleSubmit = useCallback(async () => {
     if (nomeServico && preco && duracao) {
-      const response = await serviceAdd({
-        name: nomeServico,
-        price: preco,
-        duration: duracao,
-      });
-      if (response) {
-        setNomeServico("");
-        setPreco("");
-        setDuracao("");
-        alert("Tudo certo, cadastrou");
+      try {
+        const response = await serviceAdd({
+          name: nomeServico,
+          description: descricao,
+          barberShopId: barberShopId,
+          price: preco,
+          duration: duracao,
+        });
+        if (response === 0) {
+          setNomeServico("");
+          setPreco("");
+          setDuracao("");
+          alert("Tudo certo, cadastrou");
+        }
+      } catch (error) {
+        console.error("Ocorreu um erro na solicitação:", error);
+        alert(
+          "Ocorreu um erro na solicitação. Por favor, tente novamente mais tarde."
+        );
       }
     } else {
       console.error("Preencha todos os campos do formulário!");
     }
   });
-
-  const priceInputRef = useRef();
-  const durationInputRef = useRef();
 
   return (
     <KeyboardAwareScrollView

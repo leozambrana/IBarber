@@ -1,13 +1,13 @@
 import { REACT_APP_API } from "..";
 
-export const serviceAdd = async ({ name, price , duration}) => {
+export const serviceAdd = async ({ name, description, price , duration, barberShopId}) => {
     const ans = await fetch(`${REACT_APP_API}/service`, {
       method: "POST",
       headers:{
         'Content-type': 'application/json'
       },
-      body: JSON.stringify({name, price, duration}),
-    });
+      body: JSON.stringify({name, description, price, duration, barberShopId}),
+    })
       const response = await ans.json();
       return response;
   }

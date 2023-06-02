@@ -1,1 +1,1 @@
-export const REACT_APP_API = 'http://18.223.171.183:8080/api';
+export const REACT_APP_API = 'http://172.22.63.108:8080/api';
