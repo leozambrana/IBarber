@@ -43,8 +43,42 @@ export const ColorOptionsContainer = styled.View`
 export const ColorOption = styled.TouchableOpacity`
   width: 50px;
   height: 50px;
-  border-radius: 25px;
-  border: 3px solid ${theme.colors.white};
+  border-radius: 5px;
+`;
+
+export const ColorOptionInputContainer = styled.View`
+  width: 89%;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid ${theme.colors.white};
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  gap: 0;
+`;
+
+export const ColorOptionInputIcon = styled.Text`
+  font-size: 25px;
+  color: ${theme.colors.white};
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  background-color: gray;
+  border-radius: 5px;
+  border-top-right-radius: 0;
+  text-align: center;
+  line-height: 50px;
+  overflow: hidden;
+  margin-left: -1px;
+`;
+
+export const ColorOptionInput = styled.TextInput`
+  width: 80%;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 20px;
+  color: ${theme.colors.white};
 `;
 
 export const LogoUploadContainer = styled.View`
