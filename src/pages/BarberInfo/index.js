@@ -4,6 +4,7 @@ import { Platform, Linking } from "react-native";
 import Main from "../../global/Main";
 import { Marker } from "react-native-maps";
 import { REACT_APP_API } from "../../sdk";
+import moment from "moment/moment";
 
 const BarberInfoScreen = () => {
   const [barberShop, setBarberShop] = useState({
@@ -16,6 +17,10 @@ const BarberInfoScreen = () => {
     cityName: "Criciúma",
     stateName: "Santa Catarina",
     countryName: "",
+    workIntervals: [
+      { weekDay: 'Segunda', start: '08:00:00', end: '12:00:00' },
+      { weekDay: 'Terça', start: '08:00:00', end: '12:00:00' },
+    ]
   });
 
   const handleMapPress = () => {
@@ -33,7 +38,7 @@ const BarberInfoScreen = () => {
   };
 
   useEffect(() => {
-    fetch(`${REACT_APP_API}/barberShop`, {
+    fetch(`${REACT_APP_API}/barberShop/2`, {
       method: "GET",
       headers: {
         "Request-body": "application/json",
@@ -60,8 +65,9 @@ const BarberInfoScreen = () => {
       <S.BottomContainer>
         <S.BarberInfo>
           <S.Title>Horário de funcionamento</S.Title>
-          <S.Description>Segunda à Sexta das 8h às 18h</S.Description>
-          <S.Description>Sábado das 8h às 12h</S.Description>
+          {barberShop.workIntervals.map((workInterval) => (
+            <S.Description key={workInterval.weekDay + workInterval.start + workInterval.end}>{workInterval.weekDay} das {moment(workInterval.start, 'HH:mm:ss').format('HH:mm')} às {moment(workInterval.end, 'HH:mm:ss').format('HH:mm')}</S.Description>
+          ))}
         </S.BarberInfo>
 
         <S.LocationContainer>
