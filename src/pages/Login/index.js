@@ -41,12 +41,15 @@ const LoginScreen = ({ navigation }) => {
       });
 
       await schema.validate({ email: userEmail, password: userPassword });
-      const response = await login({ username: userEmail, password: userPassword });
+      const response = await login({
+        username: userEmail,
+        password: userPassword,
+      });
       // if (response) {
       //   AsyncStorage.se tItem("user", JSON.stringify(response));
       // }
 
-      navigation.navigate("SplashScreen", {response: response});
+      navigation.navigate("SplashScreen", { response: response });
       // setLoading(true);
 
       // segue aqui codigo para avançar para pagina de HOME e bater no backend para conferir o login

@@ -4,6 +4,7 @@ import Main from "../../global/Main";
 import * as S from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SettingsScreen = () => {
   const [selectedColor, setSelectedColor] = useState("#FF6900");
@@ -32,14 +33,30 @@ const SettingsScreen = () => {
       quality: 1,
     });
 
-    console.log(result);
-
-    if (result.canceled === false) {
+    if (result.assets !== null) {
       setLogoImage(result.assets[0].uri);
     }
   };
 
-  const handleBrandChange = (colors, logo) => {};
+  const handleBrandChange = async () => {
+    const brandData = {};
+    if (logoImage) {
+      brandData.color = inputColor;
+      brandData.logo = logoImage;
+    } else {
+      brandData.color = inputColor;
+    }
+
+    try {
+      const jsonValue = JSON.stringify(brandData);
+      await AsyncStorage.setItem("@Barber:brand", jsonValue);
+
+      const value = await AsyncStorage.getItem("@Barber:brand");
+      console.log("Async: ", value);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Main>
@@ -49,9 +66,9 @@ const SettingsScreen = () => {
 
       <S.Section>
         <S.SectionTitle>Personalize as Cores do Aplicativo</S.SectionTitle>
-        <S.SectionSubtitle>
+        {/* <S.SectionSubtitle>
           Escolha as cores que representam sua marca:
-        </S.SectionSubtitle>
+        </S.SectionSubtitle> */}
 
         <S.ColorOptionsContainer>
           <S.ColorOption
@@ -108,16 +125,17 @@ const SettingsScreen = () => {
 
       <S.Section>
         <S.SectionTitle>Escolha a Logo do Aplicativo</S.SectionTitle>
-        <S.SectionSubtitle>
-          Clique abaixo para enviar a sua logo:
-        </S.SectionSubtitle>
 
         <S.LogoUploadContainer>
-          {logoImage && (
+          {logoImage ? (
             <Image
               source={{ uri: logoImage }}
               style={{ width: 250, height: 120 }}
             />
+          ) : (
+            <S.SectionSubtitle>
+              Clique abaixo para enviar a sua logo:
+            </S.SectionSubtitle>
           )}
         </S.LogoUploadContainer>
 
