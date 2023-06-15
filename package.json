@@ -18,6 +18,8 @@
     "@react-navigation/native-stack": "^6.9.12",
     "date-fns": "^2.30.0",
     "expo": "~48.0.15",
+    "expo-device": "~5.2.1",
+    "expo-notifications": "~0.18.1",
     "expo-status-bar": "~1.4.4",
     "lottie-react-native": "^5.1.5",
     "moment": "^2.29.4",
