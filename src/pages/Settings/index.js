@@ -4,23 +4,15 @@ import Main from "../../global/Main";
 import * as S from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { AccentColorContext } from "../../global/styles/accentColorProvider";
+import { ThemeContext } from "../../global/styles/themeProvider";
 
 const SettingsScreen = () => {
-  const { accentColor, updateAccentColor } = useContext(AccentColorContext);
-
-  const changeColor = () => {
-    const newColor = inputColor; // Replace with the desired color selection logic
-    updateAccentColor(newColor);
-  };
-
-  const [selectedColor, setSelectedColor] = useState("#FF6900");
-  const [inputColor, setInputColor] = useState("#FF6900");
+  const { updateColor, accentColor, themeColors, updateThemeColors } =
+    useContext(ThemeContext);
+  const [inputColor, setInputColor] = useState(accentColor);
   const [logoImage, setLogoImage] = useState("");
 
   const handleColorOptionClick = (color) => {
-    setSelectedColor(color);
     setInputColor(color);
   };
 
@@ -47,20 +39,18 @@ const SettingsScreen = () => {
   };
 
   const handleBrandChange = async () => {
-    const brandData = {};
+    await updateColor(inputColor);
+    const updatedColors = {
+      ...themeColors,
+      bgButton: inputColor,
+    };
+    updateThemeColors(updatedColors);
+
     if (logoImage) {
-      brandData.color = inputColor;
-      brandData.logo = logoImage;
-    } else {
-      brandData.color = inputColor;
     }
 
     try {
-      const jsonValue = JSON.stringify(brandData);
-      await AsyncStorage.setItem("@Barber:brand", jsonValue);
-
-      const value = await AsyncStorage.getItem("@Barber:brand");
-      console.log("Async: ", value);
+      // implementar
     } catch (error) {
       console.log(error);
     }
@@ -74,9 +64,6 @@ const SettingsScreen = () => {
 
       <S.Section>
         <S.SectionTitle>Personalize as Cores do Aplicativo</S.SectionTitle>
-        {/* <S.SectionSubtitle>
-          Escolha as cores que representam sua marca:
-        </S.SectionSubtitle> */}
 
         <S.ColorOptionsContainer>
           <S.ColorOption
@@ -156,10 +143,6 @@ const SettingsScreen = () => {
       <S.Button onPress={handleBrandChange}>
         <Ionicons name="ios-checkmark" size={30} color="white" />
       </S.Button>
-
-      <S.ButtonO onPress={changeColor} myColor={accentColor}>
-        <S.LogoUploadButtonText>Teste</S.LogoUploadButtonText>
-      </S.ButtonO>
     </Main>
   );
 };

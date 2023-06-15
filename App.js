@@ -1,13 +1,13 @@
 import AppRoutes from "./src/routes/app.routes";
 import * as Notifications from "expo-notifications";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   handleTokenPush,
   useNotificationHandler,
   setNotificationChannel,
   requestNotificationPermissions,
 } from "./src/global/Notifications";
-import { AccentColorProvider } from "./src/global/styles/accentColorProvider";
+import { ThemeProvider } from "./src/global/styles/themeProvider";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -36,8 +36,8 @@ export default function App() {
   }, [notification]);
 
   return (
-    <AccentColorProvider>
+    <ThemeProvider>
       <AppRoutes />
-    </AccentColorProvider>
+    </ThemeProvider>
   );
 }
