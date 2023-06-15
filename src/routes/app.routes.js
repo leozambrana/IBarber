@@ -80,9 +80,19 @@ const Auth = () => {
   );
 };
 
-const TabsNavigator = () => {
+const TabsNavigator = ({ route }) => {
   // a variável userType deve ser recebida do backend
-  const userType = "customer";
+  const response = route.params?.response;
+  const status = response.adminStatus;
+  const employeeId = response.employeeId;
+  let userType;
+  if (status) {
+    userType = "admin";
+  } else if (!status && employeeId) {
+    userType = "barber";
+  } else {
+    userType = "customer";
+  }
 
   return (
     <Tab.Navigator
