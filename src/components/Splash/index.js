@@ -7,13 +7,14 @@ import AnimatedLottieView from "lottie-react-native";
 //styled-components
 import * as S from './styles'
 
-const SplashScreen = ({ navigation }) => {
+const SplashScreen = ({ navigation, route}) => {
   const [animating, setAnimating] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
       setAnimating(false);
-      navigation.replace("TabsNavigator");
+      const response = route.params?.response;
+      navigation.replace("TabsNavigator",{response: response});
     }, 5000);
   }, []);
 
