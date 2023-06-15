@@ -143,3 +143,14 @@ export const LogoUploadButtonText = styled.Text`
   color: ${theme.colors.white};
   font-weight: bold;
 `;
+
+export const ButtonO = styled.TouchableOpacity`
+  width: 200px;
+  height: 60px;
+  border-radius: 5px;
+  background-color: ${(props) =>
+    isValidColor(props.myColor) ? props.myColor : "gray"};
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+`;

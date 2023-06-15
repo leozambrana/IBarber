@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import Main from "../../global/Main";
 import * as S from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AccentColorContext } from "../../global/styles/accentColorProvider";
 
 const SettingsScreen = () => {
+  const { accentColor, updateAccentColor } = useContext(AccentColorContext);
+
+  const changeColor = () => {
+    const newColor = inputColor; // Replace with the desired color selection logic
+    updateAccentColor(newColor);
+  };
+
   const [selectedColor, setSelectedColor] = useState("#FF6900");
   const [inputColor, setInputColor] = useState("#FF6900");
   const [logoImage, setLogoImage] = useState("");
@@ -148,6 +156,10 @@ const SettingsScreen = () => {
       <S.Button onPress={handleBrandChange}>
         <Ionicons name="ios-checkmark" size={30} color="white" />
       </S.Button>
+
+      <S.ButtonO onPress={changeColor} myColor={accentColor}>
+        <S.LogoUploadButtonText>Teste</S.LogoUploadButtonText>
+      </S.ButtonO>
     </Main>
   );
 };

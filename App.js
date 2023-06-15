@@ -7,6 +7,7 @@ import {
   setNotificationChannel,
   requestNotificationPermissions,
 } from "./src/global/Notifications";
+import { AccentColorProvider } from "./src/global/styles/accentColorProvider";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -17,7 +18,7 @@ Notifications.setNotificationHandler({
 });
 
 export default function App() {
-  const notification  = useNotificationHandler();
+  const notification = useNotificationHandler();
 
   useEffect(() => {
     async function configureNotifications() {
@@ -34,5 +35,9 @@ export default function App() {
     console.log(notification);
   }, [notification]);
 
-  return <AppRoutes />;
+  return (
+    <AccentColorProvider>
+      <AppRoutes />
+    </AccentColorProvider>
+  );
 }
