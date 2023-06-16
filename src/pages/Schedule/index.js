@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Image } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Image, TouchableOpacity, Text } from "react-native";
 import Main from "../../global/Main";
 import * as S from "./styles";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import * as Calendar from "expo-calendar";
+import * as Notifications from 'expo-notifications';
 
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "styled-components";
@@ -17,6 +17,18 @@ const ScheduleScreen = ({ navigation }) => {
   });
 
   const [services, setServices] = useState([]);
+
+  const notifications = () =>{
+    Notifications.scheduleNotificationAsync({
+      content: {
+        title: "Agendamento",
+        body: 'Amanhã seu corte!!',
+      },
+      trigger: {
+        date: new Date('2023-06-16T00:08:30')
+      },
+    });
+  }
 
   // useEffect(() => {
   //   fetch("https://exemplo.com/servicos")
@@ -93,21 +105,10 @@ const ScheduleScreen = ({ navigation }) => {
       </S.ContainerGrid>
 
       <S.CalendarTitle>Selecione um dia:</S.CalendarTitle>
-      {/* <S.Container>
-        <S.CalendarContainer>
-          <S.CalendarComponent
-            theme={{
-              backgroundColor: theme.surface,
-              calendarBackground: theme.surface,
-              textSectionTitleColor: theme.white,
-              selectedDayBackgroundColor: "green",
-              selectedDayTextColor: "#ffffff",
-              todayTextColor: "green",
-              dayTextColor: theme.white,
-            }}
-          />
-        </S.CalendarContainer>
-      </S.Container> */}
+
+      <TouchableOpacity onPress={notifications}>
+        <Text>TESTE</Text>
+      </TouchableOpacity>
     </Main>
   );
 };

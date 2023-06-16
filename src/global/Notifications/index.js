@@ -1,5 +1,4 @@
 import * as Notifications from "expo-notifications";
-import * as Device from "expo-device";
 import { Platform } from "react-native";
 import { useState, useRef, useEffect } from "react";
 
@@ -21,20 +20,6 @@ export const requestNotificationPermissions = async () => {
     const { status } = await Notifications.requestPermissionsAsync();
     finalStatus = status;
   }
-  return finalStatus === "granted";
-};
-
-export const getExpoPushToken = async () => {
-  const { data: token } = await Notifications.getExpoPushTokenAsync({
-    projectId: "beeb2869-9e07-440a-a2f9-6c4b9ff886eb",
-  });
-  return token;
-};
-
-export const handleTokenPush = async () => {
-  const token = await getExpoPushToken();
-  console.log(token);
-  return token;
 };
 
 export const useNotificationHandler = () => {
@@ -48,7 +33,7 @@ export const useNotificationHandler = () => {
     });
 
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response);
+      // console.log(response);
     });
 
     return () => {
