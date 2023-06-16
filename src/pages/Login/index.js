@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import {
   Keyboard,
   ImageBackground,
@@ -6,6 +6,11 @@ import {
   StatusBar,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import {
+  useNotificationHandler,
+  setNotificationChannel,
+  requestNotificationPermissions,
+} from "../../global/Notifications";
 
 //loader component
 import Loader from "../../components/Loader";
@@ -23,8 +28,21 @@ const LoginScreen = ({ navigation }) => {
   const [userPassword, setUserPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
-
   const passwordInputRef = useRef();
+  const [expoPushToken, setExpoPushToken] = useState(null);
+  const notification = useNotificationHandler();
+
+  useEffect(() => {
+    async function configureNotifications() {
+      await setNotificationChannel();
+      await requestNotificationPermissions();
+    }
+    configureNotifications();
+  }, []);
+
+  useEffect(() => {
+    // console.log(notification)
+  }, [notification]);
 
   const handleSubmitPress = useCallback(async () => {
     if (!userEmail.trim()) {
@@ -41,15 +59,11 @@ const LoginScreen = ({ navigation }) => {
       });
 
       await schema.validate({ email: userEmail, password: userPassword });
-      const response = await login({ username: userEmail, password: userPassword });
+      const response = await login({ username: userEmail, password: userPassword, token: expoPushToken});
       // if (response) {
       //   AsyncStorage.se tItem("user", JSON.stringify(response));
       // }
-
       navigation.navigate("SplashScreen", {response: response});
-      // setLoading(true);
-
-      // segue aqui codigo para avançar para pagina de HOME e bater no backend para conferir o login
     } catch (error) {
       alert(error.message);
     }
