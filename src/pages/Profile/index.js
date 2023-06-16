@@ -88,7 +88,7 @@ const ProfileScreen = () => {
             <S.InputContainer>
               <S.Input
                 placeholder="Seu nome"
-                placeholderTextColor={`${theme.colors.white}8`}
+                placeholderTextColor={`${theme.white}70`}
                 value={name}
                 onChangeText={(text) => handleInputChange("name", text)}
                 returnKeyType="next"
@@ -100,7 +100,7 @@ const ProfileScreen = () => {
             <S.InputContainer>
               <S.Input
                 placeholder="seu@melhor.email"
-                placeholderTextColor={`${theme.colors.white}8`}
+                placeholderTextColor={`${theme.white}70`}
                 keyboardType="email-address"
                 autoCapitalize="none"
                 onChangeText={(text) => handleInputChange("email", text)}
@@ -113,7 +113,7 @@ const ProfileScreen = () => {
               <S.Input
                 placeholder="(11) 99999-9999"
                 keyboardType="phone-pad"
-                placeholderTextColor={`${theme.colors.white}8`}
+                placeholderTextColor={`${theme.white}70`}
                 onChangeText={(text) => handleInputChange("phoneNumber", text)}
                 value={phoneNumber}
               />

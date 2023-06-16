@@ -18,9 +18,9 @@ const BarberInfoScreen = () => {
     stateName: "Santa Catarina",
     countryName: "",
     workIntervals: [
-      { weekDay: 'Segunda', start: '08:00:00', end: '12:00:00' },
-      { weekDay: 'Terça', start: '08:00:00', end: '12:00:00' },
-    ]
+      { weekDay: "Segunda", start: "08:00:00", end: "12:00:00" },
+      { weekDay: "Terça", start: "08:00:00", end: "12:00:00" },
+    ],
   });
 
   const handleMapPress = () => {
@@ -49,7 +49,7 @@ const BarberInfoScreen = () => {
         {
           data.shopName !== null && setBarberShop(data);
         }
-        console.log("Resposta do servidor:", data);
+        // console.log("Resposta do servidor:", data);
       })
       .catch((error) => {
         // console.error("Erro no envio do objeto:", error);
@@ -65,8 +65,12 @@ const BarberInfoScreen = () => {
       <S.BottomContainer>
         <S.BarberInfo>
           <S.Title>Horário de funcionamento</S.Title>
-          {barberShop.workIntervals.map((workInterval) => (
-            <S.Description key={workInterval.weekDay + workInterval.start + workInterval.end}>{workInterval.weekDay} das {moment(workInterval.start, 'HH:mm:ss').format('HH:mm')} às {moment(workInterval.end, 'HH:mm:ss').format('HH:mm')}</S.Description>
+          {barberShop.workIntervals.map((workInterval, index) => (
+            <S.Description key={`${workInterval.weekDay}-${index}}`}>
+              {workInterval.weekDay} das{" "}
+              {moment(workInterval.start, "HH:mm:ss").format("HH:mm")} às{" "}
+              {moment(workInterval.end, "HH:mm:ss").format("HH:mm")}
+            </S.Description>
           ))}
         </S.BarberInfo>
 

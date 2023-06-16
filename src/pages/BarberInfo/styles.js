@@ -11,7 +11,7 @@ export const Header = styled.View`
 
 export const HeaderTitle = styled.Text`
   font-size: 25px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
@@ -30,18 +30,18 @@ export const BarberInfo = styled.View`
 
 export const Title = styled.Text`
   font-size: 18px;
-  color: ${theme.colors.black};
+  color: ${theme.black};
   font-weight: bold;
   margin-bottom: 10px;
   padding: 3px 10px;
-  background-color: ${theme.colors.white};
+  background-color: ${theme.white};
   border-radius: 10px;
   overflow: hidden;
 `;
 
 export const Description = styled.Text`
   font-size: 16px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   text-align: center;
 `;
 
@@ -76,12 +76,12 @@ export const LinkingButton = styled.TouchableOpacity`
   height: 40px;
   justify-content: center;
   align-items: center;
-  background-color: ${theme.colors.bgButton};
+  background-color: ${(props) => props.theme.highlightColor};
   border-radius: 10px;
 `;
 
 export const LinkingText = styled.Text`
   font-size: 18px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;

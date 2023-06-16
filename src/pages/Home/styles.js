@@ -10,6 +10,6 @@ export const Header = styled.View`
 
 export const HeaderTitle = styled.Text`
   font-size: 25px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;

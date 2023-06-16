@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useCallback, useContext, useEffect } from "react";
 import {
   Keyboard,
   ImageBackground,
@@ -22,12 +22,14 @@ import * as Yup from "yup";
 import * as S from "./styles";
 import { login } from "../../sdk/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ThemeContext } from "../../global/styles/themeProvider";
 
 const LoginScreen = ({ navigation }) => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
+  const { accentColor } = useContext(ThemeContext);
   const passwordInputRef = useRef();
   const [expoPushToken, setExpoPushToken] = useState(null);
   const notification = useNotificationHandler();
@@ -59,11 +61,17 @@ const LoginScreen = ({ navigation }) => {
       });
 
       await schema.validate({ email: userEmail, password: userPassword });
-      const response = await login({ username: userEmail, password: userPassword, token: expoPushToken});
+
+      const response = await login({
+        username: userEmail,
+        password: userPassword,
+      });
       // if (response) {
       //   AsyncStorage.se tItem("user", JSON.stringify(response));
       // }
-      navigation.navigate("SplashScreen", {response: response});
+
+      navigation.navigate("SplashScreen", { response: response });
+
     } catch (error) {
       alert(error.message);
     }
@@ -116,14 +124,12 @@ const LoginScreen = ({ navigation }) => {
               />
               <S.Placeholder>Senha</S.Placeholder>
             </S.InputContainer>
-            <S.Button>
-              <TouchableOpacity
-                style={S.Button}
-                activeOpacity={0.5}
-                onPress={handleSubmitPress}
-              >
-                <S.ButtonText>Entrar</S.ButtonText>
-              </TouchableOpacity>
+            <S.Button
+              activeOpacity={0.5}
+              onPress={handleSubmitPress}
+              color={accentColor}
+            >
+              <S.ButtonText>Entrar</S.ButtonText>
             </S.Button>
             <S.View>
               <S.RegisterTextStyle

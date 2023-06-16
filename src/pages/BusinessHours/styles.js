@@ -10,7 +10,7 @@ export const Header = styled.View`
 
 export const HeaderTitle = styled.Text`
   font-size: 25px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
@@ -29,7 +29,7 @@ export const Button = styled.TouchableOpacity`
   width: 60px;
   height: 60px;
   border-radius: 50px;
-  background-color: ${theme.colors.bgButton};
+  background-color: ${(props) => props.theme.highlightColor};
   justify-content: center;
   align-items: center;
   margin-top: 30px;
@@ -37,7 +37,7 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
   font-size: 16px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
@@ -45,7 +45,7 @@ export const WeekDayButton = styled.TouchableOpacity`
   width: 40px;
   height: 30px;
   background-color: ${(props) =>
-    props.selected ? theme.colors.bgButton : theme.colors.white};
+    props.selected ? props.theme.highlightColor : theme.white};
   border-radius: 10px;
 
   font-weight: bold;
@@ -55,8 +55,7 @@ export const WeekDayButton = styled.TouchableOpacity`
 
 export const WeekDayButtonText = styled.Text`
   font-size: 14px;
-  color: ${(props) =>
-    props.selected ? theme.colors.white : theme.colors.black};
+  color: ${(props) => (props.selected ? theme.white : theme.black)};
 `;
 
 export const WeekDaysWrapper = styled.View`
@@ -70,13 +69,13 @@ export const WeekDaysWrapper = styled.View`
 
 export const WeekDaysTitle = styled.Text`
   font-size: 16px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
 export const DateTitle = styled.Text`
   font-size: 16px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
   margin-top: 40px;
 `;
@@ -93,7 +92,7 @@ export const DateWrapper = styled.View`
 export const DateButton = styled.TouchableOpacity`
   width: 150px;
   height: 30px;
-  background-color: ${theme.colors.bgButton};
+  background-color: ${(props) => props.theme.highlightColor};
   border-radius: 10px;
   justify-content: center;
   align-items: center;
@@ -101,20 +100,20 @@ export const DateButton = styled.TouchableOpacity`
 
 export const DateButtonText = styled.Text`
   font-size: 14px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
 export const DateText = styled.Text`
   font-size: 14px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
 export const CloseButton = styled.TouchableOpacity`
   width: 150px;
   height: 30px;
-  background-color: ${theme.colors.bgButton};
+  background-color: ${(props) => props.theme.highlightColor};
   border-radius: 10px;
   justify-content: center;
   align-items: center;
@@ -122,7 +121,7 @@ export const CloseButton = styled.TouchableOpacity`
 
 export const CloseButtonText = styled.Text`
   font-size: 14px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
@@ -135,7 +134,7 @@ export const DayContainer = styled.View`
 
 export const DayTitle = styled.Text`
   font-size: 16px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
   margin-top: 10px;
 `;

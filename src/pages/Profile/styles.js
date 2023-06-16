@@ -10,7 +10,7 @@ export const Header = styled.View`
 
 export const HeaderTitle = styled.Text`
   font-size: 25px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
@@ -33,7 +33,7 @@ export const AvatarImage = styled.Image`
 export const Name = styled.Text`
   font-size: 18px;
   font-weight: bold;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   margin-bottom: 10px;
 `;
 
@@ -47,8 +47,8 @@ export const Input = styled.TextInput`
   width: 100%;
   border-radius: 10px;
   border-width: 1px;
-  border-color: ${theme.colors.white};
-  color: ${theme.colors.white};
+  border-color: ${theme.white};
+  color: ${theme.white};
   padding: 10px;
   margin-bottom: 20px;
 `;
@@ -61,7 +61,7 @@ export const BottomContainer = styled.View`
 export const Button = styled.TouchableOpacity`
   width: 30%;
   height: 50px;
-  background-color: ${theme.colors.bgButton};
+  background-color: ${theme.bgButton};
   border-radius: 10px;
   align-self: center;
   justify-content: center;
@@ -73,7 +73,7 @@ export const Button = styled.TouchableOpacity`
 export const ButtonText = styled.Text`
   font-size: 16px;
   font-weight: bold;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   align-self: center;
 `;
 
@@ -88,7 +88,7 @@ export const Placeholder = styled.Text`
   position: absolute;
   top: -10px;
   left: 10px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   background-color: #171717;
   padding: 0 10px;
 `;

@@ -15,7 +15,7 @@ export const Header = styled.View`
 
 export const HeaderTitle = styled.Text`
   font-size: 25px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
@@ -27,14 +27,14 @@ export const Section = styled.View`
 
 export const SectionTitle = styled.Text`
   font-size: 20px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
   margin-bottom: 10px;
 `;
 
 export const SectionSubtitle = styled.Text`
   font-size: 16px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   margin-bottom: 10px;
 `;
 
@@ -56,7 +56,7 @@ export const ColorOptionInputContainer = styled.View`
   width: 89%;
   height: 50px;
   border-radius: 5px;
-  border: 1px solid ${theme.colors.white};
+  border: 1px solid ${theme.white};
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
@@ -66,7 +66,7 @@ export const ColorOptionInputContainer = styled.View`
 
 export const ColorOptionInputIcon = styled.Text`
   font-size: 25px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
   width: 50px;
   height: 50px;
@@ -85,14 +85,14 @@ export const ColorOptionInput = styled.TextInput`
   height: 50px;
   border-radius: 5px;
   font-size: 20px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
 `;
 
 export const LogoUploadContainer = styled.View`
   width: 100%;
   height: 150px;
   gap: 20px;
-  border: 1px dashed ${theme.colors.white};
+  border: 1px dashed ${theme.white};
   border-radius: 10px;
   margin-bottom: 20px;
   justify-content: center;
@@ -103,7 +103,7 @@ export const LogoUploadContainer = styled.View`
 
 export const LogoUploadText = styled.Text`
   font-size: 16px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
   margin-bottom: 10px;
 `;
@@ -115,7 +115,7 @@ export const Button = styled.TouchableOpacity`
   width: 60px;
   height: 60px;
   border-radius: 50px;
-  background-color: ${theme.colors.bgButton};
+  background-color: ${(props) => props.color};
   justify-content: center;
   align-items: center;
   margin-top: 30px;
@@ -123,15 +123,15 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
   font-size: 16px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
 export const LogoUploadButton = styled.TouchableOpacity`
-  width: 200px;
-  height: 60px;
+  width: 160px;
+  height: 45px;
   border-radius: 5px;
-  background-color: ${theme.colors.bgButton};
+  background-color: ${(props) => isValidColor(props.color) && props.color};
   justify-content: center;
   align-items: center;
   flex-direction: row;
@@ -140,6 +140,6 @@ export const LogoUploadButton = styled.TouchableOpacity`
 
 export const LogoUploadButtonText = styled.Text`
   font-size: 16px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;

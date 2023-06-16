@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Image, TouchableOpacity, Text } from "react-native";
 import Main from "../../global/Main";
 import * as S from "./styles";
-import theme from "../../global/styles/theme";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import * as Notifications from 'expo-notifications';
 
-
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "styled-components";
 
 const ScheduleScreen = ({ navigation }) => {
   const currentDate = new Date();
@@ -53,7 +52,11 @@ const ScheduleScreen = ({ navigation }) => {
         onPress={() => navigation.navigate("AutomatedBookingScreen")}
       >
         <S.AutomationIconText>Automatizar</S.AutomationIconText>
-        <Ionicons name="ios-play-circle-outline" size={30} color={"#00683C"} />
+        <Ionicons
+          name="ios-play-circle-outline"
+          size={30}
+          color={useTheme().highlightColor}
+        />
       </S.AutomationIcon>
 
       <S.TitleService>Selecione um serviço:</S.TitleService>
@@ -102,6 +105,7 @@ const ScheduleScreen = ({ navigation }) => {
       </S.ContainerGrid>
 
       <S.CalendarTitle>Selecione um dia:</S.CalendarTitle>
+
       <TouchableOpacity onPress={notifications}>
         <Text>TESTE</Text>
       </TouchableOpacity>

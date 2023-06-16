@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import Main from "../../global/Main";
 import * as S from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "react-native";
+import { ThemeContext } from "../../global/styles/themeProvider";
+import * as FileSystem from "expo-file-system";
 
 const SettingsScreen = () => {
-  const [selectedColor, setSelectedColor] = useState("#FF6900");
-  const [inputColor, setInputColor] = useState("#FF6900");
+  const { updateColor, accentColor, localTheme, updateThemeColors } =
+    useContext(ThemeContext);
+  const [inputColor, setInputColor] = useState(accentColor);
   const [logoImage, setLogoImage] = useState("");
 
   const handleColorOptionClick = (color) => {
-    setSelectedColor(color);
     setInputColor(color);
   };
 
@@ -32,14 +34,33 @@ const SettingsScreen = () => {
       quality: 1,
     });
 
-    console.log(result);
+    if (result.assets !== null) {
+      const base64 = await FileSystem.readAsStringAsync(result.assets[0].uri, {
+        encoding: "base64",
+      });
+      console.log("base64", base64);
 
-    if (result.canceled === false) {
       setLogoImage(result.assets[0].uri);
     }
   };
 
-  const handleBrandChange = (colors, logo) => {};
+  const handleBrandChange = async () => {
+    await updateColor(inputColor);
+    const updatedColors = {
+      ...localTheme,
+      bgButton: inputColor,
+    };
+    updateThemeColors(updatedColors);
+
+    if (logoImage) {
+    }
+
+    try {
+      // implementar
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Main>
@@ -49,9 +70,6 @@ const SettingsScreen = () => {
 
       <S.Section>
         <S.SectionTitle>Personalize as Cores do Aplicativo</S.SectionTitle>
-        <S.SectionSubtitle>
-          Escolha as cores que representam sua marca:
-        </S.SectionSubtitle>
 
         <S.ColorOptionsContainer>
           <S.ColorOption
@@ -108,26 +126,27 @@ const SettingsScreen = () => {
 
       <S.Section>
         <S.SectionTitle>Escolha a Logo do Aplicativo</S.SectionTitle>
-        <S.SectionSubtitle>
-          Clique abaixo para enviar a sua logo:
-        </S.SectionSubtitle>
 
         <S.LogoUploadContainer>
-          {logoImage && (
+          {logoImage ? (
             <Image
               source={{ uri: logoImage }}
               style={{ width: 250, height: 120 }}
             />
+          ) : (
+            <S.SectionSubtitle>
+              Clique abaixo para enviar a sua logo:
+            </S.SectionSubtitle>
           )}
         </S.LogoUploadContainer>
 
-        <S.LogoUploadButton onPress={pickImage}>
-          <Ionicons name="ios-cloud-upload" size={30} color="white" />
+        <S.LogoUploadButton onPress={pickImage} color={accentColor}>
+          <Ionicons name="ios-cloud-upload" size={25} color="white" />
           <S.LogoUploadButtonText>Enviar Logo</S.LogoUploadButtonText>
         </S.LogoUploadButton>
       </S.Section>
 
-      <S.Button onPress={handleBrandChange}>
+      <S.Button onPress={handleBrandChange} color={accentColor}>
         <Ionicons name="ios-checkmark" size={30} color="white" />
       </S.Button>
     </Main>
