@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useContext } from "react";
 import {
   Keyboard,
   ImageBackground,
@@ -17,12 +17,14 @@ import * as Yup from "yup";
 import * as S from "./styles";
 import { login } from "../../sdk/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ThemeContext } from "../../global/styles/themeProvider";
 
 const LoginScreen = ({ navigation }) => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
+  const { accentColor } = useContext(ThemeContext);
 
   const passwordInputRef = useRef();
 
@@ -105,14 +107,12 @@ const LoginScreen = ({ navigation }) => {
               />
               <S.Placeholder>Senha</S.Placeholder>
             </S.InputContainer>
-            <S.Button>
-              <TouchableOpacity
-                style={S.Button}
-                activeOpacity={0.5}
-                onPress={handleSubmitPress}
-              >
-                <S.ButtonText>Entrar</S.ButtonText>
-              </TouchableOpacity>
+            <S.Button
+              activeOpacity={0.5}
+              onPress={handleSubmitPress}
+              color={accentColor}
+            >
+              <S.ButtonText>Entrar</S.ButtonText>
             </S.Button>
             <S.View>
               <S.RegisterTextStyle

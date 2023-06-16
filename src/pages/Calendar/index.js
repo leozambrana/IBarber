@@ -6,7 +6,6 @@ import theme from "../../global/styles/theme";
 
 import { Ionicons } from "@expo/vector-icons";
 
-
 const CalendarScreen = () => {
   return (
     <Main>
@@ -53,13 +52,13 @@ const CalendarScreen = () => {
         <S.CalendarContainer>
           <S.CalendarComponent
             theme={{
-              backgroundColor: theme.colors.surface,
-              calendarBackground: theme.colors.surface,
-              textSectionTitleColor: theme.colors.white,
+              backgroundColor: theme.surface,
+              calendarBackground: theme.surface,
+              textSectionTitleColor: theme.white,
               selectedDayBackgroundColor: "green",
               selectedDayTextColor: "#ffffff",
               todayTextColor: "green",
-              dayTextColor: theme.colors.white,
+              dayTextColor: theme.white,
             }}
           />
         </S.CalendarContainer>

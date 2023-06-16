@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Image } from "react-native";
 import Main from "../../global/Main";
 import * as S from "./styles";
-import theme from "../../global/styles/theme";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import * as Calendar from "expo-calendar";
 
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "styled-components";
 
 const ScheduleScreen = ({ navigation }) => {
   const currentDate = new Date();
@@ -39,7 +40,11 @@ const ScheduleScreen = ({ navigation }) => {
         onPress={() => navigation.navigate("AutomatedBookingScreen")}
       >
         <S.AutomationIconText>Automatizar</S.AutomationIconText>
-        <Ionicons name="ios-play-circle-outline" size={30} color={"#00683C"} />
+        <Ionicons
+          name="ios-play-circle-outline"
+          size={30}
+          color={useTheme().highlightColor}
+        />
       </S.AutomationIcon>
 
       <S.TitleService>Selecione um serviço:</S.TitleService>
@@ -88,21 +93,21 @@ const ScheduleScreen = ({ navigation }) => {
       </S.ContainerGrid>
 
       <S.CalendarTitle>Selecione um dia:</S.CalendarTitle>
-      <S.Container>
+      {/* <S.Container>
         <S.CalendarContainer>
           <S.CalendarComponent
             theme={{
-              backgroundColor: theme.colors.surface,
-              calendarBackground: theme.colors.surface,
-              textSectionTitleColor: theme.colors.white,
+              backgroundColor: theme.surface,
+              calendarBackground: theme.surface,
+              textSectionTitleColor: theme.white,
               selectedDayBackgroundColor: "green",
               selectedDayTextColor: "#ffffff",
               todayTextColor: "green",
-              dayTextColor: theme.colors.white,
+              dayTextColor: theme.white,
             }}
           />
         </S.CalendarContainer>
-      </S.Container>
+      </S.Container> */}
     </Main>
   );
 };

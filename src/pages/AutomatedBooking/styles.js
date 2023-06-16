@@ -10,7 +10,7 @@ export const Header = styled.View`
 
 export const HeaderTitle = styled.Text`
   font-size: 25px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
@@ -23,14 +23,14 @@ export const Container = styled.View`
 
 export const Title = styled.Text`
   font-size: 25px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
   text-align: center;
 `;
 
 export const Description = styled.Text`
   font-size: 18px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   text-align: center;
   margin-top: 20px;
 `;
@@ -38,7 +38,7 @@ export const Description = styled.Text`
 export const ActivateButton = styled.TouchableOpacity`
   width: 170px;
   height: 50px;
-  background-color: ${theme.colors.white};
+  background-color: ${theme.white};
   justify-content: center;
   align-items: center;
   border-radius: 10px;
@@ -47,7 +47,7 @@ export const ActivateButton = styled.TouchableOpacity`
 
 export const ActivateButtonText = styled.Text`
   font-size: 18px;
-  color: ${theme.colors.black};
+  color: ${theme.black};
   font-weight: bold;
 `;
 

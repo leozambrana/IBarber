@@ -10,7 +10,7 @@ export const Header = styled.View`
 
 export const HeaderTitle = styled.Text`
   font-size: 25px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
@@ -24,7 +24,7 @@ export const Container = styled.View`
 
 export const Label = styled.Text`
   font-size: 14px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
 `;
 
 export const SelectContainer = styled.View``;
@@ -38,7 +38,7 @@ export const EmployeeItem = styled.View`
   width: 47%;
   width: 100%;
   height: 100px;
-  background-color: ${theme.colors.surface};
+  background-color: ${theme.surface};
   align-items: center;
   border-radius: 10px;
   justify-content: flex-start;
@@ -65,7 +65,7 @@ export const AvatarImage = styled.Image`
 
 export const EmployeeName = styled.Text`
   font-size: 16px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
@@ -81,7 +81,7 @@ export const ListContainer = styled.View`
 export const AddButton = styled.TouchableOpacity`
   width: 60px;
   height: 60px;
-  background-color: ${theme.colors.bgButton};
+  background-color: ${(props) => props.theme.highlightColor};
   border-radius: 50px;
   align-items: center;
   text-align: center;
@@ -95,7 +95,7 @@ export const AddButtonText = styled.Text`
   text-align: center;
   font-size: 30px;
   line-height: 33px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
@@ -113,7 +113,7 @@ export const ModalContent = styled.View`
   width: 90%;
   height: auto;
   gap: 20px;
-  background-color: ${theme.colors.surface};
+  background-color: ${theme.surface};
   border-radius: 10px;
   padding: 20px;
   justify-content: space-between;
@@ -121,13 +121,13 @@ export const ModalContent = styled.View`
 
 export const ModalTitle = styled.Text`
   font-size: 20px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
 export const ModalLabel = styled.Text`
   font-size: 14px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
 `;
 
 export const ModalButtonsContainer = styled.View`
@@ -139,7 +139,7 @@ export const ModalButtonsContainer = styled.View`
 export const ModalButton = styled.TouchableOpacity`
   width: 45%;
   height: 50px;
-  background-color: ${theme.colors.bgButton};
+  background-color: ${theme.bgButton};
   border-radius: 10px;
   align-items: center;
   justify-content: center;
@@ -147,7 +147,7 @@ export const ModalButton = styled.TouchableOpacity`
 
 export const ModalButtonText = styled.Text`
   font-size: 16px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
@@ -161,7 +161,7 @@ export const TrashIcon = styled.TouchableOpacity`
 export const EmptyListText = styled.Text`
   width: 100%;
   font-size: 16px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
   text-align: center;
   margin-top: 20px;
@@ -176,12 +176,12 @@ export const EmptyListContainer = styled.View`
 
 export const EmployeeEmail = styled.Text`
   font-size: 14px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
 `;
 
 export const EmployeeAdminStatus = styled.Text`
   font-size: 14px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
 `;
 
 export const EmployeeDetails = styled.View`

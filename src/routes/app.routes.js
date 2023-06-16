@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import theme from "../global/styles/theme";
 
 //navigate
@@ -25,11 +25,15 @@ import BarberScreen from "../pages/BarberShop";
 import ServiceAdd from "../pages/ServiceAdd";
 import BusinessHoursScreen from "../pages/BusinessHours";
 import AutomatedBookingScreen from "../pages/AutomatedBooking";
+import { ThemeContext } from "../global/styles/themeProvider";
+import { ThemeProvider } from "styled-components";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const AppRoutes = () => {
+  const { localTheme } = useContext(ThemeContext);
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -59,28 +63,34 @@ const AppRoutes = () => {
 };
 
 const Auth = () => {
+  const { localTheme, theme } = useContext(ThemeContext);
+
   return (
-    <Stack.Navigator initialRouteName="PreLogin">
-      <Stack.Screen
-        name="PreLogin"
-        options={{ headerShown: false }}
-        component={PreLogin}
-      />
-      <Stack.Screen
-        name="Login"
-        options={{ headerShown: false }}
-        component={LoginScreen}
-      />
-      <Stack.Screen
-        name="Register"
-        options={{ headerShown: false }}
-        component={RegisterScreen}
-      />
-    </Stack.Navigator>
+    <ThemeProvider theme={localTheme}>
+      <Stack.Navigator initialRouteName="PreLogin">
+        <Stack.Screen
+          name="PreLogin"
+          options={{ headerShown: false }}
+          component={PreLogin}
+        />
+        <Stack.Screen
+          name="Login"
+          options={{ headerShown: false }}
+          component={LoginScreen}
+        />
+        <Stack.Screen
+          name="Register"
+          options={{ headerShown: false }}
+          component={RegisterScreen}
+        />
+      </Stack.Navigator>
+    </ThemeProvider>
   );
 };
 
 const TabsNavigator = ({ route }) => {
+  const { accentColor, localTheme } = useContext(ThemeContext);
+
   // a variável userType deve ser recebida do backend
   const response = route.params?.response;
   const status = response.adminStatus;
@@ -95,70 +105,72 @@ const TabsNavigator = ({ route }) => {
   }
 
   return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-          if (route.name === "Home") {
-            iconName = focused ? "ios-home" : "ios-home-outline";
-          } else if (route.name === "Agendar") {
-            iconName = focused ? "ios-calendar" : "ios-calendar-outline";
-          } else if (route.name === "Informações") {
-            iconName = focused
-              ? "ios-information-circle"
-              : "ios-information-circle-outline";
-          } else if (route.name === "Perfil") {
-            iconName = focused ? "ios-person" : "ios-person-outline";
-          } else if (route.name === "Barbeiro") {
-            iconName = focused ? "ios-person" : "ios-person-outline";
-          } else if (route.name === "Agenda") {
-            iconName = focused ? "ios-today" : "ios-today-outline";
-          } else if (route.name === "Funcionários") {
-            iconName = focused ? "ios-people" : "ios-people-outline";
-          } else if (route.name === "Configurações") {
-            iconName = focused ? "ios-settings" : "ios-settings-outline";
-          } else if (route.name === "Serviços") {
-            iconName = focused ? "ios-add-circle" : "ios-add-circle-outline";
-          } else if (route.name === "Horários") {
-            iconName = focused ? "ios-time" : "ios-time-outline";
-          }
+    <ThemeProvider theme={localTheme}>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+            if (route.name === "Home") {
+              iconName = focused ? "ios-home" : "ios-home-outline";
+            } else if (route.name === "Agendar") {
+              iconName = focused ? "ios-calendar" : "ios-calendar-outline";
+            } else if (route.name === "Informações") {
+              iconName = focused
+                ? "ios-information-circle"
+                : "ios-information-circle-outline";
+            } else if (route.name === "Perfil") {
+              iconName = focused ? "ios-person" : "ios-person-outline";
+            } else if (route.name === "Barbeiro") {
+              iconName = focused ? "ios-person" : "ios-person-outline";
+            } else if (route.name === "Agenda") {
+              iconName = focused ? "ios-today" : "ios-today-outline";
+            } else if (route.name === "Funcionários") {
+              iconName = focused ? "ios-people" : "ios-people-outline";
+            } else if (route.name === "Configurações") {
+              iconName = focused ? "ios-settings" : "ios-settings-outline";
+            } else if (route.name === "Serviços") {
+              iconName = focused ? "ios-add-circle" : "ios-add-circle-outline";
+            } else if (route.name === "Horários") {
+              iconName = focused ? "ios-time" : "ios-time-outline";
+            }
 
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-        tabBarStyle: {
-          backgroundColor: theme.colors.surface,
-          borderTopColor: "transparent",
-        },
-        tabBarActiveTintColor: "#2596be",
-        tabBarInactiveTintColor: "#d3eaf2",
-        headerShown: false,
-      })}
-    >
-      {userType === "admin" && (
-        <>
-          <Tab.Screen name="Serviços" component={ServiceAdd} />
-          <Tab.Screen name="Funcionários" component={EmployeesScreen} />
-          <Tab.Screen name="Horários" component={BusinessHoursScreen} />
-          <Tab.Screen name="Configurações" component={SettingsScreen} />
-        </>
-      )}
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarStyle: {
+            backgroundColor: theme.surface,
+            borderTopColor: "transparent",
+          },
+          tabBarActiveTintColor: `${accentColor}`,
+          tabBarInactiveTintColor: `${accentColor}80`,
+          headerShown: false,
+        })}
+      >
+        {userType === "admin" && (
+          <>
+            <Tab.Screen name="Serviços" component={ServiceAdd} />
+            <Tab.Screen name="Funcionários" component={EmployeesScreen} />
+            <Tab.Screen name="Horários" component={BusinessHoursScreen} />
+            <Tab.Screen name="Configurações" component={SettingsScreen} />
+          </>
+        )}
 
-      {userType === "barber" && (
-        <>
-          <Tab.Screen name="Agenda" component={CalendarScreen} />
-          <Tab.Screen name="Barbeiro" component={BarberScreen} />
-        </>
-      )}
+        {userType === "barber" && (
+          <>
+            <Tab.Screen name="Agenda" component={CalendarScreen} />
+            <Tab.Screen name="Barbeiro" component={BarberScreen} />
+          </>
+        )}
 
-      {userType === "customer" && (
-        <>
-          <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name="Agendar" component={ScheduleScreen} />
-          <Tab.Screen name="Informações" component={BarberInfoScreen} />
-          <Tab.Screen name="Perfil" component={ProfileScreen} />
-        </>
-      )}
-    </Tab.Navigator>
+        {userType === "customer" && (
+          <>
+            {/* <Tab.Screen name="Home" component={HomeScreen} /> */}
+            <Tab.Screen name="Agendar" component={ScheduleScreen} />
+            <Tab.Screen name="Informações" component={BarberInfoScreen} />
+            <Tab.Screen name="Perfil" component={ProfileScreen} />
+          </>
+        )}
+      </Tab.Navigator>
+    </ThemeProvider>
   );
 };
 

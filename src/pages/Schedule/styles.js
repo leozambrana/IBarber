@@ -6,25 +6,25 @@ export const Header = styled.View`
   width: 100%;
   height: 50px;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   margin-top: 11px;
 `;
 
 export const HeaderTitle = styled.Text`
   font-size: 25px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
 export const HeaderSubTitle = styled.Text`
   font-size: 14px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
 export const TitleService = styled.Text`
   font-size: 18px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
   margin-top: 30px;
 `;
@@ -40,13 +40,13 @@ export const ContainerGrid = styled.View`
 `;
 
 export const View = styled.View`
-  width: 170px;
+  width: 45%;
   height: 40%;
   margin: 8px 8px;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  background-color: ${theme.colors.surface};
+  background-color: ${theme.surface};
   border-radius: 10px;
 `;
 
@@ -55,14 +55,14 @@ export const IconView = styled.View`
   height: 100%;
   justify-content: center;
   align-items: center;
-  background-color: ${theme.colors.white};
+  background-color: ${theme.white};
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 `;
 
 export const Tempo = styled.Text`
   font-size: 14px;
-  color: ${theme.colors.bgButton};
+  color: ${theme.bgButton};
   font-weight: bold;
   padding-top: 6px;
   text-align: center;
@@ -70,7 +70,7 @@ export const Tempo = styled.Text`
 
 export const Description = styled.Text`
   font-size: 12px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
   padding-top: 6px;
   margin-left: auto;
@@ -80,7 +80,7 @@ export const Description = styled.Text`
 
 export const CalendarTitle = styled.Text`
   font-size: 18px;
-  color: ${theme.colors.white};
+  color: ${theme.white};
   font-weight: bold;
 `;
 
@@ -112,13 +112,12 @@ export const AutomationIcon = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   gap: 5px;
-  /* align-self: flex-start; */
   margin-top: 10px;
 `;
 
 export const AutomationIconText = styled.Text`
   font-size: 18px;
   line-height: 35px;
-  color: #00683c;
+  color: ${(props) => props.theme.highlightColor};
   font-weight: bold;
 `;

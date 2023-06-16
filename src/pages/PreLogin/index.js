@@ -1,19 +1,20 @@
-import React from 'react'
-import {     ImageBackground, TouchableOpacity } from "react-native";
-import * as S from './styles';
+import React, { useContext } from "react";
+import { ImageBackground, TouchableOpacity } from "react-native";
+import * as S from "./styles";
+import { ThemeContext } from "../../global/styles/themeProvider";
 
+const PreLogin = ({ navigation }) => {
+  const { accentColor } = useContext(ThemeContext);
 
-const PreLogin = ({ navigation })  => {
-
-    const handleCadastroPress = () => {
-        navigation.navigate('Register', { origem: 'PreLogin' });
-      };
+  const handleCadastroPress = () => {
+    navigation.navigate("Register", { origem: "PreLogin" });
+  };
 
   return (
     <ImageBackground
-    source={require("../../assets/img/Background.jpg")}
-    style={{ flex: 1 }}
-  >
+      source={require("../../assets/img/Background.jpg")}
+      style={{ flex: 1 }}
+    >
       <S.Container>
         <S.Top>
           <S.TitleContainer>
@@ -23,28 +24,24 @@ const PreLogin = ({ navigation })  => {
           <S.SubTitle>A melhor experiência de barbearia</S.SubTitle>
         </S.Top>
         <S.Bottom>
-          <S.Button>
-            <TouchableOpacity
-              style={S.Button}
-              activeOpacity={0.5}
-              onPress={handleCadastroPress}
-            >
-              <S.ButtonText>Cadastre-se</S.ButtonText>
-            </TouchableOpacity>
+          <S.Button
+            activeOpacity={0.5}
+            onPress={handleCadastroPress}
+            color={accentColor}
+          >
+            <S.ButtonText>Cadastre-se</S.ButtonText>
           </S.Button>
-          <S.Button>
-            <TouchableOpacity
-              style={S.Button}
-              activeOpacity={0.5}
-              onPress={() => navigation.navigate("Login")}
-            >
-              <S.ButtonText>Entrar</S.ButtonText>
-            </TouchableOpacity>
+          <S.Button
+            activeOpacity={0.5}
+            onPress={() => navigation.navigate("Login")}
+            color={accentColor}
+          >
+            <S.ButtonText>Entrar</S.ButtonText>
           </S.Button>
         </S.Bottom>
       </S.Container>
-  </ImageBackground>
-  )
-}
+    </ImageBackground>
+  );
+};
 
-export default PreLogin
+export default PreLogin;

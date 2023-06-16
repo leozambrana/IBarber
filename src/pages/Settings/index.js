@@ -5,9 +5,10 @@ import * as S from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "react-native";
 import { ThemeContext } from "../../global/styles/themeProvider";
+import * as FileSystem from "expo-file-system";
 
 const SettingsScreen = () => {
-  const { updateColor, accentColor, themeColors, updateThemeColors } =
+  const { updateColor, accentColor, localTheme, updateThemeColors } =
     useContext(ThemeContext);
   const [inputColor, setInputColor] = useState(accentColor);
   const [logoImage, setLogoImage] = useState("");
@@ -34,6 +35,11 @@ const SettingsScreen = () => {
     });
 
     if (result.assets !== null) {
+      const base64 = await FileSystem.readAsStringAsync(result.assets[0].uri, {
+        encoding: "base64",
+      });
+      console.log("base64", base64);
+
       setLogoImage(result.assets[0].uri);
     }
   };
@@ -41,7 +47,7 @@ const SettingsScreen = () => {
   const handleBrandChange = async () => {
     await updateColor(inputColor);
     const updatedColors = {
-      ...themeColors,
+      ...localTheme,
       bgButton: inputColor,
     };
     updateThemeColors(updatedColors);
@@ -134,13 +140,13 @@ const SettingsScreen = () => {
           )}
         </S.LogoUploadContainer>
 
-        <S.LogoUploadButton onPress={pickImage}>
-          <Ionicons name="ios-cloud-upload" size={30} color="white" />
+        <S.LogoUploadButton onPress={pickImage} color={accentColor}>
+          <Ionicons name="ios-cloud-upload" size={25} color="white" />
           <S.LogoUploadButtonText>Enviar Logo</S.LogoUploadButtonText>
         </S.LogoUploadButton>
       </S.Section>
 
-      <S.Button onPress={handleBrandChange}>
+      <S.Button onPress={handleBrandChange} color={accentColor}>
         <Ionicons name="ios-checkmark" size={30} color="white" />
       </S.Button>
     </Main>

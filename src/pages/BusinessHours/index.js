@@ -4,6 +4,7 @@ import * as S from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 import { Calendar } from "react-native-calendars";
 import theme from "../../global/styles/theme";
+import { useTheme } from "styled-components";
 
 const BusinessHoursScreen = () => {
   const [excludedDates, setExcludedDates] = useState([]);
@@ -30,17 +31,19 @@ const BusinessHoursScreen = () => {
     }
   };
 
-  const handleSave =useCallback (async() => {
+  const handleSave = useCallback(async () => {
     const hasSelectedWeekDay = weekDays.some((day) => day.selected);
     const selectedWeekDay = weekDays.find((day) => day.selected);
     console.log(selectedWeekDay);
 
-    if(hasSelectedWeekDay && excludedDates){
-      const response = await serviceAdd({ weekDays: weekDays, excludedDates: excludedDates });
-    }else{
-      console.log("selecione algo")
+    if (hasSelectedWeekDay && excludedDates) {
+      const response = await serviceAdd({
+        weekDays: weekDays,
+        excludedDates: excludedDates,
+      });
+    } else {
+      console.log("selecione algo");
     }
-   
   });
 
   return (
@@ -89,20 +92,20 @@ const BusinessHoursScreen = () => {
             marginBottom: 20,
           }}
           theme={{
-            backgroundColor: theme.colors.surface,
-            calendarBackground: theme.colors.surface,
-            textSectionTitleColor: theme.colors.white,
+            backgroundColor: theme.surface,
+            calendarBackground: theme.surface,
+            textSectionTitleColor: useTheme().highlightColor,
             textSectionTitleDisabledColor: "#dddddd20",
             selectedDayBackgroundColor: "red",
-            selectedDayTextColor: theme.colors.white,
-            todayTextColor: theme.colors.white,
-            dayTextColor: "green",
+            selectedDayTextColor: useTheme().highlightColor,
+            todayTextColor: useTheme().highlightColor,
+            dayTextColor: useTheme().textColor,
             textDisabledColor: "#dddddd20",
             dotColor: "red",
             selectedDotColor: "#ffffff",
-            arrowColor: theme.colors.white,
+            arrowColor: theme.white,
             disabledArrowColor: "#d9e1e8",
-            monthTextColor: theme.colors.white,
+            monthTextColor: theme.white,
           }}
         />
 
