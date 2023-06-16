@@ -8,7 +8,6 @@ import {
   requestNotificationPermissions,
 } from "./src/global/Notifications";
 import { ThemeProvider as CustomThemeContext } from "./src/global/styles/themeProvider";
-import { ThemeProvider } from "styled-components";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import localTheme from "./src/global/styles/theme";
 
@@ -22,19 +21,6 @@ Notifications.setNotificationHandler({
 
 export default function App() {
   const notification = useNotificationHandler();
-  const [theme, setTheme] = useState(localTheme);
-
-  useEffect(() => {
-    async function getThemeFromStorage() {
-      const theme = await AsyncStorage.getItem("@Barber:theme");
-      if (theme) {
-        const parsedTheme = JSON.parse(theme);
-        setTheme(parsedTheme);
-      }
-    }
-
-    getThemeFromStorage();
-  }, []);
 
   useEffect(() => {
     async function configureNotifications() {

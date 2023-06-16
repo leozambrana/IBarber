@@ -63,7 +63,7 @@ const AppRoutes = () => {
 };
 
 const Auth = () => {
-  const { localTheme, theme } = useContext(ThemeContext);
+  const { localTheme } = useContext(ThemeContext);
 
   return (
     <ThemeProvider theme={localTheme}>
@@ -141,7 +141,7 @@ const TabsNavigator = ({ route }) => {
             borderTopColor: "transparent",
           },
           tabBarActiveTintColor: `${accentColor}`,
-          tabBarInactiveTintColor: `${accentColor}80`,
+          tabBarInactiveTintColor: `${accentColor}98`,
           headerShown: false,
         })}
       >

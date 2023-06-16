@@ -73,7 +73,7 @@ export const Button = styled.TouchableOpacity`
   height: 50px;
   width: 100%;
   border-radius: 5px;
-  background-color: ${theme.bgButton};
+  background-color: ${(props) => props.theme.highlightColor};
   justify-content: center;
   align-self: center;
   margin-top: 10px;

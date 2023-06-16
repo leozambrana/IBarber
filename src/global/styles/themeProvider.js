@@ -2,6 +2,8 @@ import React, { createContext, useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { REACT_APP_API } from "../../sdk";
 import myTheme from "./theme";
+import { LogBox } from "react-native";
+LogBox.ignoreLogs(["Possible Unhandled Promise Rejection"]);
 
 // 1. Pegar o tema do local storage
 // 2. Se não existir, pegar o tema do banco de dados
@@ -11,15 +13,12 @@ export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [localTheme, setLocalTheme] = useState(myTheme);
-  const [theme, setTheme] = useState({});
   const [accentColor, setAccentColor] = useState("#1F2F3C");
   const barberShopId = 2;
 
   useEffect(() => {
-    getThemeFromStorage();
     getThemeFromDatabase();
-    setTheme(localTheme);
-    AsyncStorage.clear();
+    getThemeFromStorage();
   }, []);
 
   const getThemeFromStorage = async () => {
@@ -28,9 +27,8 @@ export const ThemeProvider = ({ children }) => {
 
       if (storedTheme) {
         const parsedTheme = JSON.parse(storedTheme);
-        setLocalTheme(parsedTheme);
-        setTheme(parsedTheme);
         updateColor(parsedTheme.highlightColor);
+        setLocalTheme(parsedTheme);
 
         return;
       }
@@ -44,7 +42,8 @@ export const ThemeProvider = ({ children }) => {
       const storedTheme = await AsyncStorage.getItem("@Barber:theme");
 
       if (storedTheme) {
-        setTheme(storedTheme);
+        const parsedTheme = JSON.parse(storedTheme);
+        setLocalTheme(parsedTheme);
         return;
       }
 
@@ -55,7 +54,7 @@ export const ThemeProvider = ({ children }) => {
       const data = await response.json();
 
       if (response.ok) {
-        setTheme(data[0]);
+        setLocalTheme(data[0]);
         updateColor(data[0].highlightColor);
 
         await AsyncStorage.setItem("@Barber:theme", JSON.stringify(data[0]));
@@ -74,17 +73,11 @@ export const ThemeProvider = ({ children }) => {
     try {
       if (newColor !== accentColor) {
         setAccentColor(newColor);
-        setTheme({
-          ...theme,
-          barberShopId: barberShopId,
-          idTheme: 1,
-          highlightColor: newColor,
-        });
 
         const updatedTheme = {
+          barberShopId: barberShopId,
           idTheme: 1,
           backgroundColor: "#171717",
-          barberShopId: barberShopId,
           highlightColor: newColor,
           primaryColor: "#FFFFFF",
           secondaryColor: "#000000",
@@ -92,15 +85,22 @@ export const ThemeProvider = ({ children }) => {
           textContrast: "#000000",
         };
 
-        const response = await fetch(`${REACT_APP_API}/theme`, {
+        await fetch(`${REACT_APP_API}/theme`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(updatedTheme),
-        });
-
-        console.log("Resposta do servidor:", JSON.stringify(response.status));
+        })
+          .then((response) => {
+            console.log(
+              "Resposta do servidor:",
+              JSON.stringify(response.status)
+            );
+          })
+          .catch((error) => {
+            console.error("Error updating accent color:", error);
+          });
 
         await AsyncStorage.setItem(
           "@Barber:theme",
@@ -115,7 +115,6 @@ export const ThemeProvider = ({ children }) => {
   return (
     <ThemeContext.Provider
       value={{
-        theme,
         accentColor,
         updateColor,
         localTheme,
