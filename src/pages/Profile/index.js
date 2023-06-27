@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import theme from "../../global/styles/theme";
+import { REACT_APP_API } from "../../sdk";
 import * as S from "./styles";
 import Main from "../../global/Main";
+import { UserContext } from "../../sdk/auth/userProvider";
 
 const ProfileScreen = () => {
+  const { user } = useContext(UserContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [showSaveButton, setShowSaveButton] = useState(false);
+
+  useEffect(() => {
+    setName(user.name);
+    setEmail(user.email);
+    setPhoneNumber(user.phoneNumber);
+    setDisplayName(user.name);
+  }, []);
 
   const handleInfoChanges = () => {
     if (name.trim()) {

@@ -1,4 +1,10 @@
-import React, { useState, useRef, useCallback, useContext, useEffect } from "react";
+import React, {
+  useState,
+  useRef,
+  useCallback,
+  useContext,
+  useEffect,
+} from "react";
 import {
   Keyboard,
   ImageBackground,
@@ -23,8 +29,10 @@ import * as S from "./styles";
 import { login } from "../../sdk/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ThemeContext } from "../../global/styles/themeProvider";
+import { UserContext } from "../../sdk/auth/userProvider";
 
 const LoginScreen = ({ navigation }) => {
+  const { setUser } = useContext(UserContext);
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -66,12 +74,15 @@ const LoginScreen = ({ navigation }) => {
         username: userEmail,
         password: userPassword,
       });
+
+      console.log("Usuário logado: ", response);
+      setUser(response);
+
       // if (response) {
-      //   AsyncStorage.se tItem("user", JSON.stringify(response));
+      //   AsyncStorage.setItem("user", JSON.stringify(response));
       // }
 
       navigation.navigate("SplashScreen", { response: response });
-
     } catch (error) {
       alert(error.message);
     }

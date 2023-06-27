@@ -27,6 +27,7 @@ import BusinessHoursScreen from "../pages/BusinessHours";
 import AutomatedBookingScreen from "../pages/AutomatedBooking";
 import { ThemeContext } from "../global/styles/themeProvider";
 import { ThemeProvider } from "styled-components";
+import { UserContext } from "../sdk/auth/userProvider";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -90,15 +91,26 @@ const Auth = () => {
 
 const TabsNavigator = ({ route }) => {
   const { accentColor, localTheme } = useContext(ThemeContext);
+  const { user } = useContext(UserContext);
 
   // a variável userType deve ser recebida do backend
-  const response = route.params?.response;
-  const status = response.adminStatus;
-  const employeeId = response.employeeId;
+  // const response = route.params?.response;
+  // const status = response.adminStatus;
+  // const employeeId = response.employeeId;
+  // let userType;
+  // if (status) {
+  //   userType = "admin";
+  // } else if (!status && employeeId) {
+  //   userType = "barber";
+  // } else {
+  //   userType = "customer";
+  // }
+
+  // aqui o userType é definido de acordo com o usuário logado pegando a informação do contexto
   let userType;
-  if (status) {
+  if (user.adminStatus) {
     userType = "admin";
-  } else if (!status && employeeId) {
+  } else if (!user.adminStatus && user.employeeId) {
     userType = "barber";
   } else {
     userType = "customer";
