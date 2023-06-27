@@ -4,9 +4,9 @@ import theme from "../../global/styles/theme";
 export const Container = styled.View`
   flex: 1;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   padding: 20px;
-  margin: 0 10px 40px 10px;
+  margin-top: 80px;
 `;
 
 export const Top = styled.View`
@@ -16,6 +16,7 @@ export const Top = styled.View`
 export const Bottom = styled.View`
   width: 100%;
   margin-bottom: 30px;
+  gap: 10px;
 `;
 
 export const TitleContainer = styled.View`
@@ -39,7 +40,6 @@ export const TitleBarber = styled.Text`
 export const SubTitle = styled.Text`
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 100px;
   color: #ddddddbf;
 `;
 
@@ -73,7 +73,9 @@ export const Button = styled.TouchableOpacity`
   height: 16%;
   width: 100%;
   border-radius: 5px;
-  background-color: ${(props) => (props.color ? props.color : theme.bgButton)};
+  /* background-color: ${(props) =>
+    props.color ? props.color : theme.bgButton}; */
+  background-color: ${(props) => props.theme.highlightColor};
   justify-content: center;
   align-self: center;
   margin-top: 10px;

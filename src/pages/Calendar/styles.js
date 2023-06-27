@@ -6,7 +6,7 @@ export const Header = styled.View`
   width: 100%;
   height: 50px;
   justify-content: center;
-  align-items: flex-start;
+  align-items: start;
   margin-top: 11px;
 `;
 
@@ -40,7 +40,7 @@ export const ContainerGrid = styled.View`
 `;
 
 export const View = styled.View`
-  width: 45%;
+  width: 170px;
   height: 40%;
   margin: 8px 8px;
   flex-direction: row;
@@ -103,21 +103,4 @@ export const CalendarContainer = styled.View`
 export const CalendarComponent = styled(CalendarList)`
   width: 100%;
   height: 100%;
-`;
-
-export const AutomationIcon = styled.TouchableOpacity`
-  width: 160px;
-  flex-direction: row;
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  margin-top: 10px;
-`;
-
-export const AutomationIconText = styled.Text`
-  font-size: 18px;
-  line-height: 35px;
-  color: ${(props) => props.theme.highlightColor};
-  font-weight: bold;
 `;

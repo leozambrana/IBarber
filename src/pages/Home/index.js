@@ -1,11 +1,13 @@
 import React from "react";
-import { Text } from "react-native";
+import * as S from "./styles";
 import Main from "../../global/Main";
 
 const HomeScreen = () => {
   return (
     <Main>
-      <Text style={{ color: "white" }}>Home</Text>
+      <S.Header>
+        <S.HeaderTitle>Home</S.HeaderTitle>
+      </S.Header>
     </Main>
   );
 };

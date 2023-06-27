@@ -1,13 +1,15 @@
 import React from "react";
-import { Text } from "react-native";
+import * as S from "./styles";
 import Main from "../../global/Main";
 
-const BarberShopScreen = () => {
+const BarberScreen = () => {
   return (
     <Main>
-      <Text style={{ color: "white" }}>Barbeiros</Text>
+      <S.Header>
+        <S.HeaderTitle>Barbeiro</S.HeaderTitle>
+      </S.Header>
     </Main>
   );
 };
 
-export default BarberShopScreen;
+export default BarberScreen;

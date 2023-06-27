@@ -1,6 +1,16 @@
-import React, { useState, useRef, useCallback } from "react";
-import { Keyboard, ImageBackground, TouchableOpacity } from "react-native";
+import React, { useState, useRef, useCallback, useContext, useEffect } from "react";
+import {
+  Keyboard,
+  ImageBackground,
+  TouchableOpacity,
+  StatusBar,
+} from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import {
+  useNotificationHandler,
+  setNotificationChannel,
+  requestNotificationPermissions,
+} from "../../global/Notifications";
 
 //loader component
 import Loader from "../../components/Loader";
@@ -10,14 +20,31 @@ import * as Yup from "yup";
 
 //styled-componets
 import * as S from "./styles";
+import { login } from "../../sdk/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ThemeContext } from "../../global/styles/themeProvider";
 
 const LoginScreen = ({ navigation }) => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
-
+  const { accentColor } = useContext(ThemeContext);
   const passwordInputRef = useRef();
+  const [expoPushToken, setExpoPushToken] = useState(null);
+  const notification = useNotificationHandler();
+
+  useEffect(() => {
+    async function configureNotifications() {
+      await setNotificationChannel();
+      await requestNotificationPermissions();
+    }
+    configureNotifications();
+  }, []);
+
+  useEffect(() => {
+    // console.log(notification)
+  }, [notification]);
 
   const handleSubmitPress = useCallback(async () => {
     if (!userEmail.trim()) {
@@ -34,12 +61,17 @@ const LoginScreen = ({ navigation }) => {
       });
 
       await schema.validate({ email: userEmail, password: userPassword });
-      console.log("Dados válidos!");
 
-      navigation.navigate("SplashScreen");
-      // setLoading(true);
+      const response = await login({
+        username: userEmail,
+        password: userPassword,
+      });
+      // if (response) {
+      //   AsyncStorage.se tItem("user", JSON.stringify(response));
+      // }
 
-      // segue aqui codigo para avançar para pagina de HOME e bater no backend para conferir o login
+      navigation.navigate("SplashScreen", { response: response });
+
     } catch (error) {
       alert(error.message);
     }
@@ -51,6 +83,7 @@ const LoginScreen = ({ navigation }) => {
       style={{ flex: 1 }}
       onLoad={() => setBackgroundLoaded(true)}
     >
+      <StatusBar barStyle={"light-content"} />
       <KeyboardAwareScrollView
         scrollEnabled={false}
         contentContainerStyle={{ flex: 1 }}
@@ -91,14 +124,12 @@ const LoginScreen = ({ navigation }) => {
               />
               <S.Placeholder>Senha</S.Placeholder>
             </S.InputContainer>
-            <S.Button>
-              <TouchableOpacity
-                style={S.Button}
-                activeOpacity={0.5}
-                onPress={handleSubmitPress}
-              >
-                <S.ButtonText>Entrar</S.ButtonText>
-              </TouchableOpacity>
+            <S.Button
+              activeOpacity={0.5}
+              onPress={handleSubmitPress}
+              color={accentColor}
+            >
+              <S.ButtonText>Entrar</S.ButtonText>
             </S.Button>
             <S.View>
               <S.RegisterTextStyle
@@ -107,7 +138,9 @@ const LoginScreen = ({ navigation }) => {
                 Esqueceu a senha?
               </S.RegisterTextStyle>
               <S.RegisterTextStyle
-                onPress={() => navigation.navigate("Register")}
+                onPress={() =>
+                  navigation.navigate("Register", { origem: "Login" })
+                }
               >
                 Novo aqui? Cadastrar
               </S.RegisterTextStyle>

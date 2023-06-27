@@ -1,11 +1,114 @@
-import React from "react";
-import { Text } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Image, TouchableOpacity, Text } from "react-native";
 import Main from "../../global/Main";
+import * as S from "./styles";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
+import * as Notifications from 'expo-notifications';
 
-const ScheduleScreen = () => {
+import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "styled-components";
+
+const ScheduleScreen = ({ navigation }) => {
+  const currentDate = new Date();
+
+  const formattedDate = format(currentDate, "dd 'de' MMMM, EEEE", {
+    locale: ptBR,
+  });
+
+  const [services, setServices] = useState([]);
+
+  const notifications = () =>{
+    Notifications.scheduleNotificationAsync({
+      content: {
+        title: "Agendamento",
+        body: 'Amanhã seu corte!!',
+      },
+      trigger: {
+        date: new Date('2023-06-16T00:08:30')
+      },
+    });
+  }
+
+  // useEffect(() => {
+  //   fetch("https://exemplo.com/servicos")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setServices(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Erro ao obter serviços:", error);
+  //     });
+  // }, []);
+
   return (
     <Main>
-      <Text style={{ color: "white" }}>Agendar</Text>
+      <S.Header>
+        <S.HeaderTitle>Faça um agendamento</S.HeaderTitle>
+
+        <S.HeaderSubTitle>{formattedDate}</S.HeaderSubTitle>
+      </S.Header>
+      <S.AutomationIcon
+        onPress={() => navigation.navigate("AutomatedBookingScreen")}
+      >
+        <S.AutomationIconText>Automatizar</S.AutomationIconText>
+        <Ionicons
+          name="ios-play-circle-outline"
+          size={30}
+          color={useTheme().highlightColor}
+        />
+      </S.AutomationIcon>
+
+      <S.TitleService>Selecione um serviço:</S.TitleService>
+      {/* {services.map((service) => (
+        <Text key={service.id}>{service.nome}</Text>
+        // Exiba as informações do serviço conforme necessário
+      ))} */}
+      <S.ContainerGrid>
+        <S.View>
+          <S.IconView>
+            <Ionicons name="cut-outline" size={36} color={"#00683C"} />
+            <S.Tempo>30min</S.Tempo>
+          </S.IconView>
+          <S.Description>Cabelo {"\n"} R$45 </S.Description>
+        </S.View>
+        <S.View>
+          <S.IconView>
+            <Image
+              source={require("../../assets/img/icons8-straight-razor-50.png")}
+              style={{ width: 36, height: 36 }}
+            />
+            <S.Tempo>30min</S.Tempo>
+          </S.IconView>
+          <S.Description>Barba {"\n"} R$45 </S.Description>
+        </S.View>
+        <S.View>
+          <S.IconView>
+            <Image
+              source={require("../../assets/img/icons8-barber-chair-50.png")}
+              style={{ width: 36, height: 36 }}
+            />
+            <S.Tempo>60min</S.Tempo>
+          </S.IconView>
+          <S.Description>Cabelo + Barba {"\n"} R$45 </S.Description>
+        </S.View>
+        <S.View>
+          <S.IconView>
+            <Image
+              source={require("../../assets/img/icons8-beard-50.png")}
+              style={{ width: 36, height: 36 }}
+            />
+            <S.Tempo>45min</S.Tempo>
+          </S.IconView>
+          <S.Description>Design de Barba {"\n"} R$45 </S.Description>
+        </S.View>
+      </S.ContainerGrid>
+
+      <S.CalendarTitle>Selecione um dia:</S.CalendarTitle>
+
+      <TouchableOpacity onPress={notifications}>
+        <Text>TESTE</Text>
+      </TouchableOpacity>
     </Main>
   );
 };

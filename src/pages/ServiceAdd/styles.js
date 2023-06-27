@@ -6,8 +6,7 @@ export const Header = styled.View`
   width: 100%;
   height: 50px;
   justify-content: center;
-  align-items: flex-start;
-  margin-top: 11px;
+  align-items: center;
 `;
 
 export const HeaderTitle = styled.Text`
@@ -26,12 +25,45 @@ export const TitleService = styled.Text`
   font-size: 18px;
   color: ${theme.white};
   font-weight: bold;
-  margin-top: 30px;
+  margin: 30px 0;
+`;
+
+export const ExampleService = styled.Text`
+  font-size: 18px;
+  color: ${theme.white};
+  font-weight: bold;
+`;
+
+export const InputContainer = styled.View`
+  width: 100%;
+  position: relative;
+  margin-bottom: 10px;
+`;
+
+export const Placeholder = styled.Text`
+  font-size: 14px;
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  color: ${theme.white};
+  background-color: ${theme.background};
+  padding: 0 10px;
+`;
+
+export const Input = styled.TextInput`
+  height: 50px;
+  width: 100%;
+  border-radius: 10px;
+  border-width: 1px;
+  color: ${theme.white};
+  border-color: ${theme.white};
+  padding: 10px;
+  margin-bottom: 20px;
 `;
 
 export const ContainerGrid = styled.View`
   width: 100%;
-  height: 40%;
+  height: 13%;
   margin-top: 30px;
   flex-direction: row;
   flex-wrap: wrap;
@@ -40,8 +72,8 @@ export const ContainerGrid = styled.View`
 `;
 
 export const View = styled.View`
-  width: 45%;
-  height: 40%;
+  width: 170px;
+  height: 100%;
   margin: 8px 8px;
   flex-direction: row;
   justify-content: flex-start;
@@ -78,46 +110,23 @@ export const Description = styled.Text`
   text-align: center;
 `;
 
-export const CalendarTitle = styled.Text`
-  font-size: 18px;
-  color: ${theme.white};
-  font-weight: bold;
-`;
-
-export const Container = styled.View`
-  width: 100%;
-  height: 100%;
-  margin: 30px 0;
-  gap: 20px;
-  align-items: center;
-`;
-
-export const CalendarContainer = styled.View`
-  width: 100%;
-  height: 50%;
-  align-items: center;
-  overflow: hidden;
-  border-radius: 20px;
-`;
-
-export const CalendarComponent = styled(CalendarList)`
-  width: 100%;
-  height: 100%;
-`;
-
-export const AutomationIcon = styled.TouchableOpacity`
-  width: 160px;
-  flex-direction: row;
-  border-radius: 10px;
+export const Button = styled.TouchableOpacity`
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  background-color: ${(props) => props.theme.highlightColor};
   justify-content: center;
   align-items: center;
-  gap: 5px;
-  margin-top: 10px;
+  margin-top: 30px;
 `;
 
-export const AutomationIconText = styled.Text`
-  font-size: 18px;
-  line-height: 35px;
-  color: ${(props) => props.theme.highlightColor};
+export const ButtonText = styled.Text`
+  text-align: center;
+  font-size: 30px;
+  line-height: 33px;
+  color: ${theme.white};
   font-weight: bold;
 `;
