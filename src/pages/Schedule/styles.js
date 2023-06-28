@@ -50,6 +50,20 @@ export const View = styled.View`
   border-radius: 10px;
 `;
 
+export const Button = styled.TouchableOpacity`
+  width: 45%;
+  height: 40%;
+  margin: 8px 8px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: ${theme.surface};
+  border-radius: 10px;
+  ${({ theme, selected }) => selected && `
+    border: 2px solid ${theme.highlightColor};
+  `}
+`;
+
 export const IconView = styled.View`
   width: 68px;
   height: 100%;

@@ -8,6 +8,8 @@ import * as Notifications from 'expo-notifications';
 
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "styled-components";
+import { services } from "./mock";
+import { Button } from "react-native";
 
 const ScheduleScreen = ({ navigation }) => {
   const currentDate = new Date();
@@ -16,7 +18,7 @@ const ScheduleScreen = ({ navigation }) => {
     locale: ptBR,
   });
 
-  const [services, setServices] = useState([]);
+  const [selectedServices, setSelectedServices] = useState([]);
 
   const notifications = () =>{
     Notifications.scheduleNotificationAsync({
@@ -29,6 +31,14 @@ const ScheduleScreen = ({ navigation }) => {
       },
     });
   }
+
+  const handleServicePress = (id) => {
+    if (selectedServices.includes(id)) {
+      setSelectedServices(selectedServices.filter((service) => service !== id));
+    } else {
+      setSelectedServices([...selectedServices, id]);
+    }
+  };
 
   // useEffect(() => {
   //   fetch("https://exemplo.com/servicos")
@@ -65,44 +75,29 @@ const ScheduleScreen = ({ navigation }) => {
         // Exiba as informações do serviço conforme necessário
       ))} */}
       <S.ContainerGrid>
-        <S.View>
-          <S.IconView>
-            <Ionicons name="cut-outline" size={36} color={"#00683C"} />
-            <S.Tempo>30min</S.Tempo>
-          </S.IconView>
-          <S.Description>Cabelo {"\n"} R$45 </S.Description>
-        </S.View>
-        <S.View>
-          <S.IconView>
-            <Image
-              source={require("../../assets/img/icons8-straight-razor-50.png")}
-              style={{ width: 36, height: 36 }}
-            />
-            <S.Tempo>30min</S.Tempo>
-          </S.IconView>
-          <S.Description>Barba {"\n"} R$45 </S.Description>
-        </S.View>
-        <S.View>
-          <S.IconView>
-            <Image
-              source={require("../../assets/img/icons8-barber-chair-50.png")}
-              style={{ width: 36, height: 36 }}
-            />
-            <S.Tempo>60min</S.Tempo>
-          </S.IconView>
-          <S.Description>Cabelo + Barba {"\n"} R$45 </S.Description>
-        </S.View>
-        <S.View>
-          <S.IconView>
-            <Image
-              source={require("../../assets/img/icons8-beard-50.png")}
-              style={{ width: 36, height: 36 }}
-            />
-            <S.Tempo>45min</S.Tempo>
-          </S.IconView>
-          <S.Description>Design de Barba {"\n"} R$45 </S.Description>
-        </S.View>
+        {services.map(({ id, name, duration, price }) => (
+          <S.Button title='Serviço' key={id} onPress={() => handleServicePress(id)} selected={selectedServices.includes(id)}>
+            <S.IconView>
+              <Ionicons name="cut-outline" size={36} color={"#00683C"} />
+              <S.Tempo>{duration}min</S.Tempo>
+            </S.IconView>
+            <S.Description>{name} {"\n"} R${price} </S.Description>
+          </S.Button>
+        ))}
       </S.ContainerGrid>
+
+      {selectedServices.length > 0 && (
+        <S.AutomationIcon
+          onPress={() => navigation.navigate("CalendarScreen", { selectedServices })}
+        >
+          <S.AutomationIconText>Continuar</S.AutomationIconText>
+          <Ionicons
+            name="ios-play-circle-outline"
+            size={30}
+            color={useTheme().highlightColor}
+          />
+        </S.AutomationIcon>
+      )}
 
       <S.CalendarTitle>Selecione um dia:</S.CalendarTitle>
 

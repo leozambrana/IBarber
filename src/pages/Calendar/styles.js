@@ -6,7 +6,7 @@ export const Header = styled.View`
   width: 100%;
   height: 50px;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   margin-top: 11px;
 `;
 
@@ -103,4 +103,59 @@ export const CalendarContainer = styled.View`
 export const CalendarComponent = styled(CalendarList)`
   width: 100%;
   height: 100%;
+`;
+
+export const Row = styled.View`
+  display: flex;
+  flex-direction: row;
+  ${({ gap }) => gap && `
+    gap: ${gap};
+  `}
+  ${({ align }) => align && `
+    align-items: ${align};
+  `}
+  ${({ justify }) => justify && `
+    justify-content: ${justify};
+  `}
+`;
+
+export const Column = styled.View`
+  display: flex;
+  flex-direction: column;
+  ${({ gap }) => gap && `
+    gap: ${gap};
+  `}
+  ${({ align }) => align && `
+    align-items: ${align};
+  `}
+  ${({ justify }) => justify && `
+    justify-content: ${justify};
+  `}
+`;
+
+export const TimeView = styled.TouchableOpacity`
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: ${theme.secondaryColor};
+  ${({ selected }) => selected && `
+    border: 1px solid ${theme.highlightColor};
+  `}
+`;
+
+export const TimeText = styled.Text`
+  color: ${({ theme }) => theme.textColor || '#F5F5F5'};
+`;
+
+export const Button = styled.TouchableOpacity`
+  background-color: ${theme.bgButton};
+  border-radius: 8px;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ButtonText = styled.Text`
+  font-size: 16px;
+  font-weight: bold;
+  color: ${({ theme }) => theme.textColor || '#F5F5F5'};
 `;

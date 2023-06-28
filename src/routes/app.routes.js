@@ -57,6 +57,11 @@ const AppRoutes = () => {
           options={{ headerShown: false }}
           component={AutomatedBookingScreen}
         />
+        <Stack.Screen
+          name="CalendarScreen"
+          options={{ headerShown: false }}
+          component={CalendarScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -156,7 +161,6 @@ const TabsNavigator = ({ route }) => {
 
         {userType === "barber" && (
           <>
-            <Tab.Screen name="Agenda" component={CalendarScreen} />
             <Tab.Screen name="Barbeiro" component={BarberScreen} />
           </>
         )}
