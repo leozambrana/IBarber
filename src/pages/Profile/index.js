@@ -13,6 +13,14 @@ const ProfileScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [showSaveButton, setShowSaveButton] = useState(false);
+  const [data, setData] = useState({
+    document: user.document,
+    name: user.name,
+    email: user.email,
+    userId: user.userId,
+    userPassword: user.password,
+    profileId: user.profileId,
+  });
 
   useEffect(() => {
     setName(user.name);
@@ -21,18 +29,50 @@ const ProfileScreen = () => {
     setDisplayName(user.name);
   }, []);
 
-  const handleInfoChanges = () => {
-    if (name.trim()) {
-      setDisplayName(name.trim());
-      console.log("Dado do usuário atualizado:", { name });
-    }
-    if (email.trim()) {
-      setEmail(email.trim());
-      console.log("Dado do usuário atualizado:", { email });
-    }
-    if (phoneNumber.trim()) {
-      setPhoneNumber(phoneNumber.trim());
-      console.log("Dado do usuário atualizado:", { phoneNumber });
+  const handleInfoChanges = async () => {
+    // if (name.trim()) {
+    //   setDisplayName(name.trim());
+    //   setData({ ...data, name: name.trim() });
+    //   console.log("Dado do usuário atualizado:", { name });
+    // }
+
+    // if (email.trim()) {
+    //   setEmail(email.trim());
+    //   setData({ ...data, email: email.trim() });
+    //   console.log("Dado do usuário atualizado:", { email });
+    // }
+
+    // if (phoneNumber.trim()) {
+    //   setPhoneNumber(phoneNumber.trim());
+    //   console.log("Dado do usuário atualizado:", { phoneNumber });
+    // }
+
+    try {
+      if (name.trim()) {
+        setDisplayName(name.trim());
+        setData({ ...data, name: name.trim() });
+        console.log("Dado do usuário atualizado:", { name });
+      }
+
+      if (email.trim()) {
+        setEmail(email.trim());
+        setData({ ...data, email: email.trim() });
+        console.log("Dado do usuário atualizado:", { email });
+      }
+
+      setData({ ...data, userId: user.userId });
+
+      const response = await fetch(`${REACT_APP_API}/user/`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: data,
+      });
+
+      console.log("Resposta do servidor:", response);
+    } catch (error) {
+      console.log("Erro ao atualizar os dados do usuário:", error);
     }
   };
 
