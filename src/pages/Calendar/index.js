@@ -11,7 +11,6 @@ import { services } from "../Schedule/mock";
 import * as Notifications from "expo-notifications";
 import { useTheme } from "styled-components";
 import { ThemeContext } from "../../global/styles/themeProvider";
-
 moment.locale("pt-br");
 
 const CalendarScreen = ({ navigation, route }) => {
@@ -68,6 +67,7 @@ const CalendarScreen = ({ navigation, route }) => {
       </S.Header>
 
       <S.CalendarTitle>Selecione um dia:</S.CalendarTitle>
+
       <S.CalendarContainer>
         <S.CalendarComponent
           style={{

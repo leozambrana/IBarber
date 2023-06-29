@@ -5,7 +5,6 @@ import * as S from "./styles";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import * as Notifications from "expo-notifications";
-
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "styled-components";
 import { services } from "./mock";

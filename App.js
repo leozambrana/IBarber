@@ -1,6 +1,5 @@
 import AppRoutes from "./src/routes/app.routes";
 import * as Notifications from "expo-notifications";
-
 import { ThemeProvider as CustomThemeContext } from "./src/global/styles/themeProvider";
 
 Notifications.setNotificationHandler({
