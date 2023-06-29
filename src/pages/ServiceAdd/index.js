@@ -1,22 +1,49 @@
 import React, { useState, useRef, useCallback } from "react";
-import { TouchableOpacity, Image, Keyboard } from "react-native";
+import { TouchableOpacity, Image, FlatList, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Main from "../../global/Main";
 import * as S from "./styles";
-
+import theme from "../../global/styles/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { serviceAdd } from "../../sdk/admin";
+import { useTheme } from "styled-components";
 
 const ServiceAdd = () => {
   const [nomeServico, setNomeServico] = useState("");
   const [preco, setPreco] = useState("");
   const [duracao, setDuracao] = useState("");
+  const [selectedIcon, setSelectedIcon] = useState(null);
+  const theme = useTheme();
 
   const priceInputRef = useRef();
   const durationInputRef = useRef();
+  const iconSelectedRef = useRef();
+
+  const iconOptions = [
+    { name: "cut-outline", image: null },
+    {
+      name: "straight-razor",
+      image: require("../../assets/img/icons8-straight-razor-50.png"),
+    },
+    {
+      name: "barbe-chair",
+      image: require("../../assets/img/icons8-barber-chair-50.png"),
+    },
+    { name: "beard2", image: require("../../assets/img/icons8-beard-50.png") },
+    { name: "beard3", image: require("../../assets/img/icons8-beard-50.png") },
+    { name: "beard4", image: require("../../assets/img/icons8-beard-50.png") },
+    { name: "beard5", image: require("../../assets/img/icons8-beard-50.png") },
+    // Adicione mais opções de ícones conforme necessário
+  ];
 
   descricao = "Descrição teste";
   barberShopId = 2;
+
+  const handleIconSelection = (iconName) => {
+    const teste = iconName;
+    setSelectedIcon(iconName);
+    console.log(teste);
+  };
 
   const handleSubmit = useCallback(async () => {
     if (nomeServico && preco && duracao) {
@@ -44,6 +71,20 @@ const ServiceAdd = () => {
       console.error("Preencha todos os campos do formulário!");
     }
   });
+
+  const getButtonStyle = (isSelected) => {
+    if (isSelected) {
+      return {
+        borderColor: theme.highlightColor,
+        borderWidth: 3,
+        // transform: [{ scale: 1.1 }],
+      };
+    } else {
+      return {
+        backgroundColor: theme.textColor,
+      };
+    }
+  };
 
   return (
     <KeyboardAwareScrollView
@@ -86,7 +127,7 @@ const ServiceAdd = () => {
           <S.Input
             onChangeText={setDuracao}
             autoCapitalize="none"
-            onSubmitEditing={Keyboard.dismiss}
+            onSubmitEditing={() => iconSelectedRef.current.focus()}
             ref={durationInputRef}
             value={duracao}
             underlineColorAndroid="#f000"
@@ -95,12 +136,56 @@ const ServiceAdd = () => {
           <S.Placeholder>Duração média</S.Placeholder>
         </S.InputContainer>
 
+        <S.InputContainer>
+          <S.IconContainer>
+            <S.Placeholder>Ícone</S.Placeholder>
+            <FlatList
+              data={iconOptions}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item) => item.name}
+              renderItem={({ item }) => (
+                <S.IconBackground
+                  style={[
+                    S.IconBackground,
+                    getButtonStyle(selectedIcon === item.name),
+                  ]}
+                >
+                  <TouchableOpacity
+                    onPress={() => handleIconSelection(item.name)}
+                    activeOpacity={0.5}
+                  >
+                    {item.image ? (
+                      <Image
+                        source={item.image}
+                        style={{ width: 36, height: 36 }}
+                      />
+                    ) : (
+                      <Ionicons
+                        name={item.name}
+                        style={{ width: 36, height: 36 }}
+                        size={36}
+                        color={theme.highlightColor}
+                      />
+                    )}
+                  </TouchableOpacity>
+                </S.IconBackground>
+              )}
+              ItemSeparatorComponent={() => <View style={{ width: 13 }} />}
+            />
+          </S.IconContainer>
+        </S.InputContainer>
+
         <S.ExampleService>Exemplos de Serviço:</S.ExampleService>
 
         <S.ContainerGrid>
           <S.View>
             <S.IconView>
-              <Ionicons name="cut-outline" size={36} color={"#00683C"} />
+              <Ionicons
+                name="cut-outline"
+                size={36}
+                color={theme.highlightColor}
+              />
               <S.Tempo>30min</S.Tempo>
             </S.IconView>
             <S.Description>Cabelo {"\n"} R$45 </S.Description>
@@ -117,14 +202,8 @@ const ServiceAdd = () => {
           </S.View>
         </S.ContainerGrid>
 
-        <S.Button>
-          <TouchableOpacity
-            style={S.Button}
-            activeOpacity={0.5}
-            onPress={handleSubmit}
-          >
-            <S.ButtonText>+</S.ButtonText>
-          </TouchableOpacity>
+        <S.Button onPress={handleSubmit}>
+          <S.ButtonText>+</S.ButtonText>
         </S.Button>
       </Main>
     </KeyboardAwareScrollView>

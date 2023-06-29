@@ -36,30 +36,37 @@ const AppRoutes = () => {
   const { localTheme } = useContext(ThemeContext);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Auth"
-          options={{ headerShown: false }}
-          component={Auth}
-        />
-        <Stack.Screen
-          name="TabsNavigator"
-          options={{ headerShown: false }}
-          component={TabsNavigator}
-        />
-        <Stack.Screen
-          name="SplashScreen"
-          options={{ headerShown: false }}
-          component={SplashScreen}
-        />
-        <Stack.Screen
-          name="AutomatedBookingScreen"
-          options={{ headerShown: false }}
-          component={AutomatedBookingScreen}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ThemeProvider theme={localTheme}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Auth"
+            options={{ headerShown: false }}
+            component={Auth}
+          />
+          <Stack.Screen
+            name="TabsNavigator"
+            options={{ headerShown: false }}
+            component={TabsNavigator}
+          />
+          <Stack.Screen
+            name="SplashScreen"
+            options={{ headerShown: false }}
+            component={SplashScreen}
+          />
+          <Stack.Screen
+            name="AutomatedBookingScreen"
+            options={{ headerShown: false }}
+            component={AutomatedBookingScreen}
+          />
+          <Stack.Screen
+            name="CalendarScreen"
+            options={{ headerShown: false }}
+            component={CalendarScreen}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
   );
 };
 
@@ -168,14 +175,12 @@ const TabsNavigator = ({ route }) => {
 
         {userType === "barber" && (
           <>
-            <Tab.Screen name="Agenda" component={CalendarScreen} />
             <Tab.Screen name="Barbeiro" component={BarberScreen} />
           </>
         )}
 
         {userType === "customer" && (
           <>
-            {/* <Tab.Screen name="Home" component={HomeScreen} /> */}
             <Tab.Screen name="Agendar" component={ScheduleScreen} />
             <Tab.Screen name="Informações" component={BarberInfoScreen} />
             <Tab.Screen name="Perfil" component={ProfileScreen} />

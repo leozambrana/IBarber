@@ -11,26 +11,26 @@ export const Header = styled.View`
 
 export const HeaderTitle = styled.Text`
   font-size: 25px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   font-weight: bold;
 `;
 
 export const HeaderSubTitle = styled.Text`
   font-size: 14px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   font-weight: bold;
 `;
 
 export const TitleService = styled.Text`
   font-size: 18px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   font-weight: bold;
-  margin: 30px 0;
+  margin: 20px 0;
 `;
 
 export const ExampleService = styled.Text`
   font-size: 18px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   font-weight: bold;
 `;
 
@@ -45,7 +45,7 @@ export const Placeholder = styled.Text`
   position: absolute;
   top: -10px;
   left: 10px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   background-color: ${theme.background};
   padding: 0 10px;
 `;
@@ -55,8 +55,8 @@ export const Input = styled.TextInput`
   width: 100%;
   border-radius: 10px;
   border-width: 1px;
-  color: ${theme.white};
-  border-color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
+  border-color: ${(props) => props.theme.textColor};
   padding: 10px;
   margin-bottom: 20px;
 `;
@@ -64,7 +64,7 @@ export const Input = styled.TextInput`
 export const ContainerGrid = styled.View`
   width: 100%;
   height: 13%;
-  margin-top: 30px;
+  margin-top: 20px;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
@@ -87,7 +87,7 @@ export const IconView = styled.View`
   height: 100%;
   justify-content: center;
   align-items: center;
-  background-color: ${theme.white};
+  background-color: ${(props) => props.theme.textColor};
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 `;
@@ -102,7 +102,7 @@ export const Tempo = styled.Text`
 
 export const Description = styled.Text`
   font-size: 12px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   font-weight: bold;
   padding-top: 6px;
   margin-left: auto;
@@ -111,9 +111,9 @@ export const Description = styled.Text`
 `;
 
 export const Button = styled.TouchableOpacity`
-  position: absolute;
+  /* position: absolute;
   bottom: 20px;
-  right: 20px;
+  right: 20px; */
   width: 60px;
   height: 60px;
   border-radius: 50px;
@@ -121,12 +121,49 @@ export const Button = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   margin-top: 30px;
+  margin-left: auto;
+  justify-content: center;
 `;
 
 export const ButtonText = styled.Text`
   text-align: center;
   font-size: 30px;
   line-height: 33px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   font-weight: bold;
+`;
+
+export const IconSelector = styled.View`
+  flex-direction: row;
+`;
+
+export const IconOption = styled.View`
+  border-width: 1px;
+  border-color: #ccc;
+  border-radius: 5px;
+  padding: 10px;
+`;
+
+export const SelectedIconOption = styled.View`
+  background-color: #00683c;
+  width: 100px;
+  height: 100px;
+`;
+
+export const IconContainer = styled.View`
+  border-radius: 10px;
+  border-width: 1px;
+  color: ${(props) => props.theme.textColor};
+  border-color: ${(props) => props.theme.textColor};
+  padding: 10px;
+  margin-bottom: 20px;
+`;
+
+export const IconBackground = styled.View`
+  background-color: white;
+  border-radius: 10px;
+  border-width: 3px;
+  border-color: ${(props) => props.theme.textColor};
+  padding: 10px;
+  margin: 5px 0;
 `;
