@@ -3,7 +3,7 @@ import Main from "../../global/Main";
 import * as S from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 import { Calendar } from "react-native-calendars";
-import theme from "../../global/styles/theme";
+// import theme from "../../global/styles/theme";
 import { useTheme } from "styled-components";
 
 const BusinessHoursScreen = () => {
@@ -18,6 +18,8 @@ const BusinessHoursScreen = () => {
     { id: 6, day: "Sáb", selected: false },
     { id: 7, day: "Dom", selected: false },
   ]);
+
+  const theme = useTheme();
 
   const handleDayPress = (day) => {
     const index = excludedDates.findIndex((item) => item === day.dateString);
@@ -81,10 +83,13 @@ const BusinessHoursScreen = () => {
         <Calendar
           minDate={Date()}
           markedDates={excludedDates.reduce((acc, date) => {
-            acc[date] = { selected: true, marked: true, selectedColor: "red" };
+            acc[date] = {
+              selected: true,
+              marked: true,
+              selectedColor: theme.highlightColor,
+            };
             return acc;
           }, {})}
-          onDayPress={handleDayPress}
           style={{
             width: 350,
             height: 370,
@@ -92,21 +97,17 @@ const BusinessHoursScreen = () => {
             marginBottom: 20,
           }}
           theme={{
-            backgroundColor: theme.surface,
-            calendarBackground: theme.surface,
-            textSectionTitleColor: useTheme().highlightColor,
-            textSectionTitleDisabledColor: "#dddddd20",
-            selectedDayBackgroundColor: "red",
-            selectedDayTextColor: useTheme().highlightColor,
-            todayTextColor: useTheme().highlightColor,
-            dayTextColor: useTheme().textColor,
-            textDisabledColor: "#dddddd20",
-            dotColor: "red",
-            selectedDotColor: "#ffffff",
-            arrowColor: theme.white,
+            calendarBackground: "#212121",
+            textSectionTitleColor: theme.textColor,
+            selectedDayTextColor: theme.textColor,
+            todayTextColor: theme.highlightColor,
+            dayTextColor: theme.textColor,
+            textDisabledColor: "#dddddd50",
+            arrowColor: theme.highlightColor,
             disabledArrowColor: "#d9e1e8",
-            monthTextColor: theme.white,
+            monthTextColor: theme.textColor,
           }}
+          onDayPress={handleDayPress}
         />
 
         <S.DateText>

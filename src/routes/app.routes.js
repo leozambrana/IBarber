@@ -169,7 +169,6 @@ const TabsNavigator = ({ route }) => {
 
         {userType === "customer" && (
           <>
-            {/* <Tab.Screen name="Home" component={HomeScreen} /> */}
             <Tab.Screen name="Agendar" component={ScheduleScreen} />
             <Tab.Screen name="Informações" component={BarberInfoScreen} />
             <Tab.Screen name="Perfil" component={ProfileScreen} />

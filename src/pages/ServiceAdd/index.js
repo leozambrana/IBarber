@@ -1,22 +1,19 @@
 import React, { useState, useRef, useCallback } from "react";
-import {
-  TouchableOpacity,
-  Image,
-  FlatList,
-  View,
-} from "react-native";
+import { TouchableOpacity, Image, FlatList, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Main from "../../global/Main";
 import * as S from "./styles";
 import theme from "../../global/styles/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { serviceAdd } from "../../sdk/admin";
+import { useTheme } from "styled-components";
 
 const ServiceAdd = () => {
   const [nomeServico, setNomeServico] = useState("");
   const [preco, setPreco] = useState("");
   const [duracao, setDuracao] = useState("");
   const [selectedIcon, setSelectedIcon] = useState(null);
+  const theme = useTheme();
 
   const priceInputRef = useRef();
   const durationInputRef = useRef();
@@ -42,12 +39,11 @@ const ServiceAdd = () => {
   descricao = "Descrição teste";
   barberShopId = 2;
 
-  const handleIconSelection =  (iconName) => {
+  const handleIconSelection = (iconName) => {
     const teste = iconName;
-     setSelectedIcon(iconName);
-     console.log(teste)
+    setSelectedIcon(iconName);
+    console.log(teste);
   };
-
 
   const handleSubmit = useCallback(async () => {
     if (nomeServico && preco && duracao) {
@@ -79,13 +75,13 @@ const ServiceAdd = () => {
   const getButtonStyle = (isSelected) => {
     if (isSelected) {
       return {
-        borderColor: '#00683C',
+        borderColor: theme.highlightColor,
         borderWidth: 3,
-        transform: [{ scale: 1.1 }],
+        // transform: [{ scale: 1.1 }],
       };
     } else {
       return {
-        backgroundColor: theme.white
+        backgroundColor: theme.textColor,
       };
     }
   };
@@ -149,12 +145,15 @@ const ServiceAdd = () => {
               showsHorizontalScrollIndicator={false}
               keyExtractor={(item) => item.name}
               renderItem={({ item }) => (
-                <S.IconBackground  style={[
-                  S.IconBackground,
-                  getButtonStyle(selectedIcon === item.name)
-                ]}>
+                <S.IconBackground
+                  style={[
+                    S.IconBackground,
+                    getButtonStyle(selectedIcon === item.name),
+                  ]}
+                >
                   <TouchableOpacity
                     onPress={() => handleIconSelection(item.name)}
+                    activeOpacity={0.5}
                   >
                     {item.image ? (
                       <Image
@@ -162,7 +161,12 @@ const ServiceAdd = () => {
                         style={{ width: 36, height: 36 }}
                       />
                     ) : (
-                      <Ionicons name={item.name} style={{ width: 36, height: 36 }} size={36} color={"#00683C"} />
+                      <Ionicons
+                        name={item.name}
+                        style={{ width: 36, height: 36 }}
+                        size={36}
+                        color={theme.highlightColor}
+                      />
                     )}
                   </TouchableOpacity>
                 </S.IconBackground>
@@ -177,7 +181,11 @@ const ServiceAdd = () => {
         <S.ContainerGrid>
           <S.View>
             <S.IconView>
-              <Ionicons name="cut-outline" size={36} color={"#00683C"} />
+              <Ionicons
+                name="cut-outline"
+                size={36}
+                color={theme.highlightColor}
+              />
               <S.Tempo>30min</S.Tempo>
             </S.IconView>
             <S.Description>Cabelo {"\n"} R$45 </S.Description>
