@@ -11,26 +11,26 @@ export const Header = styled.View`
 
 export const HeaderTitle = styled.Text`
   font-size: 25px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   font-weight: bold;
 `;
 
 export const HeaderSubTitle = styled.Text`
   font-size: 14px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   font-weight: bold;
 `;
 
 export const TitleService = styled.Text`
   font-size: 18px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   font-weight: bold;
   margin: 20px 0;
 `;
 
 export const ExampleService = styled.Text`
   font-size: 18px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   font-weight: bold;
 `;
 
@@ -45,7 +45,7 @@ export const Placeholder = styled.Text`
   position: absolute;
   top: -10px;
   left: 10px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   background-color: ${theme.background};
   padding: 0 10px;
 `;
@@ -55,8 +55,8 @@ export const Input = styled.TextInput`
   width: 100%;
   border-radius: 10px;
   border-width: 1px;
-  color: ${theme.white};
-  border-color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
+  border-color: ${(props) => props.theme.textColor};
   padding: 10px;
   margin-bottom: 20px;
 `;
@@ -87,7 +87,7 @@ export const IconView = styled.View`
   height: 100%;
   justify-content: center;
   align-items: center;
-  background-color: ${theme.white};
+  background-color: ${(props) => props.theme.textColor};
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 `;
@@ -102,7 +102,7 @@ export const Tempo = styled.Text`
 
 export const Description = styled.Text`
   font-size: 12px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   font-weight: bold;
   padding-top: 6px;
   margin-left: auto;
@@ -129,7 +129,7 @@ export const ButtonText = styled.Text`
   text-align: center;
   font-size: 30px;
   line-height: 33px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   font-weight: bold;
 `;
 
@@ -145,7 +145,7 @@ export const IconOption = styled.View`
 `;
 
 export const SelectedIconOption = styled.View`
-  background-color: #00683C;
+  background-color: #00683c;
   width: 100px;
   height: 100px;
 `;
@@ -153,8 +153,8 @@ export const SelectedIconOption = styled.View`
 export const IconContainer = styled.View`
   border-radius: 10px;
   border-width: 1px;
-  color: ${theme.white};
-  border-color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
+  border-color: ${(props) => props.theme.textColor};
   padding: 10px;
   margin-bottom: 20px;
 `;
@@ -162,6 +162,8 @@ export const IconContainer = styled.View`
 export const IconBackground = styled.View`
   background-color: white;
   border-radius: 10px;
+  border-width: 2px;
+  border-color: ${(props) => props.theme.textColor};
   padding: 10px;
   margin: 5px 0;
 `;

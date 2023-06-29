@@ -12,19 +12,19 @@ export const Header = styled.View`
 
 export const HeaderTitle = styled.Text`
   font-size: 25px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   font-weight: bold;
 `;
 
 export const HeaderSubTitle = styled.Text`
   font-size: 14px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   font-weight: bold;
 `;
 
 export const TitleService = styled.Text`
   font-size: 18px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   font-weight: bold;
   margin-top: 30px;
 `;
@@ -71,14 +71,14 @@ export const IconView = styled.View`
   height: 100%;
   justify-content: center;
   align-items: center;
-  background-color: ${theme.white};
+  background-color: ${(props) => props.theme.textColor};
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 `;
 
 export const Tempo = styled.Text`
   font-size: 14px;
-  color: ${theme.bgButton};
+  color: ${(props) => props.theme.highlightColor};
   font-weight: bold;
   padding-top: 6px;
   text-align: center;
@@ -86,7 +86,7 @@ export const Tempo = styled.Text`
 
 export const Description = styled.Text`
   font-size: 12px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   font-weight: bold;
   padding-top: 6px;
   margin-left: auto;
@@ -96,7 +96,7 @@ export const Description = styled.Text`
 
 export const CalendarTitle = styled.Text`
   font-size: 18px;
-  color: ${theme.white};
+  color: ${(props) => props.theme.textColor};
   font-weight: bold;
 `;
 

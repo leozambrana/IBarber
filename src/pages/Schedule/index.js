@@ -82,9 +82,14 @@ const ScheduleScreen = ({ navigation }) => {
             selected={selectedServices.includes(id)}
           >
             <S.IconView>
-              <Ionicons name="cut-outline" size={36} color={"#00683C"} />
+              <Ionicons
+                name="cut-outline"
+                size={36}
+                color={theme.highlightColor}
+              />
               <S.Tempo>{duration}min</S.Tempo>
             </S.IconView>
+
             <S.Description>
               {name} {"\n"} R${price}{" "}
             </S.Description>

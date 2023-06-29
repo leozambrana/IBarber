@@ -1,8 +1,6 @@
 import React, { useContext, useMemo, useState } from "react";
-import { Text, Image } from "react-native";
 import Main from "../../global/Main";
 import * as S from "./styles";
-// import theme from "../../global/styles/theme";
 
 import "moment/min/moment-with-locales";
 import moment from "moment";
@@ -10,14 +8,12 @@ import { availableTimes } from "./mock";
 import { services } from "../Schedule/mock";
 import * as Notifications from "expo-notifications";
 import { useTheme } from "styled-components";
-import { ThemeContext } from "../../global/styles/themeProvider";
 moment.locale("pt-br");
 
 const CalendarScreen = ({ navigation, route }) => {
   const selectedServicesIds = route.params.selectedServices;
   const [selectedDay, setSelectedDay] = useState();
   const [selectedTime, setSelectedTime] = useState();
-  const { localTheme } = useContext(ThemeContext);
   const theme = useTheme();
 
   const selectedServices = services.filter((service) =>
@@ -70,6 +66,13 @@ const CalendarScreen = ({ navigation, route }) => {
 
       <S.CalendarContainer>
         <S.CalendarComponent
+          minDate={Date()}
+          markedDates={{
+            [selectedDay?.format("YYYY-MM-DD")]: {
+              selected: true,
+              selectedColor: theme.highlightColor,
+            },
+          }}
           style={{
             width: 350,
             height: 370,
@@ -78,18 +81,14 @@ const CalendarScreen = ({ navigation, route }) => {
           }}
           theme={{
             calendarBackground: "#212121",
-            textSectionTitleColor: theme.highlightColor,
-            textSectionTitleDisabledColor: "#dddddd20",
+            textSectionTitleColor: theme.textColor,
+            selectedDayTextColor: theme.textColor,
             todayTextColor: theme.highlightColor,
             dayTextColor: theme.textColor,
-            textDisabledColor: "#dddddd20",
-            dotColor: "red",
-            selectedDotColor: "#ffffff",
-            arrowColor: theme.white,
+            textDisabledColor: "#dddddd50",
+            arrowColor: theme.highlightColor,
             disabledArrowColor: "#d9e1e8",
-            monthTextColor: "#FFF",
-            selectedDayBackgroundColor: theme.highlightColor,
-            selectedDayTextColor: "#FFF",
+            monthTextColor: theme.textColor,
           }}
           onDayPress={handleDayPress}
         />
