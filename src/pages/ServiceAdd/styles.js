@@ -162,7 +162,7 @@ export const IconContainer = styled.View`
 export const IconBackground = styled.View`
   background-color: white;
   border-radius: 10px;
-  border-width: 2px;
+  border-width: 3px;
   border-color: ${(props) => props.theme.textColor};
   padding: 10px;
   margin: 5px 0;

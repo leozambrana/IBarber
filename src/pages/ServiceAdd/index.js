@@ -76,7 +76,7 @@ const ServiceAdd = () => {
     if (isSelected) {
       return {
         borderColor: theme.highlightColor,
-        borderWidth: 2,
+        borderWidth: 3,
         // transform: [{ scale: 1.1 }],
       };
     } else {
