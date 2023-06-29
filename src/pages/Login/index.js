@@ -75,12 +75,7 @@ const LoginScreen = ({ navigation }) => {
         password: userPassword,
       });
 
-      console.log("Usuário logado: ", response);
       setUser(response);
-
-      // if (response) {
-      //   AsyncStorage.setItem("user", JSON.stringify(response));
-      // }
 
       navigation.navigate("SplashScreen", { response: response });
     } catch (error) {

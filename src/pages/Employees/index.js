@@ -66,7 +66,7 @@ const EmployeesScreen = () => {
         {
           data.userId !== undefined && setUsers(data);
         }
-        console.log("Resposta do servidor:", data);
+        // console.log("Resposta do servidor:", data);
       })
       .catch((error) => {
         console.error("Erro no envio do objeto:", error);
@@ -86,7 +86,7 @@ const EmployeesScreen = () => {
         {
           response && setEmployees(data);
         }
-        console.log("Resposta do servidor:", data);
+        // console.log("Resposta do servidor:", data);
       })
       .catch((error) => {
         // console.error("Erro no envio do objeto:", error);
@@ -128,7 +128,7 @@ const EmployeesScreen = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("Resposta do servidor:", data);
+          // console.log("Resposta do servidor:", data);
           setSelectedUser("");
         })
         .catch((error) => {
@@ -168,7 +168,7 @@ const EmployeesScreen = () => {
         {
           data.userID !== undefined && setEmployees(data);
         }
-        console.log("Resposta do servidor:", data);
+        // console.log("Resposta do servidor:", data);
       })
       .catch((error) => {
         // console.error("Erro no envio do objeto:", error);

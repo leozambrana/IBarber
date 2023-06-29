@@ -70,7 +70,7 @@ const ProfileScreen = () => {
         body: data,
       });
 
-      console.log("Resposta do servidor:", response);
+      // console.log("Resposta do servidor:", response);
     } catch (error) {
       console.log("Erro ao atualizar os dados do usuário:", error);
     }
