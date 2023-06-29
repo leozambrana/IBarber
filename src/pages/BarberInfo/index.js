@@ -9,14 +9,14 @@ import moment from "moment/moment";
 const BarberInfoScreen = () => {
   const [barberShop, setBarberShop] = useState({
     idBarberShop: 0,
-    shopName: "Barbearia do Zé",
+    shopName: "Barbearia do Natas",
     addressDesc: "Av. Universitária",
     addressNumber: "123",
     addressComplement: "Sala 1",
     addressCode: "1234-678",
     cityName: "Criciúma",
     stateName: "Santa Catarina",
-    countryName: "",
+    countryName: "Brasil",
     workIntervals: [
       { weekDay: "Segunda", start: "08:00:00", end: "12:00:00" },
       { weekDay: "Terça", start: "08:00:00", end: "12:00:00" },

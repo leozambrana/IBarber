@@ -96,7 +96,7 @@ export const ThemeProvider = ({ children }) => {
           body: JSON.stringify(updatedTheme),
         });
 
-        console.log("Resposta do servidor:", JSON.stringify(response));
+        // console.log("Resposta do servidor:", JSON.stringify(response));
 
         if (!response.ok) {
           console.error("Error updating accent color:", response.statusText);
