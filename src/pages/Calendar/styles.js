@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import theme from "../../global/styles/theme";
-import { Calendar, CalendarList, Agenda } from "react-native-calendars";
+import { Calendar } from "react-native-calendars";
 
 export const Header = styled.View`
   width: 100%;
@@ -98,23 +98,27 @@ export const CalendarContainer = styled.View`
   align-items: center;
   overflow: hidden;
   border-radius: 20px;
+  margin: 20px 0;
 `;
 
-export const CalendarComponent = styled(CalendarList)`
-  width: 100%;
-  height: 100%;
-`;
+export const CalendarComponent = styled(Calendar)``;
 
 export const Row = styled.View`
   display: flex;
   flex-direction: row;
-  ${({ gap }) => gap && `
+  ${({ gap }) =>
+    gap &&
+    `
     gap: ${gap};
   `}
-  ${({ align }) => align && `
+  ${({ align }) =>
+    align &&
+    `
     align-items: ${align};
   `}
-  ${({ justify }) => justify && `
+  ${({ justify }) =>
+    justify &&
+    `
     justify-content: ${justify};
   `}
 `;
@@ -122,13 +126,19 @@ export const Row = styled.View`
 export const Column = styled.View`
   display: flex;
   flex-direction: column;
-  ${({ gap }) => gap && `
+  ${({ gap }) =>
+    gap &&
+    `
     gap: ${gap};
   `}
-  ${({ align }) => align && `
+  ${({ align }) =>
+    align &&
+    `
     align-items: ${align};
   `}
-  ${({ justify }) => justify && `
+  ${({ justify }) =>
+    justify &&
+    `
     justify-content: ${justify};
   `}
 `;
@@ -137,13 +147,15 @@ export const TimeView = styled.TouchableOpacity`
   padding: 4px 8px;
   border-radius: 4px;
   background-color: ${theme.secondaryColor};
-  ${({ selected }) => selected && `
+  ${({ selected }) =>
+    selected &&
+    `
     border: 1px solid ${theme.highlightColor};
   `}
 `;
 
 export const TimeText = styled.Text`
-  color: ${({ theme }) => theme.textColor || '#F5F5F5'};
+  color: ${({ theme }) => theme.textColor || "#F5F5F5"};
 `;
 
 export const Button = styled.TouchableOpacity`
@@ -157,5 +169,5 @@ export const Button = styled.TouchableOpacity`
 export const ButtonText = styled.Text`
   font-size: 16px;
   font-weight: bold;
-  color: ${({ theme }) => theme.textColor || '#F5F5F5'};
+  color: ${({ theme }) => theme.textColor || "#F5F5F5"};
 `;

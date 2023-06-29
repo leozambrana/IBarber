@@ -35,35 +35,37 @@ const AppRoutes = () => {
   const { localTheme } = useContext(ThemeContext);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Auth"
-          options={{ headerShown: false }}
-          component={Auth}
-        />
-        <Stack.Screen
-          name="TabsNavigator"
-          options={{ headerShown: false }}
-          component={TabsNavigator}
-        />
-        <Stack.Screen
-          name="SplashScreen"
-          options={{ headerShown: false }}
-          component={SplashScreen}
-        />
-        <Stack.Screen
-          name="AutomatedBookingScreen"
-          options={{ headerShown: false }}
-          component={AutomatedBookingScreen}
-        />
-        <Stack.Screen
-          name="CalendarScreen"
-          options={{ headerShown: false }}
-          component={CalendarScreen}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ThemeProvider theme={localTheme}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Auth"
+            options={{ headerShown: false }}
+            component={Auth}
+          />
+          <Stack.Screen
+            name="TabsNavigator"
+            options={{ headerShown: false }}
+            component={TabsNavigator}
+          />
+          <Stack.Screen
+            name="SplashScreen"
+            options={{ headerShown: false }}
+            component={SplashScreen}
+          />
+          <Stack.Screen
+            name="AutomatedBookingScreen"
+            options={{ headerShown: false }}
+            component={AutomatedBookingScreen}
+          />
+          <Stack.Screen
+            name="CalendarScreen"
+            options={{ headerShown: false }}
+            component={CalendarScreen}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
   );
 };
 

@@ -1,36 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { Image, TouchableOpacity, Text } from "react-native";
+import React, { useState } from "react";
+import { TouchableOpacity, Text } from "react-native";
 import Main from "../../global/Main";
 import * as S from "./styles";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import * as Notifications from 'expo-notifications';
+import * as Notifications from "expo-notifications";
 
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "styled-components";
 import { services } from "./mock";
-import { Button } from "react-native";
 
 const ScheduleScreen = ({ navigation }) => {
+  const [selectedServices, setSelectedServices] = useState([]);
+  const theme = useTheme();
+
   const currentDate = new Date();
 
   const formattedDate = format(currentDate, "dd 'de' MMMM, EEEE", {
     locale: ptBR,
   });
 
-  const [selectedServices, setSelectedServices] = useState([]);
-
-  const notifications = () =>{
+  const notifications = () => {
     Notifications.scheduleNotificationAsync({
       content: {
         title: "Agendamento",
-        body: 'Amanhã seu corte!!',
+        body: "Amanhã seu corte!!",
       },
       trigger: {
-        date: new Date('2023-06-16T00:08:30')
+        date: new Date("2023-06-16T00:08:30"),
       },
     });
-  }
+  };
 
   const handleServicePress = (id) => {
     if (selectedServices.includes(id)) {
@@ -65,7 +65,7 @@ const ScheduleScreen = ({ navigation }) => {
         <Ionicons
           name="ios-play-circle-outline"
           size={30}
-          color={useTheme().highlightColor}
+          color={theme.highlightColor}
         />
       </S.AutomationIcon>
 
@@ -76,30 +76,39 @@ const ScheduleScreen = ({ navigation }) => {
       ))} */}
       <S.ContainerGrid>
         {services.map(({ id, name, duration, price }) => (
-          <S.Button title='Serviço' key={id} onPress={() => handleServicePress(id)} selected={selectedServices.includes(id)}>
+          <S.Button
+            title="Serviço"
+            key={id}
+            onPress={() => handleServicePress(id)}
+            selected={selectedServices.includes(id)}
+          >
             <S.IconView>
               <Ionicons name="cut-outline" size={36} color={"#00683C"} />
               <S.Tempo>{duration}min</S.Tempo>
             </S.IconView>
-            <S.Description>{name} {"\n"} R${price} </S.Description>
+            <S.Description>
+              {name} {"\n"} R${price}{" "}
+            </S.Description>
           </S.Button>
         ))}
       </S.ContainerGrid>
 
       {selectedServices.length > 0 && (
         <S.AutomationIcon
-          onPress={() => navigation.navigate("CalendarScreen", { selectedServices })}
+          onPress={() =>
+            navigation.navigate("CalendarScreen", { selectedServices })
+          }
         >
           <S.AutomationIconText>Continuar</S.AutomationIconText>
           <Ionicons
             name="ios-play-circle-outline"
             size={30}
-            color={useTheme().highlightColor}
+            color={theme.highlightColor}
           />
         </S.AutomationIcon>
       )}
 
-      <S.CalendarTitle>Selecione um dia:</S.CalendarTitle>
+      {/* <S.CalendarTitle>Selecione um dia:</S.CalendarTitle> */}
 
       <TouchableOpacity onPress={notifications}>
         <Text>TESTE</Text>
