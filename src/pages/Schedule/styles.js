@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import theme from "../../global/styles/theme";
-import { Calendar, CalendarList, Agenda } from "react-native-calendars";
+import { Calendar } from "react-native-calendars";
 
 export const Header = styled.View`
   width: 100%;
@@ -48,6 +48,22 @@ export const View = styled.View`
   align-items: center;
   background-color: ${theme.surface};
   border-radius: 10px;
+`;
+
+export const Button = styled.TouchableOpacity`
+  width: 45%;
+  height: 40%;
+  margin: 8px 8px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: ${theme.surface};
+  border-radius: 10px;
+  ${({ theme, selected }) =>
+    selected &&
+    `
+    border: 2px solid ${theme.highlightColor};
+  `}
 `;
 
 export const IconView = styled.View`
@@ -100,7 +116,7 @@ export const CalendarContainer = styled.View`
   border-radius: 20px;
 `;
 
-export const CalendarComponent = styled(CalendarList)`
+export const CalendarComponent = styled(Calendar)`
   width: 100%;
   height: 100%;
 `;

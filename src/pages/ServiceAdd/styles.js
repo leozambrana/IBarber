@@ -25,7 +25,7 @@ export const TitleService = styled.Text`
   font-size: 18px;
   color: ${theme.white};
   font-weight: bold;
-  margin: 30px 0;
+  margin: 20px 0;
 `;
 
 export const ExampleService = styled.Text`
@@ -64,7 +64,7 @@ export const Input = styled.TextInput`
 export const ContainerGrid = styled.View`
   width: 100%;
   height: 13%;
-  margin-top: 30px;
+  margin-top: 20px;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
@@ -111,9 +111,9 @@ export const Description = styled.Text`
 `;
 
 export const Button = styled.TouchableOpacity`
-  position: absolute;
+  /* position: absolute;
   bottom: 20px;
-  right: 20px;
+  right: 20px; */
   width: 60px;
   height: 60px;
   border-radius: 50px;
@@ -121,6 +121,8 @@ export const Button = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   margin-top: 30px;
+  margin-left: auto;
+  justify-content: center;
 `;
 
 export const ButtonText = styled.Text`
@@ -129,4 +131,37 @@ export const ButtonText = styled.Text`
   line-height: 33px;
   color: ${theme.white};
   font-weight: bold;
+`;
+
+export const IconSelector = styled.View`
+  flex-direction: row;
+`;
+
+export const IconOption = styled.View`
+  border-width: 1px;
+  border-color: #ccc;
+  border-radius: 5px;
+  padding: 10px;
+`;
+
+export const SelectedIconOption = styled.View`
+  background-color: #00683C;
+  width: 100px;
+  height: 100px;
+`;
+
+export const IconContainer = styled.View`
+  border-radius: 10px;
+  border-width: 1px;
+  color: ${theme.white};
+  border-color: ${theme.white};
+  padding: 10px;
+  margin-bottom: 20px;
+`;
+
+export const IconBackground = styled.View`
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px 0;
 `;
