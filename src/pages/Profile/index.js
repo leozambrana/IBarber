@@ -1,28 +1,78 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import theme from "../../global/styles/theme";
+import { REACT_APP_API } from "../../sdk";
 import * as S from "./styles";
 import Main from "../../global/Main";
+import { UserContext } from "../../sdk/auth/userProvider";
 
 const ProfileScreen = () => {
+  const { user } = useContext(UserContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [showSaveButton, setShowSaveButton] = useState(false);
+  const [data, setData] = useState({
+    document: user.document,
+    name: user.name,
+    email: user.email,
+    userId: user.userId,
+    userPassword: user.password,
+    profileId: user.profileId,
+  });
 
-  const handleInfoChanges = () => {
-    if (name.trim()) {
-      setDisplayName(name.trim());
-      console.log("Dado do usuário atualizado:", { name });
-    }
-    if (email.trim()) {
-      setEmail(email.trim());
-      console.log("Dado do usuário atualizado:", { email });
-    }
-    if (phoneNumber.trim()) {
-      setPhoneNumber(phoneNumber.trim());
-      console.log("Dado do usuário atualizado:", { phoneNumber });
+  useEffect(() => {
+    setName(user.name);
+    setEmail(user.email);
+    setPhoneNumber(user.phoneNumber);
+    setDisplayName(user.name);
+  }, []);
+
+  const handleInfoChanges = async () => {
+    // if (name.trim()) {
+    //   setDisplayName(name.trim());
+    //   setData({ ...data, name: name.trim() });
+    //   console.log("Dado do usuário atualizado:", { name });
+    // }
+
+    // if (email.trim()) {
+    //   setEmail(email.trim());
+    //   setData({ ...data, email: email.trim() });
+    //   console.log("Dado do usuário atualizado:", { email });
+    // }
+
+    // if (phoneNumber.trim()) {
+    //   setPhoneNumber(phoneNumber.trim());
+    //   console.log("Dado do usuário atualizado:", { phoneNumber });
+    // }
+
+    try {
+      if (name.trim()) {
+        setDisplayName(name.trim());
+        setData({ ...data, name: name.trim() });
+        console.log("Dado do usuário atualizado:", { name });
+      }
+
+      if (email.trim()) {
+        setEmail(email.trim());
+        setData({ ...data, email: email.trim() });
+        console.log("Dado do usuário atualizado:", { email });
+      }
+
+      setData({ ...data, userId: user.userId });
+
+      const response = await fetch(`${REACT_APP_API}/user/`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: data,
+      });
+
+      console.log("Resposta do servidor:", response);
+    } catch (error) {
+      console.log("Erro ao atualizar os dados do usuário:", error);
     }
   };
 

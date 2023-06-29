@@ -115,7 +115,7 @@ export const Button = styled.TouchableOpacity`
   width: 60px;
   height: 60px;
   border-radius: 50px;
-  background-color: ${(props) => props.color};
+  background-color: ${(props) => props.theme.highlightColor};
   justify-content: center;
   align-items: center;
   margin-top: 30px;
@@ -131,7 +131,7 @@ export const LogoUploadButton = styled.TouchableOpacity`
   width: 160px;
   height: 45px;
   border-radius: 5px;
-  background-color: ${(props) => isValidColor(props.color) && props.color};
+  background-color: ${(props) => props.theme.highlightColor};
   justify-content: center;
   align-items: center;
   flex-direction: row;

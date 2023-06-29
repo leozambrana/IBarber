@@ -61,7 +61,7 @@ export const BottomContainer = styled.View`
 export const Button = styled.TouchableOpacity`
   width: 30%;
   height: 50px;
-  background-color: ${theme.bgButton};
+  background-color: ${(props) => props.theme.highlightColor};
   border-radius: 10px;
   align-self: center;
   justify-content: center;

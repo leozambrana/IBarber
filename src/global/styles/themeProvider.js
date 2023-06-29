@@ -3,6 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { REACT_APP_API } from "../../sdk";
 import myTheme from "./theme";
 import { LogBox } from "react-native";
+import { set } from "date-fns";
 LogBox.ignoreLogs(["Possible Unhandled Promise Rejection"]);
 
 // 1. Pegar o tema do local storage
@@ -85,22 +86,21 @@ export const ThemeProvider = ({ children }) => {
           textContrast: "#000000",
         };
 
-        await fetch(`${REACT_APP_API}/theme`, {
+        setLocalTheme(updatedTheme);
+
+        const response = await fetch(`${REACT_APP_API}/theme`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(updatedTheme),
-        })
-          .then((response) => {
-            console.log(
-              "Resposta do servidor:",
-              JSON.stringify(response.status)
-            );
-          })
-          .catch((error) => {
-            console.error("Error updating accent color:", error);
-          });
+        });
+
+        console.log("Resposta do servidor:", JSON.stringify(response));
+
+        if (!response.ok) {
+          console.error("Error updating accent color:", response.statusText);
+        }
 
         await AsyncStorage.setItem(
           "@Barber:theme",
