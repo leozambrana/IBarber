@@ -12,6 +12,17 @@ export const serviceAdd = async ({ name, description, price , duration, barberSh
       return response;
   }
 
+  export const serviceGet = async (barberShopId) => {
+    const ans = await fetch(`${REACT_APP_API}/services?barberShopId=${barberShopId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      const response = await ans.json();
+      return response;
+  }
+
   export const hoursAdd = async ({ weekDays, excludedDates }) => {
     try{
       const response = await fetch(`${REACT_APP_API}/hours`);
@@ -87,3 +98,5 @@ export const serviceAdd = async ({ name, description, price , duration, barberSh
       },
     }) 
   }
+
+  

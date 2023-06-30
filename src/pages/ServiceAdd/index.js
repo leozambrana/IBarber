@@ -29,14 +29,11 @@ const ServiceAdd = () => {
       name: "barbe-chair",
       image: require("../../assets/img/icons8-barber-chair-50.png"),
     },
-    { name: "beard2", image: require("../../assets/img/icons8-beard-50.png") },
-    { name: "beard3", image: require("../../assets/img/icons8-beard-50.png") },
-    { name: "beard4", image: require("../../assets/img/icons8-beard-50.png") },
-    { name: "beard5", image: require("../../assets/img/icons8-beard-50.png") },
+    { name: "beard", image: require("../../assets/img/icons8-beard-50.png") },
+  
     // Adicione mais opções de ícones conforme necessário
   ];
 
-  descricao = "Descrição teste";
   barberShopId = 2;
 
   const handleIconSelection = (iconName) => {
@@ -50,7 +47,7 @@ const ServiceAdd = () => {
       try {
         const response = await serviceAdd({
           name: nomeServico,
-          description: descricao,
+          description: selectedIcon,
           barberShopId: barberShopId,
           price: preco,
           duration: duracao,

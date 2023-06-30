@@ -12,13 +12,17 @@ moment.locale("pt-br");
 
 const CalendarScreen = ({ navigation, route }) => {
   const selectedServicesIds = route.params.selectedServices;
+  const servicos = route.params.servico;
   const [selectedDay, setSelectedDay] = useState();
   const [selectedTime, setSelectedTime] = useState();
   const theme = useTheme();
 
-  const selectedServices = services.filter((service) =>
-    selectedServicesIds.includes(service.id)
+
+  const selectedServices = servicos.filter((service) =>
+    selectedServicesIds.includes(service.idService)
   );
+
+  console.log(selectedServices)
 
   const handleDayPress = (day) => {
     setSelectedDay(moment(day.dateString));

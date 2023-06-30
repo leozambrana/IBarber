@@ -21,3 +21,13 @@ export const Container = styled.View`
   padding: 0 20px;
   overflow: scroll;
 `;
+
+export const ExitTextStyle = styled.Text`
+  color: #d5d5d5;
+  position: absolute;
+  right: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  align-self: center;
+  padding: 10px;
+`;
