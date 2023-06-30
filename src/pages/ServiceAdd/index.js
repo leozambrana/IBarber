@@ -68,7 +68,7 @@ const ServiceAdd = () => {
         );
       }
     } else {
-      console.error("Preencha todos os campos do formulário!");
+     alert("Preencha todos os campos do formulário!");
     }
   });
 

@@ -41,3 +41,49 @@ export const serviceAdd = async ({ name, description, price , duration, barberSh
       console.error('Ocorreu um erro ao realizar a requisição:', error);
     }
   }
+
+  export const userGet = async () => {
+    const ans = await fetch(`${REACT_APP_API}/user`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      const response = await ans.json();
+      return response;
+  }
+
+  export const employeeAdd = async ({ name, email, password, adminStatus, barberShopId, document}) => {
+    console.log(name, email, password, adminStatus, barberShopId, document)
+    const ans = await fetch(`${REACT_APP_API}/employee`, {
+      method: "POST",
+      headers:{
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({name, email, password, adminStatus, barberShopId, document}),
+    })
+    console.log(ans.status)
+      const response = await ans.json();
+      console.log(response)
+      return response;
+  }
+
+  export const employeeGet = async (barberShopId) => {
+    const ans = await fetch(`${REACT_APP_API}/employees?id=${barberShopId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      const response = await ans.json();
+      return response;
+  }
+
+  export const employeeDelete = async (idEmployee) => {
+     await fetch(`${REACT_APP_API}/employee/${idEmployee}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }) 
+  }

@@ -29,6 +29,32 @@ export const Label = styled.Text`
 
 export const SelectContainer = styled.View``;
 
+export const InputContainer = styled.View`
+  position: relative;
+  margin-bottom: 10px;
+`;
+
+export const Input = styled.TextInput`
+  height: 50px;
+  width: 100%;
+  border-radius: 10px;
+  border-width: 1px;
+  color: ${theme.white};
+  border-color: ${theme.white};
+  padding: 10px;
+  margin-bottom: 20px;
+`;
+
+export const Placeholder = styled.Text`
+  font-size: 14px;
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  color: ${theme.white};
+  background-color: ${theme.surface};
+  padding: 0 10px;
+`;
+
 export const EmployeesList = styled.ScrollView`
   width: 100%;
   height: 100%;

@@ -18,7 +18,7 @@ const Loader = props => {
         <S.ActivityIndicatorWrapper>
           <ActivityIndicator
             animating={true}
-            color="#000000"
+            color="#fff"
             size="large"
             style={S.ActivityIndicator}
           />
